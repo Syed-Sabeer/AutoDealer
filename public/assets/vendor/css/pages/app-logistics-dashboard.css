@@ -1,0 +1,51 @@
+.vehicles-progress-labels .vehicles-progress-label {
+  position: relative;
+  padding-bottom: 15px;
+}
+.vehicles-progress-labels .vehicles-progress-label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: inline-block;
+  height: 10px;
+  width: 2px;
+}
+[dir=rtl] .vehicles-progress-labels .vehicles-progress-label::after {
+  left: unset;
+  right: 0;
+}
+
+.vehicles-overview-progress .bg-gray-900 {
+  color: #fff;
+}
+
+#shipmentStatisticsChart .apexcharts-legend-series,
+#carrierPerformance .apexcharts-legend-series {
+  padding: 4px 12px;
+  padding-inline-start: 17px;
+  border-radius: 0.375rem;
+  height: 83%;
+}
+
+.light-style .vehicles-progress-labels .vehicles-progress-label::after {
+  background-color: #e6e6e8;
+}
+.light-style .vehicles-overview-progress .snackbar {
+  background-color: #2f2b3d;
+}
+.light-style #shipmentStatisticsChart .apexcharts-legend-series,
+.light-style #carrierPerformance .apexcharts-legend-series {
+  border: 1px solid #e6e6e8;
+}
+
+.dark-style .vehicles-progress-labels .vehicles-progress-label::after {
+  background-color: #44485e;
+}
+.dark-style .vehicles-overview-progress .snackbar {
+  background-color: #f7f4ff;
+}
+.dark-style #shipmentStatisticsChart .apexcharts-legend-series,
+.dark-style #carrierPerformance .apexcharts-legend-series {
+  border: 1px solid #44485e;
+}

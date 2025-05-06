@@ -1,0 +1,327 @@
+@font-face {
+    font-family: "flaticon";
+    src: url("../fonts/flaticon.ttf") format("truetype"),
+    url("../fonts/flaticon.woff") format("woff"),
+    url("../fonts/flaticon.woff2") format("woff2"),
+    url("../fonts/flaticon.eot#iefix") format("embedded-opentype"),
+    url("../fonts/flaticon.svg#flaticon") format("svg");
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+        font-family: "flaticon";
+        src: url("../fonts/flaticon.svg#Flaticon") format("svg");
+    }
+}
+
+[class^="flaticon-"]:before, [class*="flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.flaticon-car-door:before {
+    content: "\f10a";
+}
+.flaticon-car-key:before {
+    content: "\f10b";
+}
+.flaticon-car-oil:before {
+    content: "\f10c";
+}
+.flaticon-car-rental:before {
+    content: "\f10d";
+}
+.flaticon-car-wash:before {
+    content: "\f10e";
+}
+.flaticon-car:before {
+    content: "\f10f";
+}
+.flaticon-24-hours:before {
+    content: "\f101";
+}
+.flaticon-audio-book:before {
+    content: "\f102";
+}
+.flaticon-automation:before {
+    content: "\f103";
+}
+.flaticon-basket:before {
+    content: "\f104";
+}
+.flaticon-battery:before {
+    content: "\f105";
+}
+.flaticon-business:before {
+    content: "\f106";
+}
+.flaticon-calendar-1:before {
+    content: "\f107";
+}
+.flaticon-calendar-2:before {
+    content: "\f108";
+}
+.flaticon-calendar:before {
+    content: "\f109";
+}
+.flaticon-chauffeur:before {
+    content: "\f110";
+}
+.flaticon-child:before {
+    content: "\f111";
+}
+.flaticon-compare:before {
+    content: "\f112";
+}
+.flaticon-customer-service:before {
+    content: "\f113";
+}
+.flaticon-delivery:before {
+    content: "\f114";
+}
+.flaticon-disc-brake:before {
+    content: "\f115";
+}
+.flaticon-down-arrow:before {
+    content: "\f116";
+}
+.flaticon-drive-thru:before {
+    content: "\f117";
+}
+.flaticon-drive:before {
+    content: "\f118";
+}
+.flaticon-dry-cleaning:before {
+    content: "\f119";
+}
+.flaticon-gear:before {
+    content: "\f120";
+}
+.flaticon-golf-cart:before {
+    content: "\f121";
+}
+.flaticon-hand-gesture:before {
+    content: "\f122";
+}
+.flaticon-heart:before {
+    content: "\f123";
+}
+.flaticon-home:before {
+    content: "\f124";
+}
+.flaticon-homeschooling:before {
+    content: "\f125";
+}
+.flaticon-house-1:before {
+    content: "\f126";
+}
+.flaticon-house:before {
+    content: "\f127";
+}
+.flaticon-instagram:before {
+    content: "\f128";
+}
+.flaticon-lawn-mower:before {
+    content: "\f129";
+}
+.flaticon-left-arrow:before {
+    content: "\f12a";
+}
+.flaticon-linkedin:before {
+    content: "\f12b";
+}
+.flaticon-locksmith:before {
+    content: "\f12c";
+}
+.flaticon-map-pointer:before {
+    content: "\f12d";
+}
+.flaticon-menu:before {
+    content: "\f12e";
+}
+.flaticon-microwave:before {
+    content: "\f12f";
+}
+.flaticon-money-transfer:before {
+    content: "\f130";
+}
+.flaticon-motel:before {
+    content: "\f131";
+}
+.flaticon-next:before {
+    content: "\f132";
+}
+.flaticon-oil:before {
+    content: "\f133";
+}
+.flaticon-online-payment:before {
+    content: "\f134";
+}
+.flaticon-online-shopping:before {
+    content: "\f135";
+}
+.flaticon-paint-spray:before {
+    content: "\f136";
+}
+.flaticon-phone-call:before {
+    content: "\f137";
+}
+.flaticon-phone:before {
+    content: "\f138";
+}
+.flaticon-placeholder:before {
+    content: "\f139";
+}
+.flaticon-podcast:before {
+    content: "\f13a";
+}
+.flaticon-pos-terminal:before {
+    content: "\f13b";
+}
+.flaticon-quote-hand-drawn-symbol:before {
+    content: "\f13c";
+}
+.flaticon-quote:before {
+    content: "\f13d";
+}
+.flaticon-resume:before {
+    content: "\f13e";
+}
+.flaticon-review:before {
+    content: "\f13f";
+}
+.flaticon-right-arrow:before {
+    content: "\f140";
+}
+.flaticon-right-arrows:before {
+    content: "\f141";
+}
+.flaticon-right-quote:before {
+    content: "\f142";
+}
+.flaticon-screwdriver:before {
+    content: "\f143";
+}
+.flaticon-search-interface-symbol:before {
+    content: "\f144";
+}
+.flaticon-search:before {
+    content: "\f145";
+}
+.flaticon-settings:before {
+    content: "\f146";
+}
+.flaticon-shop:before {
+    content: "\f147";
+}
+.flaticon-shopping-bag-1:before {
+    content: "\f148";
+}
+.flaticon-shopping-bag:before {
+    content: "\f149";
+}
+.flaticon-shopping-cart:before {
+    content: "\f14a";
+}
+.flaticon-shopping-list:before {
+    content: "\f14b";
+}
+.flaticon-smart-light:before {
+    content: "\f14c";
+}
+.flaticon-smartphone:before {
+    content: "\f14d";
+}
+.flaticon-spark-plug:before {
+    content: "\f14e";
+}
+.flaticon-speedometer:before {
+    content: "\f14f";
+}
+.flaticon-star:before {
+    content: "\f150";
+}
+.flaticon-steering-wheel:before {
+    content: "\f151";
+}
+.flaticon-stop-watch:before {
+    content: "\f152";
+}
+.flaticon-straight-quotes:before {
+    content: "\f153";
+}
+.flaticon-survey:before {
+    content: "\f154";
+}
+.flaticon-suspension:before {
+    content: "\f155";
+}
+.flaticon-technical-support:before {
+    content: "\f156";
+}
+.flaticon-temperature:before {
+    content: "\f157";
+}
+.flaticon-tire:before {
+    content: "\f158";
+}
+.flaticon-twitter:before {
+    content: "\f159";
+}
+.flaticon-van-4:before {
+    content: "\f160";
+}
+.flaticon-van-5:before {
+    content: "\f161";
+}
+.flaticon-van:before {
+    content: "\f162";
+}
+.flaticon-web-browser:before {
+    content: "\f163";
+}
+.flaticon-windscreen:before {
+    content: "\f164";
+}
+.flaticon-email:before {
+    content: "\f11a";
+}
+.flaticon-facebook:before {
+    content: "\f11b";
+}
+.flaticon-gas-pump:before {
+    content: "\f11c";
+}
+.flaticon-gas-station:before {
+    content: "\f11d";
+}
+.flaticon-gear-1:before {
+    content: "\f11e";
+}
+.flaticon-gear-shift:before {
+    content: "\f11f";
+}
+.flaticon-user-1:before {
+    content: "\f15a";
+}
+.flaticon-user:before {
+    content: "\f15b";
+}
+.flaticon-valet:before {
+    content: "\f15c";
+}
+.flaticon-van-1:before {
+    content: "\f15d";
+}
+.flaticon-van-2:before {
+    content: "\f15e";
+}
+.flaticon-van-3:before {
+    content: "\f15f";
+}

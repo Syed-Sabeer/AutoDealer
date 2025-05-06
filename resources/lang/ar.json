@@ -1,0 +1,310 @@
+{
+    "Login": "تسجيل الدخول",
+    "Register": "تسجيل",
+    "Logout": "تسجيل الخروج",
+
+    "Dashboard": "لوحة التحكم",
+    "Apps & Pages": "التطبيقات والصفحات",
+    "Users": "المستخدمون",
+    "All Users": "جميع المستخدمين",
+    "Archived Users": "المستخدمون المؤرشفون",
+    "Roles & Permissions": "الأدوار والصلاحيات",
+    "Roles": "الأدوار",
+    "Permissions": "الصلاحيات",
+    "Settings": "الإعدادات",
+
+    "Search (Ctrl+/)": "بحث (Ctrl+/)",
+    "Notification": "إشعار",
+    "View all notifications": "عرض جميع الإشعارات",
+    "My Profile": "ملفي",
+    "FAQ": "الأسئلة الشائعة",
+    "Search...": "بحث...",
+
+    "Welcome to": "مرحبًا بك في",
+    "Please sign-in to your account and start the adventure": "يرجى تسجيل الدخول إلى حسابك وبدء المغامرة",
+    "Email/Username": "البريد الإلكتروني/اسم المستخدم",
+    "Enter your email or username": "أدخل بريدك الإلكتروني أو اسم المستخدم",
+    "Password": "كلمة المرور",
+    "Remember Me": "تذكرني",
+    "Forgot Password?": "نسيت كلمة المرور؟",
+    "Sign in": "تسجيل الدخول",
+    "New on our platform?": "جديد على منصتنا؟",
+    "Create an account": "إنشاء حساب",
+    "or": "أو",
+    "Adventure starts here": "المغامرة تبدأ هنا",
+    "Make your app management easy and fun!": "اجعل إدارة تطبيقك سهلة وممتعة!",
+    "Name": "الاسم",
+    "Enter your name": "أدخل اسمك",
+    "Email": "البريد الإلكتروني",
+    "Enter your email": "أدخل بريدك الإلكتروني",
+    "Confirm Password": "تأكيد كلمة المرور",
+    "I agree to": "أوافق على",
+    "privacy policy & terms": "سياسة الخصوصية والشروط",
+    "Sign up": "التسجيل",
+    "Already have an account?": "هل لديك حساب بالفعل؟",
+    "Sign in instead": "تسجيل الدخول بدلاً من ذلك",
+    "Verify your email ✉️": "تحقق من بريدك الإلكتروني ✉️",
+    "Account activation link sent to your email address. Please follow the link inside to continue.": "تم إرسال رابط تفعيل الحساب إلى عنوان بريدك الإلكتروني. يرجى اتباع الرابط للمتابعة.",
+    "Skip for now": "تخطي الآن",
+    "Didn't get the mail?": "لم تستلم البريد؟",
+    "Resend": "إعادة الإرسال",
+    "Forgot Password? 🔒": "نسيت كلمة المرور؟ 🔒",
+    "Enter your email and we'll send you instructions to reset your password": "أدخل بريدك الإلكتروني وسنرسل لك تعليمات لإعادة تعيين كلمة المرور",
+    "Send Reset Link": "إرسال رابط إعادة التعيين",
+    "Back to login": "العودة لتسجيل الدخول",
+    "Reset Password 🔒": "إعادة تعيين كلمة المرور 🔒",
+    "Your new password must be different from previously used passwords": "يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمات المرور المستخدمة سابقًا",
+    "New Password": "كلمة المرور الجديدة",
+    "Confirm New Password": "تأكيد كلمة المرور الجديدة",
+    "Set new password": "تعيين كلمة مرور جديدة",
+
+    "Permission Denied ⚠️": "تم رفض الإذن ⚠️",
+    "You do not have permission to access this resource.": "ليس لديك إذن للوصول إلى هذا المورد.",
+    "Back to home": "العودة إلى الصفحة الرئيسية",
+    "Page Not Found️ ⚠️": "الصفحة غير موجودة ⚠️",
+    "we couldn't find the page you are looking for": "لم نتمكن من العثور على الصفحة التي تبحث عنها",
+    "Too Many Requests": "طلبات كثيرة جدًا",
+    "You've sent too many requests in a given amount of time. Please try again later.": "لقد أرسلت طلبات كثيرة في فترة زمنية قصيرة. يرجى المحاولة مرة أخرى لاحقًا.",
+    "Server Side Error": "خطأ في الخادم",
+    "Something went wrong on your server side.": "حدث خطأ ما في جانب الخادم.",
+    "Your Account Has Been Deactivated": "تم إلغاء تفعيل حسابك",
+    "It looks like your account is inactive. Please contact support if you believe this is a mistake.": "يبدو أن حسابك غير نشط. يرجى الاتصال بالدعم إذا كنت تعتقد أن هذا خطأ.",
+    "Contact Support": "الاتصال بالدعم",
+
+    "Hi": "مرحبًا",
+    "Email Settings:": "إعدادات البريد الإلكتروني:",
+    "Mail Driver:": "برنامج تشغيل البريد:",
+    "Mail Host:": "مضيف البريد:",
+    "Mail Port:": "منفذ البريد:",
+    "Mail Username:": "اسم مستخدم البريد:",
+    "Mail Password:": "كلمة مرور البريد:",
+    "Mail Encryption:": "تشفير البريد:",
+    "Mail From Address:": "البريد من العنوان:",
+    "Mail From Name:": "البريد من الاسم:",
+    "Default Email Settings:": "إعدادات البريد الإلكتروني الافتراضية:",
+    "Go to Dashboard": "الذهاب إلى لوحة التحكم",
+    "We're thrilled to have you join our community! Below are your account credentials to help you get started:": "نحن سعداء بانضمامك إلى مجتمعنا! فيما يلي بيانات اعتماد حسابك لمساعدتك على البدء:",
+    "Your Login Credentials:": "بيانات اعتماد تسجيل الدخول الخاصة بك:",
+    "Email:": "البريد الإلكتروني:",
+    "Password:": "كلمة المرور:",
+    "Log in and explore all the amazing features waiting for you. If you have any questions or need assistance, our team is here to help!": "سجل الدخول واستكشف جميع الميزات الرائعة التي تنتظرك. إذا كان لديك أي أسئلة أو تحتاج إلى مساعدة، فإن فريقنا هنا لمساعدتك!",
+
+    "Profile": "الملف الشخصي",
+    "Joined": "انضم",
+    "Account Settings": "إعدادات الحساب",
+    "Security": "الأمان",
+    "About": "حول",
+    "Full Name": "الاسم الكامل",
+    "Username": "اسم المستخدم",
+    "Role": "الدور",
+    "Designation": "التعيين",
+    "Country": "البلد",
+    "Language": "اللغة",
+    "Gender": "الجنس",
+    "Marital Status": "الحالة الاجتماعية",
+    "Contacts": "جهات الاتصال",
+    "Contact": "جهة الاتصال",
+    "BIO": "السيرة الذاتية",
+    "Social": "التواصل الاجتماعي",
+    "Facebook": "فيسبوك",
+    "Linkedin": "لينكد إن",
+    "Skype": "سكايب",
+    "Instagram": "إنستغرام",
+    "Github": "جيت هاب",
+    "No Social Links": "لا توجد روابط اجتماعية",
+    "Copy": "نسخ",
+    "Copied": "تم النسخ",
+    "Change Password": "تغيير كلمة المرور",
+    "Current Password": "كلمة المرور الحالية",
+    "Password Requirements": "متطلبات كلمة المرور",
+    "Minimum 8 characters long - the more, the better": "8 أحرف على الأقل - كلما زادت، كان ذلك أفضل",
+    "At least one lowercase character": "حرف صغير واحد على الأقل",
+    "At least one number, symbol, or whitespace character": "رقم واحد على الأقل، رمز، أو مسافة بيضاء",
+    "Save changes": "حفظ التغييرات",
+    "Reset": "إعادة تعيين",
+    "Upload new photo": "تحميل صورة جديدة",
+    "Allowed JPG, JPEG, or PNG. Max size of": "يُسمح بـ JPG أو JPEG أو PNG. الحد الأقصى للحجم",
+    "First Name": "الاسم الأول",
+    "Enter your first name": "أدخل اسمك الأول",
+    "Last Name": "الاسم الأخير",
+    "Enter your last name": "أدخل اسمك الأخير",
+    "Date of Birth": "تاريخ الميلاد",
+    "Enter your date of birth": "أدخل تاريخ ميلادك",
+    "Phone Number": "رقم الهاتف",
+    "Select Country": "اختر البلد",
+    "City": "المدينة",
+    "Zip Code": "الرمز البريدي",
+    "Street": "الشارع",
+    "i.e. Beacon Main St. #55": "مثال: شارع بيكون الرئيسي #55",
+    "Select Language": "اختر اللغة",
+    "Select Gender": "اختر الجنس",
+    "Select Marital Status": "اختر الحالة الاجتماعية",
+    "Bio": "السيرة الذاتية",
+    "i.e. A Modern UI designer": "مثال: مصمم واجهة مستخدم حديثة",
+    "Social Links": "روابط التواصل الاجتماعي",
+    "Deactivate Account": "إلغاء تفعيل الحساب",
+    "Are you sure you want to deactivate your account?": "هل أنت متأكد أنك تريد إلغاء تفعيل حسابك؟",
+    "Once you deactivate your account, there is no going back. Please be certain.": "بمجرد إلغاء تفعيل حسابك، لا يمكن التراجع. يرجى التأكد.",
+    "I confirm my account deactivation": "أؤكد إلغاء تفعيل حسابي",
+
+    "Roles List": "قائمة الأدوار",
+    "A role provided access to predefined menus and features so that depending on": "يوفر الدور الوصول إلى القوائم والميزات المحددة مسبقًا بحيث يعتمد على",
+    "assigned role an administrator can have access to what user needs.": "الدور المخصص يمكن للمسؤول الوصول إلى ما يحتاجه المستخدم.",
+    "Total": "الإجمالي",
+    "users": "المستخدمون",
+    "Edit Role": "تعديل الدور",
+    "Add New Role": "إضافة دور جديد",
+    "Add new role,": "إضافة دور جديد،",
+    "if it doesn't exist.": "إذا لم يكن موجودًا.",
+    "Total Roles": "إجمالي الأدوار",
+    "Find all of your company’s roles.": "ابحث عن جميع أدوار شركتك.",
+    "Sr.": "الأقدمية",
+    "Created Date": "تاريخ الإنشاء",
+    "Action": "الإجراء",
+    "Set role permissions": "تعيين صلاحيات الدور",
+    "Role Name": "اسم الدور",
+    "Enter role name": "أدخل اسم الدور",
+    "Role Permissions": "صلاحيات الدور",
+    "Administrator Access": "وصول المسؤول",
+    "Allows a full access to the system": "يسمح بالوصول الكامل إلى النظام",
+    "Select All": "تحديد الكل",
+    "Submit": "إرسال",
+    "Cancel": "إلغاء",
+    "role": "دور",
+    "Permission": "صلاحية",
+    "permission": "صلاحية",
+    "User": "المستخدم",
+    "user": "المستخدم",
+    "Archived user": "المستخدم المؤرشف",
+    "archived user": "المستخدم المؤرشف",
+    "Setting": "الإعداد",
+    "setting": "الإعداد",
+    "View": "عرض",
+    "Create": "إنشاء",
+    "Update": "تحديث",
+    "Delete": "حذف",
+    "Assigned To": "مخصص لـ",
+    "No Roles Assigned": "لا توجد أدوار مخصصة",
+
+    "Company Setting": "إعدادات الشركة",
+    "ReCaptcha Setting": "إعدادات ReCaptcha",
+    "System Settings": "إعدادات النظام",
+    "Email Settings": "إعدادات البريد الإلكتروني",
+    "Upload light logo": "تحميل الشعار الفاتح",
+    "Allowed JPG, JPEG, SVG or PNG. Max size of": "يُسمح بـ JPG أو JPEG أو SVG أو PNG. الحد الأقصى للحجم",
+    "Upload dark logo": "تحميل الشعار الداكن",
+    "Upload favicon": "تحميل الأيقونة",
+    "Company Name": "اسم الشركة",
+    "Enter your company name": "أدخل اسم شركتك",
+    "Company Email": "بريد الشركة الإلكتروني",
+    "Enter your company email": "أدخل بريد شركتك الإلكتروني",
+    "Address": "العنوان",
+    "Send Test Mail": "إرسال بريد اختباري",
+    "Mail Driver": "برنامج تشغيل البريد",
+    "Mail Host": "مضيف البريد",
+    "Mail Port": "منفذ البريد",
+    "Mail Username": "اسم مستخدم البريد",
+    "Enter your mail username": "أدخل اسم مستخدم البريد",
+    "Mail Password": "كلمة مرور البريد",
+    "Enter your mail password": "أدخل كلمة مرور البريد",
+    "Mail Encryption": "تشفير البريد",
+    "From Mail": "من البريد",
+    "From Name": "من الاسم",
+    "Enter name to show as from mail": "أدخل الاسم ليظهر كمرسل",
+    "Enable Status": "تفعيل الحالة",
+    "Enable Mails": "تفعيل البريد",
+    "Disable Mails": "تعطيل البريد",
+    "Enter email where you want to receive test mail.": "أدخل البريد الإلكتروني حيث تريد استلام البريد الاختباري.",
+    "Please check your spam or junk folder if you don't see the test email in your inbox.": "يرجى التحقق من مجلد البريد العشوائي إذا لم تجد البريد الاختباري في صندوق الوارد.",
+    "Close": "إغلاق",
+    "Send Mail": "إرسال البريد",
+    "ReCaptcha Settings": "إعدادات ReCaptcha",
+    "Google ReCaptcha Type": "نوع Google ReCaptcha",
+    "Select Recaptcha type": "اختر نوع Recaptcha",
+    "reCAPTCHA V2": "reCAPTCHA V2",
+    "reCAPTCHA V3": "reCAPTCHA V3",
+    "No Captcha": "بدون Captcha",
+    "Google ReCaptcha Key": "مفتاح Google ReCaptcha",
+    "Enter google recaptcha key": "أدخل مفتاح Google ReCaptcha",
+    "Google ReCaptcha Secret": "سر Google ReCaptcha",
+    "Enter google recaptcha secret": "أدخل سر Google ReCaptcha",
+    "Storage Settings": "إعدادات التخزين",
+    "Max Upload Size": "الحد الأقصى لحجم التحميل",
+    "Size must be in KBs": "يجب أن يكون الحجم بالكيلوبايت",
+    "Currency Settings": "إعدادات العملة",
+    "Currency Symbol": "رمز العملة",
+    "Currency Symbol Position": "موقع رمز العملة",
+    "Prefix": "بادئة",
+    "Postfix": "لاحقة",
+    "Other Settings": "إعدادات أخرى",
+    "Timezone": "المنطقة الزمنية",
+    "Select Timezone": "اختر المنطقة الزمنية",
+    "Footer Text": "نص التذييل",
+
+    "Total Users": "إجمالي المستخدمين",
+    "Deactivated Users": "المستخدمون المعطلون",
+    "Total Deactive Users": "إجمالي المستخدمين المعطلين",
+    "Active Users": "المستخدمون النشطون",
+    "Total Active Users": "إجمالي المستخدمين النشطين",
+    "Total Archived Users": "إجمالي المستخدمين المؤرشفين",
+    "Add New User": "إضافة مستخدم جديد",
+    "Status": "الحالة",
+    "Archive User": "أرشفة المستخدم",
+    "Deactivate User": "تعطيل المستخدم",
+    "Activate User": "تفعيل المستخدم",
+    "Add User": "إضافة مستخدم",
+    "User Role": "دور المستخدم",
+    "Select Role": "اختر الدور",
+    "Edit User": "تعديل المستخدم",
+    "Details": "التفاصيل",
+    "Deletion Date": "تاريخ الحذف",
+    "Permanent Delete": "حذف دائم",
+    "Restore User": "استعادة المستخدم",
+
+    "Export": "تصدير",
+    "Print": "طباعة",
+    "Csv": "ملف CSV",
+    "Excel": "إكسل",
+    "Pdf": "بي دي إف",
+    "Success!": "نجاح!",
+    "Info!": "معلومة!",
+    "Error!": "خطأ!",
+    "Are you sure?": "هل أنت متأكد؟",
+    "You would not be able to revert this!": "لن تتمكن من التراجع عن هذا!",
+    "Yes, delete it!": "نعم، احذفه!",
+    "Your data is safe!": "بياناتك آمنة!",
+
+    "Validation Error!" : "خطأ في التحقق!",
+    "User created successfully" : "تم إنشاء المستخدم بنجاح",
+    "User updated successfully" : "تم تحديث المستخدم بنجاح",
+    "Account Deleted Successfully" : "تم حذف الحساب بنجاح",
+    "Account Deactivated Successfully" : "تم إلغاء تنشيط الحساب بنجاح",
+    "Account Activated Successfully" : "تم تنشيط الحساب بنجاح",
+    "Logout Successfully!" : "تم تسجيل الخروج بنجاح!",
+    "Verification link sent!" : "تم إرسال رابط التحقق!",
+    "GitHub login successfully." : "تم تسجيل الدخول عبر GitHub بنجاح.",
+    "GitHub login failed. Please try again." : "فشل تسجيل الدخول عبر GitHub. يرجى المحاولة مرة أخرى.",
+    "Google login successfully." : "تم تسجيل الدخول عبر Google بنجاح.",
+    "Google login failed. Please try again." : "فشل تسجيل الدخول عبر Google. يرجى المحاولة مرة أخرى.",
+    "Login successfully!" : "تم تسجيل الدخول بنجاح!",
+    "Authentication Error" : "خطأ في المصادقة",
+    "Password is mismatch" : "كلمة المرور غير متطابقة",
+    "Invalid credentials" : "بيانات الاعتماد غير صالحة",
+    "Something went wrong! Please try again later" : "حدث خطأ ما! يرجى المحاولة لاحقًا",
+    "Your account has been created successfully." : "تم إنشاء حسابك بنجاح.",
+    "Role created successfully" : "تم إنشاء الدور بنجاح",
+    "Role updated successfully" : "تم تحديث الدور بنجاح",
+    "Role deleted successfully" : "تم حذف الدور بنجاح",
+    "You cannot delete a role that has users" : "لا يمكنك حذف دور يحتوي على مستخدمين",
+    "User Permanently Deleted Successfully" : "تم حذف المستخدم نهائيًا بنجاح",
+    "User Restored Successfully" : "تمت استعادة المستخدم بنجاح",
+    "Profile Updated Successfully" : "تم تحديث الملف الشخصي بنجاح",
+    "Current Password is incorrect" : "كلمة المرور الحالية غير صحيحة",
+    "Password Updated Successfully" : "تم تحديث كلمة المرور بنجاح",
+    "Company Settings Updated Successfully" : "تم تحديث إعدادات الشركة بنجاح",
+    "Recaptcha Settings Updated Successfully" : "تم تحديث إعدادات Recaptcha بنجاح",
+    "System Settings Updated Successfully" : "تم تحديث إعدادات النظام بنجاح",
+    "Email Settings Updated Successfully" : "تم تحديث إعدادات البريد الإلكتروني بنجاح",
+    "Test Email Validation Error!" : "خطأ في التحقق من البريد الإلكتروني التجريبي!",
+    "Test Email Sent Successfully" : "تم إرسال البريد الإلكتروني التجريبي بنجاح"
+}

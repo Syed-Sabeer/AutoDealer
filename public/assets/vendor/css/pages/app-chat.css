@@ -1,0 +1,360 @@
+.app-chat {
+  position: relative;
+  height: calc(100vh - 10.9rem);
+}
+.layout-navbar-hidden .app-chat {
+  height: calc(100vh - 6.5rem);
+}
+@media (min-width: 1200px) {
+  .layout-horizontal .app-chat {
+    height: calc(100vh - 10.9rem - 3rem);
+  }
+}
+@media (max-width: 992px) {
+  .app-chat .app-sidebar {
+    z-index: 4;
+  }
+}
+.app-chat .app-sidebar .sidebar-header {
+  position: relative;
+}
+.app-chat .app-sidebar .sidebar-header .close-sidebar {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+}
+.app-chat .app-sidebar .sidebar-header .chat-sidebar-avatar {
+  width: 84px;
+  height: 84px;
+}
+.app-chat .app-sidebar .sidebar-header .chat-sidebar-avatar::after {
+  bottom: 6px;
+  width: 16.8px;
+  height: 16.8px;
+}
+.app-chat .app-chat-contacts {
+  position: absolute;
+  left: calc(-21rem - 1rem);
+  height: calc(100vh - 10.9rem);
+  width: 21rem;
+  flex-basis: 21rem;
+  transition: all 0.25s ease;
+}
+.layout-navbar-hidden .app-chat .app-chat-contacts {
+  height: calc(100vh - 6.5rem);
+}
+@media (min-width: 1200px) {
+  .layout-horizontal .app-chat .app-chat-contacts {
+    height: calc(100vh - 10.9rem - 3rem);
+  }
+}
+@media (min-width: 992px) {
+  .app-chat .app-chat-contacts {
+    position: static;
+  }
+}
+.app-chat .app-chat-contacts.show {
+  left: 0rem;
+}
+.app-chat .app-chat-contacts .sidebar-body {
+  height: calc(calc(100vh - 10.9rem) - 4.7rem);
+}
+.layout-navbar-hidden .app-chat .app-chat-contacts .sidebar-body {
+  height: calc(calc(100vh - 6.5rem) - 4.7rem);
+}
+@media (min-width: 1200px) {
+  .layout-horizontal .app-chat .app-chat-contacts .sidebar-body {
+    height: calc(calc(100vh - 10.9rem) - 4.7rem - 3rem);
+  }
+}
+.app-chat .app-chat-contacts .sidebar-body .chat-contact-list li.chat-contact-list-item {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0.375rem;
+  padding: 0.528rem 0.75rem;
+  margin: 0.25rem 0.75rem;
+  cursor: pointer;
+}
+.app-chat .app-chat-contacts .sidebar-body .chat-contact-list li.chat-contact-list-item a {
+  width: 100%;
+}
+.app-chat .app-chat-contacts .sidebar-body .chat-contact-list li.chat-contact-list-item .chat-contact-info {
+  min-width: 0;
+}
+.app-chat .app-chat-contacts .sidebar-body .chat-contact-list li.chat-contact-list-item .chat-contact-info .chat-contact-name {
+  line-height: 1.5;
+}
+.app-chat .app-chat-contacts .sidebar-body .chat-contact-list li.chat-contact-list-item small {
+  white-space: nowrap;
+}
+.app-chat .app-chat-contacts .sidebar-body .chat-contact-list li.chat-contact-list-item-title {
+  padding: 0.528rem 1.056rem 0.264rem;
+}
+.app-chat .app-chat-sidebar-left {
+  position: absolute;
+  top: 0;
+  left: calc(-21rem - 1rem);
+  width: 21rem;
+  height: calc(100vh - 10.9rem);
+  opacity: 0;
+  z-index: 5;
+  transition: all 0.25s ease;
+}
+.layout-navbar-hidden .app-chat .app-chat-sidebar-left {
+  height: calc(100vh - 6.5rem);
+}
+@media (min-width: 1200px) {
+  .layout-horizontal .app-chat .app-chat-sidebar-left {
+    height: calc(100vh - 10.9rem - 3rem);
+  }
+}
+.app-chat .app-chat-sidebar-left.show {
+  left: 0;
+  opacity: 1;
+}
+.app-chat .app-chat-sidebar-left .sidebar-body {
+  height: calc(calc(100vh - 10.9rem) - 12.5rem);
+}
+.layout-navbar-hidden .app-chat .app-chat-sidebar-left .sidebar-body {
+  height: calc(calc(100vh - 6.5rem) - 12.5rem);
+}
+@media (min-width: 1200px) {
+  .layout-horizontal .app-chat .app-chat-sidebar-left .sidebar-body {
+    height: calc(calc(100vh - 10.9rem) - 12.3rem - 3rem);
+  }
+}
+.app-chat .app-chat-history {
+  position: relative;
+  height: calc(100vh - 10.9rem);
+  transition: all 0.25s ease;
+}
+.layout-navbar-hidden .app-chat .app-chat-history {
+  height: calc(100vh - 6.5rem);
+}
+@media (min-width: 1200px) {
+  .layout-horizontal .app-chat .app-chat-history {
+    height: calc(100vh - 10.9rem - 3rem);
+  }
+}
+.app-chat .app-chat-history .chat-history-header {
+  padding: 1.015rem 1.5rem;
+  margin-top: -1px;
+}
+.app-chat .app-chat-history .chat-history-body {
+  height: calc(100vh - 22rem);
+  padding: 1.5rem 1.5rem;
+  overflow: hidden;
+}
+.layout-navbar-hidden .app-chat .app-chat-history .chat-history-body {
+  height: calc(100vh - 17.6rem);
+}
+@media (min-width: 1200px) {
+  .layout-horizontal .app-chat .app-chat-history .chat-history-body {
+    height: calc(100vh - 22rem - 3rem);
+  }
+}
+.app-chat .app-chat-history .chat-history-body .chat-history .chat-message {
+  display: flex;
+  justify-content: flex-start;
+}
+.app-chat .app-chat-history .chat-history-body .chat-history .chat-message .chat-message-text {
+  border-radius: 0.375rem;
+  padding: 0.543rem 1rem;
+}
+.app-chat .app-chat-history .chat-history-body .chat-history .chat-message.chat-message-right {
+  justify-content: flex-end;
+}
+.app-chat .app-chat-history .chat-history-body .chat-history .chat-message.chat-message-right .chat-message-text {
+  border-top-right-radius: 0;
+}
+.app-chat .app-chat-history .chat-history-body .chat-history .chat-message.chat-message-right .user-avatar {
+  margin-right: 0rem;
+  margin-left: 1rem;
+}
+.app-chat .app-chat-history .chat-history-body .chat-history .chat-message:not(.chat-message-right) .chat-message-text {
+  border-top-left-radius: 0;
+}
+.app-chat .app-chat-history .chat-history-body .chat-history .chat-message .thumbnail {
+  cursor: zoom-in;
+}
+.app-chat .app-chat-history .chat-history-body .chat-history .chat-message:not(:last-child) {
+  margin-bottom: 3rem;
+}
+.app-chat .app-chat-history .chat-history-footer {
+  padding: 0.5rem;
+  padding-inline-start: 2px;
+  margin: 1.5rem;
+  border-radius: 0.375rem;
+}
+.app-chat .app-chat-history .chat-history-footer .form-control.message-input {
+  padding: calc(0.426rem - var(--bs-border-width)) calc(0.9375rem - var(--bs-border-width));
+}
+.app-chat .app-chat-sidebar-right {
+  position: absolute;
+  top: 0;
+  right: calc(-21rem - 1rem);
+  width: 21rem;
+  height: calc(100vh - 10.9rem);
+  opacity: 0;
+  z-index: 5;
+  transition: all 0.25s ease;
+}
+.layout-navbar-hidden .app-chat .app-chat-sidebar-right {
+  height: calc(100vh - 6.5rem);
+}
+@media (min-width: 1200px) {
+  .layout-horizontal .app-chat .app-chat-sidebar-right {
+    height: calc(100vh - 10.9rem - 3rem);
+  }
+}
+.app-chat .app-chat-sidebar-right.show {
+  opacity: 1;
+  right: 0;
+}
+.app-chat .app-chat-sidebar-right .sidebar-body {
+  height: calc(calc(100vh - 10.9rem) - 12.3rem);
+}
+.layout-navbar-hidden .app-chat .app-chat-sidebar-right .sidebar-body {
+  height: calc(calc(100vh - 6.5rem) - 12.3rem);
+}
+@media (min-width: 1200px) {
+  .layout-horizontal .app-chat .app-chat-sidebar-right .sidebar-body {
+    height: calc(calc(100vh - 10.9rem) - 11.1rem - 3rem);
+  }
+}
+
+@media (max-width: 576px) {
+  .app-chat .app-chat-sidebar-right.show,
+  .app-chat .app-chat-sidebar-left.show,
+  .app-chat .app-chat-contacts.show {
+    width: 100%;
+  }
+}
+.light-style .app-chat .app-sidebar .sidebar-header .chat-sidebar-avatar::after {
+  box-shadow: 0 0 0 4px #fff;
+}
+.light-style .app-chat .app-chat-contacts,
+.light-style .app-chat .app-chat-sidebar-left {
+  background-color: #fff;
+}
+.light-style .app-chat .app-chat-contacts .chat-actions .chat-search-input,
+.light-style .app-chat .app-chat-sidebar-left .chat-actions .chat-search-input {
+  background-color: #f8f7fa;
+}
+.light-style .app-chat .app-chat-contacts .sidebar-body .chat-contact-list li.active,
+.light-style .app-chat .app-chat-sidebar-left .sidebar-body .chat-contact-list li.active {
+  color: #fff;
+  box-shadow: 0px 2px 6px 0px rgba(115, 103, 240, 0.3);
+}
+.light-style .app-chat .app-chat-contacts .sidebar-body .chat-contact-list li.active h6,
+.light-style .app-chat .app-chat-contacts .sidebar-body .chat-contact-list li.active .text-muted,
+.light-style .app-chat .app-chat-sidebar-left .sidebar-body .chat-contact-list li.active h6,
+.light-style .app-chat .app-chat-sidebar-left .sidebar-body .chat-contact-list li.active .text-muted {
+  color: #fff !important;
+}
+.light-style .app-chat .app-chat-history {
+  background-color: #f3f2f5;
+}
+.light-style .app-chat .app-chat-history .chat-history-wrapper {
+  background-color: #f3f2f5;
+}
+.light-style .app-chat .app-chat-history .chat-history-header,
+.light-style .app-chat .app-chat-history .chat-history-footer {
+  background-color: #fff;
+}
+.light-style .app-chat .app-chat-history .chat-history-body .chat-history .chat-message .chat-message-text {
+  background-color: #fff;
+  box-shadow: 0 0.0625rem 0.375rem 0 rgba(47, 43, 61, 0.1);
+}
+.light-style .app-chat .app-chat-history .chat-history-body .chat-history .chat-message.chat-message-right {
+  justify-content: flex-end;
+}
+.light-style .app-chat .app-chat-history .chat-history-body .chat-history .chat-message.chat-message-right .chat-message-text {
+  color: #fff;
+}
+.light-style .app-chat .app-chat-sidebar-right {
+  background-color: #fff;
+  box-shadow: 16px 1px 45px 3px rgba(47, 43, 61, 0.5);
+}
+@media (max-width: 992px) {
+  .light-style .app-chat .app-chat-contacts .chat-actions .chat-search-input {
+    background-color: #fff;
+  }
+}
+
+.dark-style .app-chat .app-sidebar .sidebar-header .chat-sidebar-avatar::after {
+  box-shadow: 0 0 0 4px #2f3349;
+}
+.dark-style .app-chat .app-chat-contacts,
+.dark-style .app-chat .app-chat-sidebar-left {
+  background-color: #2f3349;
+}
+.dark-style .app-chat .app-chat-contacts .chat-actions .chat-search-input,
+.dark-style .app-chat .app-chat-sidebar-left .chat-actions .chat-search-input {
+  background-color: #25293c;
+}
+.dark-style .app-chat .app-chat-contacts .sidebar-body .chat-contact-list li.active,
+.dark-style .app-chat .app-chat-sidebar-left .sidebar-body .chat-contact-list li.active {
+  color: #fff;
+  box-shadow: 0px 2px 6px 0px rgba(115, 103, 240, 0.3);
+}
+.dark-style .app-chat .app-chat-contacts .sidebar-body .chat-contact-list li.active h6,
+.dark-style .app-chat .app-chat-contacts .sidebar-body .chat-contact-list li.active .text-muted,
+.dark-style .app-chat .app-chat-sidebar-left .sidebar-body .chat-contact-list li.active h6,
+.dark-style .app-chat .app-chat-sidebar-left .sidebar-body .chat-contact-list li.active .text-muted {
+  color: #fff !important;
+}
+.dark-style .app-chat .app-chat-history {
+  background-color: #202534;
+}
+.dark-style .app-chat .app-chat-history .chat-history-wrapper {
+  background-color: #202534;
+}
+.dark-style .app-chat .app-chat-history .chat-history-header,
+.dark-style .app-chat .app-chat-history .chat-history-footer {
+  background-color: #2f3349;
+}
+.dark-style .app-chat .app-chat-history .chat-history-body .chat-history .chat-message .chat-message-text {
+  background-color: #2f3349;
+  box-shadow: 0 0.0625rem 0.375rem 0 rgba(19, 17, 32, 0.16);
+}
+.dark-style .app-chat .app-chat-history .chat-history-body .chat-history .chat-message.chat-message-right {
+  justify-content: flex-end;
+}
+.dark-style .app-chat .app-chat-history .chat-history-body .chat-history .chat-message.chat-message-right .chat-message-text {
+  color: #fff;
+}
+.dark-style .app-chat .app-chat-sidebar-right {
+  background-color: #2f3349;
+}
+
+[dir=rtl] .app-chat .app-chat-sidebar-left,
+[dir=rtl] .app-chat .app-chat-contacts {
+  right: calc(-21rem - 1rem);
+  left: auto;
+}
+[dir=rtl] .app-chat .app-chat-sidebar-left.show,
+[dir=rtl] .app-chat .app-chat-contacts.show {
+  left: auto;
+  right: 0;
+}
+[dir=rtl] .app-chat .app-chat-sidebar-right {
+  left: calc(-21rem - 1rem);
+  right: auto;
+}
+[dir=rtl] .app-chat .app-chat-sidebar-right.show {
+  left: 0;
+  right: auto;
+}
+[dir=rtl] .app-chat .app-chat-history .chat-history-body .chat-history .chat .user-avatar {
+  margin-left: 1rem;
+  margin-right: 0;
+}
+[dir=rtl] .app-chat .app-chat-history .chat-message:not(.chat-message-right) .chat-message-text {
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0.375rem !important;
+}
+[dir=rtl] .app-chat .app-chat-history .chat-message.chat-message-right .chat-message-text {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0.375rem !important;
+}

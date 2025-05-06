@@ -1,0 +1,17 @@
+.app-ecommerce-category .comment-editor .ql-editor,
+.app-ecommerce .comment-editor .ql-editor {
+  min-height: 7rem;
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+}
+
+.gray-shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem 0 rgba(165, 163, 174, 0.3);
+}
+
+@media (max-width: 575.98px) {
+  .widget-separator .border-shift.border-end {
+    border-right: none !important;
+    border-left: none !important;
+  }
+}

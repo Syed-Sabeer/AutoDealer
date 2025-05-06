@@ -1,0 +1,13 @@
+<!-- css -->
+<link rel="stylesheet" href="{{ asset('frontAssets/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontAssets/css/all-fontawesome.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontAssets/css/flaticon.css') }}">
+<link rel="stylesheet" href="{{ asset('frontAssets/css/animate.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontAssets/css/magnific-popup.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontAssets/css/owl.carousel.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontAssets/css/jquery-ui.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontAssets/css/nice-select.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontAssets/css/style.css') }}">
+<style>
+</style>
+@yield('css')

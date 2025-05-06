@@ -1,0 +1,84 @@
+.fv-sr-only {
+  display: none;
+}
+
+.fv-plugins-framework input::-ms-clear,
+.fv-plugins-framework textarea::-ms-clear {
+  display: none;
+  height: 0;
+  width: 0;
+}
+
+.fv-plugins-message-container--enabled {
+  display: block;
+}
+
+.fv-plugins-message-container--disabled {
+  display: none;
+}
+
+.fv-plugins-bootstrap5 {
+  /* Support floating label */
+  /* For horizontal form */
+  /* Stacked form */
+  /* Inline form */
+}
+
+.fv-plugins-bootstrap5 .fv-plugins-bootstrap5-row-invalid .fv-plugins-icon {
+  color: #dc3545;
+}
+
+.fv-plugins-bootstrap5 .fv-plugins-bootstrap5-row-valid .fv-plugins-icon {
+  color: #198754;
+}
+
+.fv-plugins-bootstrap5 .fv-plugins-icon {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 38px;
+  width: 38px;
+}
+
+.fv-plugins-bootstrap5 .input-group ~ .fv-plugins-icon {
+  z-index: 3;
+}
+
+.fv-plugins-bootstrap5 .fv-plugins-icon-input-group {
+  right: -38px;
+}
+
+.fv-plugins-bootstrap5 .form-floating .fv-plugins-icon {
+  height: 58px;
+}
+
+.fv-plugins-bootstrap5 .row .fv-plugins-icon {
+  right: 12px;
+}
+
+.fv-plugins-bootstrap5 .row .fv-plugins-icon-check {
+  top: -7px; /* labelHeight/2 - iconHeight/2 */
+}
+
+.fv-plugins-bootstrap5:not(.fv-plugins-bootstrap5-form-inline) label ~ .fv-plugins-icon {
+  top: 32px;
+}
+
+.fv-plugins-bootstrap5:not(.fv-plugins-bootstrap5-form-inline) label ~ .fv-plugins-icon-check {
+  top: 25px;
+}
+
+.fv-plugins-bootstrap5:not(.fv-plugins-bootstrap5-form-inline) label.sr-only ~ .fv-plugins-icon-check {
+  top: -7px;
+}
+
+.fv-plugins-bootstrap5.fv-plugins-bootstrap5-form-inline .fv-plugins-icon {
+  right: calc(var(--bs-gutter-x, 1.5rem) / 2);
+}
+
+.fv-plugins-bootstrap5 .form-select.fv-plugins-icon-input.is-valid,
+.fv-plugins-bootstrap5 .form-select.fv-plugins-icon-input.is-invalid,
+.fv-plugins-bootstrap5 .form-control.fv-plugins-icon-input.is-valid,
+.fv-plugins-bootstrap5 .form-control.fv-plugins-icon-input.is-invalid {
+  background-image: none;
+}

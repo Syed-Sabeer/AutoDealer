@@ -1,0 +1,18 @@
+.help-center-header .input-wrapper {
+  max-width: 29rem;
+}
+@media (max-width: 575.98px) {
+  .help-center-header .input-wrapper {
+    max-width: 80%;
+  }
+}
+
+.light-style .help-center-header .input-wrapper .input-group-text,
+.light-style .help-center-header .input-wrapper .form-control {
+  background-color: #fff;
+}
+
+.dark-style .help-center-header .input-wrapper .input-group-text,
+.dark-style .help-center-header .input-wrapper .form-control {
+  background-color: #2f3349;
+}

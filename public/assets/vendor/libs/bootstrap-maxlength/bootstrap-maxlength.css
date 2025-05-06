@@ -1,0 +1,31 @@
+.bootstrap-maxlength {
+  line-height: 1;
+  text-align: center;
+  vertical-align: baseline;
+}
+
+.light-style .bootstrap-maxlength {
+  background: rgba(47, 43, 61, 0.12);
+  font-size: 0.8667em;
+  font-weight: 500;
+  padding: 0.4235em 0.77em;
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+.light-style .bootstrap-maxlength.label-danger {
+  color: #fff;
+  background: #ff4c51;
+}
+
+.dark-style .bootstrap-maxlength {
+  background: #25293c;
+  padding: 0.4235em 0.77em;
+  font-size: 0.8667em;
+  font-weight: 500;
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+.dark-style .bootstrap-maxlength.label-danger {
+  color: #fff;
+  background: #ff4c51;
+}
