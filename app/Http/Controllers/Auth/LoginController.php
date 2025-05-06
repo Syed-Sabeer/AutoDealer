@@ -16,9 +16,16 @@ class LoginController extends Controller
     public function login()
     {
         if (Auth::check()) {
-            return redirect()->route('dashboard');
+            $user = Auth::user();
+            $currentUser = User::find($user->id);
+            // Check if the user has role 'super-admin' or 'admin'
+            if ($currentUser->hasRole('super-admin') || $currentUser->hasRole('admin')) {
+                return redirect()->route('dashboard');
+            } else {
+                return redirect()->route('frontend.home');
+            }
         } else {
-            return view('auth.login');
+            return view('frontend.auth.login');
         }
     }
 
@@ -64,7 +71,13 @@ class LoginController extends Controller
                     Auth::attempt(['email' => $userfind->email, 'password' => $request->password], $remember_me);
 
                     if (Auth::check()) {
-                        return redirect()->route('dashboard')->with('success', "Login successfully!");
+                        // Check if the user has role 'super-admin' or 'admin'
+                        if ($userfind->hasRole('super-admin') || $userfind->hasRole('admin')) {
+                            return redirect()->route('dashboard')->with('success', "Login successfully!");
+                        } else {
+                            return redirect()->route('frontend.dashboard')->with('success', "Login successfully!");
+                        }
+                        // return redirect()->route('dashboard')->with('success', "Login successfully!");
                     } else {
                         return redirect()->back()->withInput($request->all())->with('error', 'Authentication Error');
                     }

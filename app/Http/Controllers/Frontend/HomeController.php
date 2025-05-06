@@ -18,4 +18,14 @@ class HomeController extends Controller
             throw $th;
         }
     }
+    public function about()
+    {
+        try {
+            return view('frontend.pages.about');
+        } catch (\Throwable $th) {
+            Log::error('About view Failed', ['error' => $th->getMessage()]);
+            return redirect()->back()->with('error', "Something went wrong! Please try again later");
+            throw $th;
+        }
+    }
 }

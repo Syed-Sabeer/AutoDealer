@@ -20,7 +20,7 @@ class AuthController extends Controller
     {
         try {
             Auth::logout();
-            return Redirect::route('login')->with('success', 'Logout Successfully!');
+            return Redirect::route('frontend.login')->with('success', 'Logout Successfully!');
         } catch (\Throwable $th) {
             return Redirect::back()->with('error', "Something went wrong! Please try again later");
         }

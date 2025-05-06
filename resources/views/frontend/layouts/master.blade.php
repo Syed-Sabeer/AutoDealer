@@ -30,6 +30,10 @@
 
 
     <main class="main">
+        <!-- Breadcrumb -->
+            @yield('breadcrumbs')
+        <!-- / Breadcrumb -->
+        
         @yield('content')
     </main>
 

@@ -22,9 +22,16 @@ class RegisterController extends Controller
     public function register()
     {
         if (Auth::check()) {
-            return redirect()->route('dashboard');
+            $user = Auth::user();
+            $currentUser = User::find($user->id);
+            // Check if the user has role 'super-admin' or 'admin'
+            if ($currentUser->hasRole('super-admin') || $currentUser->hasRole('admin')) {
+                return redirect()->route('dashboard');
+            } else {
+                return redirect()->route('frontend.home');
+            }
         } else {
-            return view('auth.register');
+            return view('frontend.auth.register');
         }
     }
 
@@ -73,7 +80,7 @@ class RegisterController extends Controller
             $user->username = $username;
             $user->save();
     
-            $user->syncRoles('user');
+            $user->syncRoles('seller');
 
             $profile = new Profile();
             $profile->user_id = $user->id;
@@ -98,7 +105,12 @@ class RegisterController extends Controller
             // Commit the transaction
             DB::commit();
 
-            return redirect()->route('login')->with('success','Your account has been created successfully.');
+            // if ($user->hasRole('super-admin') || $user->hasRole('admin')) {
+            //     return redirect()->route('dashboard')->with('success', "Login successfully!");
+            // } else {
+            //     return redirect()->route('frontend.dashboard')->with('success', "Login successfully!");
+            // }
+            return redirect()->route('frontend.dashboard')->with('success','Your account has been created successfully.');
         } catch (\Throwable $th) {
             DB::rollback();
             // Log the error for debugging
