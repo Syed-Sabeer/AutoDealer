@@ -18,7 +18,7 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         CompanySetting::create([
-            'company_name' => 'Admin Panel',
+            'company_name' => 'Auto Dealer',
         ]);
 
         RecaptchaSetting::create([

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique(); // e.g. toyota, honda
             $table->string('logo')->nullable();
             $table->text('description')->nullable(); // Optional brand description
+            $table->enum('is_featured', ['0', '1'])->default('0');
             $table->enum('is_active', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

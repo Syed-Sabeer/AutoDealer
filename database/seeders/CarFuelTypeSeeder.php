@@ -25,11 +25,13 @@ class CarFuelTypeSeeder extends Seeder
             'Hydrogen',
         ];
 
+        $featuredFuels = ['Petrol', 'Diesel', 'Electric', 'Hybrid'];
         foreach ($fuelTypes as $type) {
             CarFuelType::create([
                 'name' => $type,
                 'slug' => Str::slug($type),
                 'is_active' => 'active',
+                'is_featured' => in_array($type, $featuredFuels) ? '1' : '0',
             ]);
         }
     }

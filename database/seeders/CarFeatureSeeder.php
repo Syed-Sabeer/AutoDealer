@@ -88,11 +88,14 @@ class CarFeatureSeeder extends Seeder
             'Collision Avoidance System',
         ];
 
+        $featuredFeatures = ['Alloy Wheels', 'Air Suspension', 'Parking Sensors', 'Backup Camera'];
+
         foreach ($carFeatures as $feature) {
             CarFeature::create([
                 'name' => $feature,
                 'slug' => Str::slug($feature),
                 'is_active' => 'active',
+                'is_featured' => in_array($feature, $featuredFeatures) ? '1' : '0',
             ]);
         }
     }

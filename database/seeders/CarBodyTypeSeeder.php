@@ -35,11 +35,13 @@ class CarBodyTypeSeeder extends Seeder
             'Off-road',
         ];
 
+        $featuredBodyTypes = ['Sedan', 'SUV', 'Truck', 'Coupe'];
         foreach ($bodyTypes as $type) {
             CarBodyType::create([
                 'name' => $type,
                 'slug' => Str::slug($type),
                 'is_active' => 'active',
+                'is_featured' => in_array($type, $featuredBodyTypes) ? '1' : '0',
             ]);
         }
     }

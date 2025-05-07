@@ -6,6 +6,12 @@
 @section('author', '')
 
 @section('css')
+<style>
+    .nice-select ul{
+        height: 150px; 
+        overflow-y: auto !important;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -121,90 +127,84 @@
         <div class="container">
             <div class="find-car-form">
                 <h4 class="find-car-title">Let's Find Your Perfect Car</h4>
-                <form action="#">
+                <form  action="{{ route('frontend.inventory') }}" method="GET">
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Car Condition</label>
-                                <select class="select">
-                                    <option value="1">All Status</option>
-                                    <option value="2">New Car</option>
-                                    <option value="3">Used Car</option>
+                                <select name="condition[]" class="select">
+                                    <option selected disabled>All Status</option>
+                                    <option value="new">New Car</option>
+                                    <option value="used">Used Car</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Brand Name</label>
-                                <select class="select">
-                                    <option value="1">All Brand</option>
-                                    <option value="2">BMW</option>
-                                    <option value="3">Ferrari</option>
-                                    <option value="4">Marcediz Benz</option>
-                                    <option value="5">Hyundai</option>
-                                    <option value="6">Nissan</option>
+                                <select name="brands[]" id="brandSelect" class="select">
+                                    <option selected disabled>All Brand</option>
+                                    @if (isset($carBrands) && count($carBrands) > 0)
+                                        @foreach ($carBrands as $brand)
+                                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Car Model</label>
-                                <select class="select">
-                                    <option value="1">All Model</option>
-                                    <option value="2">3-Series </option>
-                                    <option value="3">Carrera</option>
-                                    <option value="4">G-TR</option>
-                                    <option value="3">Macan</option>
-                                    <option value="3">N-Series</option>
+                                <select name="models[]" id="modelSelect" class="select">
+                                    <option selected disabled>All Models</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Choose Year</label>
-                                <select class="select">
-                                    <option value="1">All Year</option>
-                                    <option value="2">2023</option>
-                                    <option value="3">2022</option>
-                                    <option value="4">2021</option>
-                                    <option value="5">2020</option>
+                                <select name="year[]" id="yearSelect" class="select">
+                                    <option selected disabled>All Year</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <label>Choose Milieage</label>
-                                <select class="select">
-                                    <option value="1">All Milieage</option>
-                                    <option value="2">2000 Miles</option>
-                                    <option value="3">3000 Miles</option>
-                                    <option value="4">4000 Miles</option>
-                                    <option value="5">5000 Miles</option>
+                                <label>Choose Transmission</label>
+                                <select name="transmission[]" class="select">
+                                    <option selected disabled>All Transmissions</option>
+                                    <option value="automatic">Automatic</option>
+                                    <option value="manual">Manual</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Price Range</label>
-                                <select class="select">
-                                    <option value="1">All Price</option>
-                                    <option value="2">$1,000 - $5,000</option>
-                                    <option value="3">$5,000 - $10,000</option>
-                                    <option value="4">$15,000 - $20,000</option>
-                                    <option value="5">$20,000 - $25,000</option>
-                                    <option value="6">$25,000 - $30,000</option>
+                                <select id="priceSelect" class="select">
+                                    <option value="1" data-min="0" data-max="10000000">All Price</option>
+                                    <option value="2" data-min="1000" data-max="10000">$1,000 - $10,000</option>
+                                    <option value="3" data-min="10000" data-max="20000">$10,000 - $20,000</option>
+                                    <option value="4" data-min="20000" data-max="30000">$20,000 - $30,000</option>
+                                    <option value="5" data-min="40000" data-max="50000">$40,000 - $50,000</option>
+                                    <option value="6" data-min="50000" data-max="100000">$50,000 - $100,000</option>
                                 </select>
                             </div>
                         </div>
+                
+                        <!-- Hidden fields to store the selected price range -->
+                        <input type="hidden" name="min_price" id="min_price" value="{{ request('min_price', 0) }}">
+                        <input type="hidden" name="max_price" id="max_price" value="{{ request('max_price', 1000000) }}">
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Body Type</label>
-                                <select class="select">
-                                    <option value="1">All Body Type</option>
-                                    <option value="2">Sedan</option>
-                                    <option value="5">Compact</option>
-                                    <option value="3">Coupe</option>
-                                    <option value="4">Wagon</option>
+                                <select name="body_types[]" class="select">
+                                    <option selected disabled>All Body Type</option>
+                                    @if (isset($carBodyTypes) && count($carBodyTypes) > 0)
+                                        @foreach ($carBodyTypes as $carBodyType)
+                                            <option value="{{ $carBodyType->id }}">{{ $carBodyType->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
@@ -1315,5 +1315,69 @@
 @endsection
 
 @section('script')
-    <script></script>
+    <script>
+        $(document).ready(function () {
+            const currentYear = new Date().getFullYear();
+            const startYear = 1955;
+            let options = '<option selected disabled>All Year</option>';
+
+            for (let year = currentYear; year >= startYear; year--) {
+                options += `<option value="${year}">${year}</option>`;
+            }
+
+            $('#yearSelect').html(options); // update the HTML
+
+            // Re-initialize niceSelect properly
+            if ($.fn.niceSelect) {
+                $('#yearSelect').niceSelect('destroy');
+                $('#yearSelect').niceSelect();
+            }
+
+            $('#priceSelect').change(function() {
+                var selectedOption = $(this).find('option:selected');
+                var minPrice = selectedOption.data('min');
+                var maxPrice = selectedOption.data('max');
+
+                // Update the hidden fields with the selected price range
+                $('#min_price').val(minPrice);
+                $('#max_price').val(maxPrice);
+            });
+
+            // Trigger change event on page load to set the initial values
+            if ($('#priceSelect').val() !== "") {
+                $('#priceSelect').trigger('change');
+            }
+
+            $('#brandSelect').on('change', function () {
+                var brandId = $(this).val();
+                $('#modelSelect').empty().append('<option selected disabled>Loading...</option>');
+
+                if (brandId) {
+                    $.ajax({
+                        url: '/get-models-by-brand/' + brandId,
+                        type: 'GET',
+                        success: function (response) {
+                            let options = '<option selected disabled>All Models</option>';
+                            $.each(response.models, function (index, model) {
+                                options += '<option value="' + model.id + '">' + model.name + '</option>';
+                            });
+
+                            $('#modelSelect').html(options);
+
+                            // Force refresh if using custom select plugin
+                            if ($('.select').hasClass('nice-select')) {
+                                $('.select').niceSelect('update');
+                            }
+                        },
+
+                        error: function () {
+                            $('#modelSelect').empty().append('<option selected disabled>Error loading models</option>');
+                        }
+                    });
+                } else {
+                    $('#modelSelect').empty().append('<option selected disabled>All Models</option>');
+                }
+            });
+        });
+    </script>
 @endsection

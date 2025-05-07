@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Frontend\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\CarBodyType;
+use App\Models\CarBrand;
+use App\Models\CarFeature;
+use App\Models\CarFuelType;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,8 +54,11 @@ class DashboardController extends Controller
     {
         try {
             $user = Auth::user();
-            $profile = Profile::with('gender','maritalStatus','language','designation','country')->where('user_id', $user->id)->first();
-            return view('frontend.pages.user.add-listing',compact('profile','user'));
+            $carBrands = CarBrand::where('is_active', 'active')->get();
+            $carBodyTypes = CarBodyType::where('is_active', 'active')->get();
+            $carFuelTypes = CarFuelType::where('is_active', 'active')->get();
+            $carFeatures = CarFeature::where('is_active', 'active')->get();
+            return view('frontend.pages.user.add-listing',compact('user','carBrands','carBodyTypes','carFuelTypes','carFeatures'));
         } catch (\Throwable $th) {
             Log::error('Frontend Dashboard Index Failed', ['error' => $th->getMessage()]);
             return redirect()->back()->with('error', "Something went wrong! Please try again later");

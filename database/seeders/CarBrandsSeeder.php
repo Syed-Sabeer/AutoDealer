@@ -31,11 +31,14 @@ class CarBrandsSeeder extends Seeder
             'VinFast', 'Volkswagen', 'Volvo', 'Wuling', 'Zotye'
         ];
 
+        $featuredBrands = ['Audi', 'BMW', 'Toyota', 'Ferrari', 'Tesla', 'Mercedes-Benz', 'Hyundai'];
+
         foreach ($brands as $brand) {
             CarBrand::create([
                 'name' => $brand,
                 'slug' => Str::slug($brand),
                 'is_active' => 'active',
+                'is_featured' => in_array($brand, $featuredBrands) ? '1' : '0',
             ]);
         }
     }

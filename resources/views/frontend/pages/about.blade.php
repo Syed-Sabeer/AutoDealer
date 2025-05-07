@@ -8,8 +8,6 @@
 @section('css')
 @endsection
 
-
-@section('content')
 <!-- Page Title -->
 @section('breadcrumbs')
     @include('frontend.layouts.partials.breadcrumb', [
@@ -21,6 +19,8 @@
     ])
 @endsection
 <!-- End Page Title -->
+
+@section('content')
     <!-- about area -->
     <div class="about-area py-120">
         <div class="container">

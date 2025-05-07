@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('car_model_id')->constrained('car_models')->onDelete('cascade');
             $table->foreignId('car_fuel_type_id')->constrained('car_fuel_types')->onDelete('cascade');
             $table->foreignId('car_body_type_id')->constrained('car_body_types')->onDelete('cascade');
-            
+
             // Core Listing Information
             $table->string('title');
             $table->string('car_id')->unique();
@@ -38,7 +38,7 @@ return new class extends Migration
             $table->string('vin')->nullable();
             $table->integer('seats')->unsigned()->nullable();
             $table->integer('doors')->unsigned()->nullable();
-            
+
             $table->string('main_image')->nullable();
 
             $table->string('address')->nullable();

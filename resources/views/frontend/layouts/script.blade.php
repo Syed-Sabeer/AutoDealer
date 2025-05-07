@@ -13,6 +13,7 @@
 <script src="{{ asset('frontAssets/js/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('frontAssets/js/jquery.nice-select.min.js') }}"></script>
 <script src="{{ asset('frontAssets/js/wow.min.js') }}"></script>
+<script src="{{ asset('frontAssets/js/flex-slider.js') }}"></script>
 <script src="{{ asset('frontAssets/js/main.js') }}"></script>
 <!-- jQuery (required for Toastr) -->
 {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}

@@ -55,4 +55,29 @@ class CarListing extends Model
             $carListing->saveQuietly(); // Safe after the ID exists
         });
     }
+
+    public function carBrand()
+    {
+        return $this->belongsTo(CarBrand::class, 'car_brand_id');
+    }
+
+    public function carModel()
+    {
+        return $this->belongsTo(CarModel::class, 'car_model_id');
+    }
+
+    public function carFuelType()
+    {
+        return $this->belongsTo(CarFuelType::class, 'car_fuel_type_id');
+    }
+
+    public function carBodyType()
+    {
+        return $this->belongsTo(CarBodyType::class, 'car_body_type_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

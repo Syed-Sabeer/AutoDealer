@@ -13,6 +13,8 @@ use App\Http\Controllers\Dashboard\RolePermission\RoleController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\User\ArchivedUserController;
 use App\Http\Controllers\Dashboard\User\UserController;
+use App\Http\Controllers\Frontend\AjaxController;
+use App\Http\Controllers\Frontend\CarListingController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\Frontend\User\DashboardController;
 use App\Http\Middleware\CheckAccountActivation;
@@ -152,11 +154,11 @@ Route::name('frontend.')->group(function () {
         //User Login Authentication Routes
         Route::get('login', [LoginController::class, 'login'])->name('login');
         Route::post('login-attempt', [LoginController::class, 'login_attempt'])->name('login.attempt');
-    
+
         //User Register Authentication Routes
         Route::get('register', [RegisterController::class, 'register'])->name('register');
         Route::post('registration-attempt', [RegisterController::class, 'register_attempt'])->name('register.attempt');
-    
+
     });
 
     Route::middleware(['auth'])->group(function () {
@@ -170,11 +172,18 @@ Route::name('frontend.')->group(function () {
             Route::get('dashboard/add-listings', [DashboardController::class, 'addListings'])->name('add-listings');
             Route::get('dashboard/my-favourites', [DashboardController::class, 'myFavourites'])->name('my-favourites');
             Route::get('dashboard/settings', [DashboardController::class, 'settings'])->name('settings');
+
+            //Car Listing
+            Route::resource('car-listings', CarListingController::class);
         });
-    
+
     });
     Route::get('home', [FrontendHomeController::class, 'home'])->name('home');
     Route::get('about', [FrontendHomeController::class, 'about'])->name('about');
+    Route::get('inventory', [FrontendHomeController::class, 'inventory'])->name('inventory');
+    Route::get('inventory-details/{carID}', [FrontendHomeController::class, 'inventoryDetails'])->name('inventory.details');
+    Route::get('/get-models-by-brand/{brand_id}', [AjaxController::class, 'getModelsByBrand'])->name('get-models');
+
 });
 
 

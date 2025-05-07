@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->text('description')->nullable();
+            $table->enum('is_featured', ['0', '1'])->default('0');
             $table->enum('is_active', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

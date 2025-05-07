@@ -83,6 +83,15 @@ class Helper
         return $amount . $symbol;
     }
 
+    public static function currencySymbol()
+    {
+        $currencySetting = SystemSetting::first();
+
+        $symbol = $currencySetting->currency_symbol;
+
+        return $symbol;
+    }
+
     public static function renderRecaptcha($formId, $action = 'register')
     {
         if (config('captcha.version') === 'v3') {
