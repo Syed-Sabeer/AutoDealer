@@ -7,9 +7,12 @@ use App\Models\CarBodyType;
 use App\Models\CarBrand;
 use App\Models\CarFeature;
 use App\Models\CarFuelType;
+use App\Models\CarListing;
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
@@ -17,9 +20,9 @@ class DashboardController extends Controller
     public function index()
     {
         try {
-            $user = Auth::user();
-            $profile = Profile::with('gender','maritalStatus','language','designation','country')->where('user_id', $user->id)->first();
-            return view('frontend.pages.user.dashboard',compact('profile','user'));
+            $user = User::where('id', auth()->user()->id)->first();
+            $carListings = CarListing::with('carBrand','carModel', 'carBodyType')->where('user_id', $user->id)->latest()->limit(6)->get();
+            return view('frontend.pages.user.dashboard',compact('carListings','user'));
         } catch (\Throwable $th) {
             Log::error('Frontend Dashboard Index Failed', ['error' => $th->getMessage()]);
             return redirect()->back()->with('error', "Something went wrong! Please try again later");
@@ -41,9 +44,9 @@ class DashboardController extends Controller
     public function myListings()
     {
         try {
-            $user = Auth::user();
-            $profile = Profile::with('gender','maritalStatus','language','designation','country')->where('user_id', $user->id)->first();
-            return view('frontend.pages.user.my-listing',compact('profile','user'));
+            $user = User::where('id', auth()->user()->id)->first();
+            $carListings = CarListing::with('carBrand','carModel', 'carBodyType')->where('user_id', $user->id)->paginate(6);
+            return view('frontend.pages.user.my-listing', compact('carListings'));
         } catch (\Throwable $th) {
             Log::error('Frontend Dashboard Index Failed', ['error' => $th->getMessage()]);
             return redirect()->back()->with('error', "Something went wrong! Please try again later");
@@ -86,6 +89,39 @@ class DashboardController extends Controller
         } catch (\Throwable $th) {
             Log::error('Frontend Dashboard Index Failed', ['error' => $th->getMessage()]);
             return redirect()->back()->with('error', "Something went wrong! Please try again later");
+            throw $th;
+        }
+    }
+
+    public function updateProfileImage(Request $request)
+    {
+        try {
+            $user = Auth::user();
+            $profile = Profile::where('user_id', $user->id)->first();
+            if ($request->hasFile('profile_image')) {
+                if (isset($profile->profile_image) && File::exists(public_path($profile->profile_image))) {
+                    File::delete(public_path($profile->profile_image));
+                }
+                $Image = $request->file('profile_image');
+                $Image_ext = $Image->getClientOriginalExtension();
+                $Image_name = time() . 'profile_image.' . $Image_ext;
+
+                $Image_path = 'uploads/profile-images';
+                $Image->move(public_path($Image_path), $Image_name);
+                $profile->profile_image = $Image_path . "/" . $Image_name;
+                $profile->save();
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Image Deleted Successfully'
+            ]);
+        } catch (\Throwable $th) {
+            Log::error('Frontend Dashboard Index Failed', ['error' => $th->getMessage()]);
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong! Please try again later'
+            ]);
             throw $th;
         }
     }

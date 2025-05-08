@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\BusinessSetting;
+use App\Models\CarBodyType;
 use App\Models\CompanySetting;
 use App\Models\SystemSetting;
 use Illuminate\Support\Facades\Auth;
@@ -130,5 +131,15 @@ class Helper
                 });
             </script>
         HTML;
+    }
+
+    public static function getCarBodyTypes()
+    {
+        $carBodyTypes = CarBodyType::where('is_active', 'active')->get();
+        if (isset($carBodyTypes) && count($carBodyTypes) > 0) {
+            return $carBodyTypes;
+        } else {
+            return [];
+        }
     }
 }

@@ -74,103 +74,55 @@
                                                 <tr>
                                                     <th>Car Info</th>
                                                     <th>Brand</th>
-                                                    <th>Publish</th>
+                                                    <th>Model</th>
                                                     <th>Price</th>
-                                                    <th>Views</th>
+                                                    <th>Body</th>
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="table-list-info">
-                                                            <a href="#">
-                                                                <img src="{{ asset('frontAssets/img/car/01.jpg') }}" alt="">
-                                                                <div class="table-ad-content">
-                                                                    <h6>Mercedes Benz Car</h6>
-                                                                    <span>Car ID: #123456</span>
+                                                @if (isset($carListings) && count($carListings) > 0)
+                                                    @foreach ($carListings as $carListing)
+                                                        <tr>
+                                                            <td>
+                                                                <div class="table-list-info">
+                                                                    <a
+                                                                        href="{{ route('frontend.inventory.details', $carListing->car_id) }}">
+                                                                        <img src="{{ asset($carListing->main_image) }}"
+                                                                            alt="{{ $carListing->title }}">
+                                                                        <div class="table-list-content">
+                                                                            <h6>{{ $carListing->title }}</h6>
+                                                                            <span>Car ID: #{{ $carListing->car_id }}</span>
+                                                                        </div>
+                                                                    </a>
                                                                 </div>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                    <td>Ferrari</td>
-                                                    <td>5 days ago</td>
-                                                    <td>$50,650</td>
-                                                    <td>350k+</td>
-                                                    <td><span class="badge badge-success">Active</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="table-list-info">
-                                                            <a href="#">
-                                                                <img src="{{ asset('frontAssets/img/car/02.jpg') }}" alt="">
-                                                                <div class="table-ad-content">
-                                                                    <h6>Mercedes Benz Car</h6>
-                                                                    <span>Car ID: #123456</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                    <td>Ferrari</td>
-                                                    <td>5 days ago</td>
-                                                    <td>$50,650</td>
-                                                    <td>350k+</td>
-                                                    <td><span class="badge badge-success">Active</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="table-list-info">
-                                                            <a href="#">
-                                                                <img src="{{ asset('frontAssets/img/car/03.jpg') }}" alt="">
-                                                                <div class="table-ad-content">
-                                                                    <h6>Mercedes Benz Car</h6>
-                                                                    <span>Car ID: #123456</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                    <td>Ferrari</td>
-                                                    <td>5 days ago</td>
-                                                    <td>$50,650</td>
-                                                    <td>350k+</td>
-                                                    <td><span class="badge badge-success">Active</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="table-list-info">
-                                                            <a href="#">
-                                                                <img src="{{ asset('frontAssets/img/car/04.jpg') }}" alt="">
-                                                                <div class="table-ad-content">
-                                                                    <h6>Mercedes Benz Car</h6>
-                                                                    <span>Car ID: #123456</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                    <td>Ferrari</td>
-                                                    <td>5 days ago</td>
-                                                    <td>$50,650</td>
-                                                    <td>350k+</td>
-                                                    <td><span class="badge badge-success">Active</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="table-list-info">
-                                                            <a href="#">
-                                                                <img src="{{ asset('frontAssets/img/car/05.jpg') }}" alt="">
-                                                                <div class="table-ad-content">
-                                                                    <h6>Mercedes Benz Car</h6>
-                                                                    <span>Car ID: #123456</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                    <td>Ferrari</td>
-                                                    <td>5 days ago</td>
-                                                    <td>$50,650</td>
-                                                    <td>350k+</td>
-                                                    <td><span class="badge badge-success">Active</span></td>
-                                                </tr>
+                                                            </td>
+                                                            <td>{{ $carListing->carBrand->name }}</td>
+                                                            <td>{{ $carListing->carModel->name }}</td>
+                                                            <td>{{ \App\Helpers\Helper::formatCurrency($carListing->price) }}
+                                                            </td>
+                                                            <td>{{ $carListing->carBodyType->name }}</td>
+                                                            <td>
+                                                                @php
+                                                                    $statuses = [
+                                                                        'draft' => 'primary',
+                                                                        'published' => 'success',
+                                                                        'sold' => 'info',
+                                                                        'archived' => 'warning',
+                                                                        'expired' => 'danger',
+                                                                    ];
+
+                                                                    $statusBadge =
+                                                                        $statuses[$carListing->status] ?? 'primary';
+                                                                    $statusLabel = $statuses[$carListing->status];
+                                                                @endphp
+                                                                <span class="badge badge-{{ $statusBadge }}">
+                                                                    {{ ucfirst($carListing->status) }}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>

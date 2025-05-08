@@ -46,13 +46,27 @@ class CarListing extends Model
         'status',
     ];
 
+    // protected static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::created(function ($carListing) {
+    //         $carListing->car_id = 'VEHICLE' . str_pad($carListing->id, 5, '0', STR_PAD_LEFT);
+    //         $carListing->saveQuietly(); // Safe after the ID exists
+    //     });
+    // }
+
     protected static function boot()
     {
         parent::boot();
 
-        static::created(function ($carListing) {
-            $carListing->car_id = 'VEHICLE' . str_pad($carListing->id, 5, '0', STR_PAD_LEFT);
-            $carListing->saveQuietly(); // Safe after the ID exists
+        static::creating(function ($carListing) {
+            // Pehle carListing save hogi to ID milegi
+            $latestcarListing = self::orderBy('id', 'desc')->first();
+            $nextId = $latestcarListing ? $latestcarListing->id + 1 : 1;
+
+            // carListing car_id format karo 6 digits mein
+            $carListing->car_id = 'VEHICLE' .  str_pad($nextId, 5, '0', STR_PAD_LEFT);
         });
     }
 

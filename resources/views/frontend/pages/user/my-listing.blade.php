@@ -49,148 +49,94 @@
                                             <tr>
                                                 <th>Car Info</th>
                                                 <th>Brand</th>
-                                                <th>Publish</th>
+                                                <th>Model</th>
                                                 <th>Price</th>
-                                                <th>Views</th>
+                                                {{-- <th>Body</th> --}}
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-list-info">
-                                                        <a href="#">
-                                                            <img src="{{ asset('frontAssets/img/car/01.jpg') }}" alt="">
-                                                            <div class="table-list-content">
-                                                                <h6>Mercedes Benz Car</h6>
-                                                                <span>Car ID: #123456</span>
+                                            @if (isset($carListings) && count($carListings) > 0)
+                                                @foreach ($carListings as $carListing)
+                                                    <tr>
+                                                        <td>
+                                                            <div class="table-list-info">
+                                                                <a href="{{route('frontend.inventory.details',$carListing->car_id)}}">
+                                                                    <img src="{{ asset($carListing->main_image) }}" alt="{{ $carListing->title }}">
+                                                                    <div class="table-list-content">
+                                                                        <h6>{{ $carListing->title }}</h6>
+                                                                        <span>Car ID: #{{ $carListing->car_id }}</span>
+                                                                    </div>
+                                                                </a>
                                                             </div>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>Ferrari</td>
-                                                <td>5 days ago</td>
-                                                <td>$50,650</td>
-                                                <td>350k+</td>
-                                                <td><span class="badge badge-success">Active</span></td>
-                                                <td>
-                                                    <a href="#" class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="tooltip" title="Details"><i class="far fa-eye"></i></a>
-                                                    <a href="#" class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="tooltip" title="Edit"><i class="far fa-pen"></i></a>
-                                                    <a href="#" class="btn btn-outline-danger btn-sm rounded-2" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-can"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-list-info">
-                                                        <a href="#">
-                                                            <img src="{{ asset('frontAssets/img/car/02.jpg') }}" alt="">
-                                                            <div class="table-list-content">
-                                                                <h6>Mercedes Benz Car</h6>
-                                                                <span>Car ID: #123456</span>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>Ferrari</td>
-                                                <td>5 days ago</td>
-                                                <td>$50,650</td>
-                                                <td>0</td>
-                                                <td><span class="badge badge-info">Pending</span></td>
-                                                <td>
-                                                    <a href="#" class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="tooltip" title="Details"><i class="far fa-eye"></i></a>
-                                                    <a href="#" class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="tooltip" title="Edit"><i class="far fa-pen"></i></a>
-                                                    <a href="#" class="btn btn-outline-danger btn-sm rounded-2" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-can"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-list-info">
-                                                        <a href="#">
-                                                            <img src="{{ asset('frontAssets/img/car/03.jpg') }}" alt="">
-                                                            <div class="table-list-content">
-                                                                <h6>Mercedes Benz Car</h6>
-                                                                <span>Car ID: #123456</span>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>Ferrari</td>
-                                                <td>5 days ago</td>
-                                                <td>$50,650</td>
-                                                <td>350k+</td>
-                                                <td><span class="badge badge-primary">Sold</span></td>
-                                                <td>
-                                                    <a href="#" class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="tooltip" title="Details"><i class="far fa-eye"></i></a>
-                                                    <a href="#" class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="tooltip" title="Edit"><i class="far fa-pen"></i></a>
-                                                    <a href="#" class="btn btn-outline-danger btn-sm rounded-2" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-can"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-list-info">
-                                                        <a href="#">
-                                                            <img src="{{ asset('frontAssets/img/car/04.jpg') }}" alt="">
-                                                            <div class="table-list-content">
-                                                                <h6>Mercedes Benz Car</h6>
-                                                                <span>Car ID: #123456</span>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>Ferrari</td>
-                                                <td>5 days ago</td>
-                                                <td>$50,650</td>
-                                                <td>0</td>
-                                                <td><span class="badge badge-danger">Expired</span></td>
-                                                <td>
-                                                    <a href="#" class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="tooltip" title="Details"><i class="far fa-eye"></i></a>
-                                                    <a href="#" class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="tooltip" title="Edit"><i class="far fa-pen"></i></a>
-                                                    <a href="#" class="btn btn-outline-danger btn-sm rounded-2" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-can"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="table-list-info">
-                                                        <a href="#">
-                                                            <img src="{{ asset('frontAssets/img/car/05.jpg') }}" alt="">
-                                                            <div class="table-list-content">
-                                                                <h6>Mercedes Benz Car</h6>
-                                                                <span>Car ID: #123456</span>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                                <td>Ferrari</td>
-                                                <td>5 days ago</td>
-                                                <td>$50,650</td>
-                                                <td>350k+</td>
-                                                <td><span class="badge badge-success">Active</span></td>
-                                                <td>
-                                                    <a href="#" class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="tooltip" title="Details"><i class="far fa-eye"></i></a>
-                                                    <a href="#" class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="tooltip" title="Edit"><i class="far fa-pen"></i></a>
-                                                    <a href="#" class="btn btn-outline-danger btn-sm rounded-2" data-bs-toggle="tooltip" title="Delete"><i class="far fa-trash-can"></i></a>
-                                                </td>
-                                            </tr>
+                                                        </td>
+                                                        <td>{{ $carListing->carBrand->name }}</td>
+                                                        <td>{{ $carListing->carModel->name }}</td>
+                                                        <td>{{ \App\Helpers\Helper::formatCurrency($carListing->price) }}</td>
+                                                        {{-- <td>{{ $carListing->carBodyType->name }}</td> --}}
+                                                        <td>
+                                                            @php
+                                                                $statuses = [
+                                                                    'draft' => 'primary',
+                                                                    'published' => 'success',
+                                                                    'sold' => 'info',
+                                                                    'archived' => 'warning',
+                                                                    'expired' => 'danger',
+                                                                ];
+
+                                                                $statusBadge = $statuses[$carListing->status] ?? 'primary';
+                                                                $statusLabel = $statuses[$carListing->status]
+                                                            @endphp
+                                                            <span class="badge badge-{{ $statusBadge }}">
+                                                                {{ ucfirst($carListing->status) }}
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('frontend.inventory.details',$carListing->car_id) }}" class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="tooltip" title="Details"><i class="far fa-eye"></i></a>
+                                                            <a href="{{ route('frontend.car-listings.edit', $carListing->id) }}" class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="tooltip" title="Edit"><i class="far fa-pen"></i></a>
+                                                            <a href="{{ route('frontend.car-listings.destroy', $carListing->id) }}" class="btn btn-outline-danger btn-sm rounded-2" data-bs-toggle="tooltip" title="Delete">
+                                                                <i class="far fa-trash-can"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
                                 <!-- pagination -->
                                 <div class="pagination-area">
                                     <div aria-label="Page navigation example">
-                                        <ul class="pagination my-3">
+                                        <ul class="pagination">
                                             <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                    <span aria-hidden="true"><i class="far fa-angle-double-left"></i></span>
-                                                </a>
+                                                @if ($carListings->onFirstPage())
+                                                    <a class="page-link" href="javascript:void(0);" aria-label="Previous">
+                                                        <span aria-hidden="true"><i class="far fa-arrow-left"></i></span>
+                                                    </a>
+                                                @else
+                                                    <a class="page-link" href="{{ $carListings->previousPageUrl() }}"
+                                                        aria-label="Previous">
+                                                        <span aria-hidden="true"><i class="far fa-arrow-left"></i></span>
+                                                    </a>
+                                                @endif
                                             </li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            @foreach ($carListings->getUrlRange(1, $carListings->lastPage()) as $page => $url)
+                                                <li class="page-item {{ $page == $carListings->currentPage() ? 'active' : '' }}"><a
+                                                        class="page-link" href="{{ $url }}">{{ $page }}</a></li>
+                                            @endforeach
+
                                             <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true"><i class="far fa-angle-double-right"></i></span>
-                                                </a>
+                                                @if ($carListings->hasMorePages())
+                                                    <a class="page-link" href="{{ $carListings->nextPageUrl() }}"
+                                                        aria-label="Next">
+                                                        <span aria-hidden="true"><i class="far fa-arrow-right"></i></span>
+                                                    </a>
+                                                @else
+                                                    <a class="page-link" href="javascript:void(0);" aria-label="Next">
+                                                        <span aria-hidden="true"><i class="far fa-arrow-right"></i></span>
+                                                    </a>
+                                                @endif
                                             </li>
                                         </ul>
                                     </div>

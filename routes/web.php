@@ -168,13 +168,19 @@ Route::name('frontend.')->group(function () {
         Route::middleware(['check.activation'])->group(function () {
             Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
             Route::get('dashboard/profile', [DashboardController::class, 'profile'])->name('profile');
+            Route::post('dashboard/update-profile-image', [DashboardController::class, 'updateProfileImage'])->name('update-profile-image');
             Route::get('dashboard/my-listings', [DashboardController::class, 'myListings'])->name('my-listings');
             Route::get('dashboard/add-listings', [DashboardController::class, 'addListings'])->name('add-listings');
             Route::get('dashboard/my-favourites', [DashboardController::class, 'myFavourites'])->name('my-favourites');
             Route::get('dashboard/settings', [DashboardController::class, 'settings'])->name('settings');
 
             //Car Listing
-            Route::resource('car-listings', CarListingController::class);
+            Route::get('car-listings/store', [CarListingController::class, 'store'])->name('car-listings.store');
+            Route::get('car-listings/delete/{id}', [CarListingController::class, 'destroy'])->name('car-listings.destroy');
+            Route::get('car-listings/edit/{id}', [CarListingController::class, 'edit'])->name('car-listings.edit');
+            Route::put('car-listings/update/{id}', [CarListingController::class, 'update'])->name('car-listings.update');
+            Route::get('car-listings/delete-car-image/{id}', [CarListingController::class, 'deleteImage'])->name('car-listings.delete-car-image');
+            // Route::resource('car-listings', CarListingController::class);
         });
 
     });
