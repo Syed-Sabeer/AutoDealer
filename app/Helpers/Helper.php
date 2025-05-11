@@ -24,15 +24,15 @@ class Helper
     }
     public static function getLogoLight()
     {
-        return CompanySetting::first()->logo_light ?? asset('frontAssets/img/logo/logo-light.png');
+        return CompanySetting::first()->light_logo ?? asset('frontAssets/img/logo/logo-light.png');
     }
     public static function getLogoDark()
     {
-        return CompanySetting::first()->logo_dark ?? asset('frontAssets/img/logo/logo.png');
+        return CompanySetting::first()->dark_logo ?? asset('frontAssets/img/logo/logo.png');
     }
     public static function getFavicon()
     {
-        return CompanySetting::first()->favicon ?? asset('assets/img/favicon/favicon.ico');
+        return CompanySetting::first()->favicon ?? asset('frontAssets/img/logo/favicon.png');
     }
     public static function getCompanyName()
     {

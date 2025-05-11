@@ -62,7 +62,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container position-relative">
                 <a class="navbar-brand" href="index.html">
-                    <img src="{{ asset('frontAssets/img/logo/logo.png') }}" alt="logo">
+                    <img src="{{ asset(\App\Helpers\Helper::getLogoDark()) }}" alt="logo">
                 </a>
                 <div class="mobile-menu-right">
                     @if (Auth::check())
