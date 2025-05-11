@@ -117,7 +117,7 @@ class ProfileController extends Controller
 
             $profile->first_name = $request->first_name;
             $profile->last_name = $request->last_name;
-            $profile->dob = $profile->dob ? date('Y-m-d', strtotime($profile->dob)) : null;
+            $profile->dob = $request->dob ? date('Y-m-d', strtotime($request->dob)) : null;
             $profile->bio = $request->bio;
             $profile->gender_id = $request->gender_id;
             $profile->language_id = $request->language_id;

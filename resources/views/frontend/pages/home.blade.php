@@ -6,6 +6,12 @@
 @section('author', '')
 
 @section('css')
+<style>
+    .nice-select ul{
+        height: 150px;
+        overflow-y: auto !important;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -121,90 +127,84 @@
         <div class="container">
             <div class="find-car-form">
                 <h4 class="find-car-title">Let's Find Your Perfect Car</h4>
-                <form action="#">
+                <form  action="{{ route('frontend.inventory') }}" method="GET">
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Car Condition</label>
-                                <select class="select">
-                                    <option value="1">All Status</option>
-                                    <option value="2">New Car</option>
-                                    <option value="3">Used Car</option>
+                                <select name="condition[]" class="select">
+                                    <option selected disabled>All Status</option>
+                                    <option value="new">New Car</option>
+                                    <option value="used">Used Car</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Brand Name</label>
-                                <select class="select">
-                                    <option value="1">All Brand</option>
-                                    <option value="2">BMW</option>
-                                    <option value="3">Ferrari</option>
-                                    <option value="4">Marcediz Benz</option>
-                                    <option value="5">Hyundai</option>
-                                    <option value="6">Nissan</option>
+                                <select name="brands[]" id="brandSelect" class="select">
+                                    <option selected disabled>All Brand</option>
+                                    @if (isset($carBrands) && count($carBrands) > 0)
+                                        @foreach ($carBrands as $brand)
+                                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Car Model</label>
-                                <select class="select">
-                                    <option value="1">All Model</option>
-                                    <option value="2">3-Series </option>
-                                    <option value="3">Carrera</option>
-                                    <option value="4">G-TR</option>
-                                    <option value="3">Macan</option>
-                                    <option value="3">N-Series</option>
+                                <select name="models[]" id="modelSelect" class="select">
+                                    <option selected disabled>All Models</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Choose Year</label>
-                                <select class="select">
-                                    <option value="1">All Year</option>
-                                    <option value="2">2023</option>
-                                    <option value="3">2022</option>
-                                    <option value="4">2021</option>
-                                    <option value="5">2020</option>
+                                <select name="year[]" id="yearSelect" class="select">
+                                    <option selected disabled>All Year</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <label>Choose Milieage</label>
-                                <select class="select">
-                                    <option value="1">All Milieage</option>
-                                    <option value="2">2000 Miles</option>
-                                    <option value="3">3000 Miles</option>
-                                    <option value="4">4000 Miles</option>
-                                    <option value="5">5000 Miles</option>
+                                <label>Choose Transmission</label>
+                                <select name="transmission[]" class="select">
+                                    <option selected disabled>All Transmissions</option>
+                                    <option value="automatic">Automatic</option>
+                                    <option value="manual">Manual</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Price Range</label>
-                                <select class="select">
-                                    <option value="1">All Price</option>
-                                    <option value="2">$1,000 - $5,000</option>
-                                    <option value="3">$5,000 - $10,000</option>
-                                    <option value="4">$15,000 - $20,000</option>
-                                    <option value="5">$20,000 - $25,000</option>
-                                    <option value="6">$25,000 - $30,000</option>
+                                <select id="priceSelect" class="select">
+                                    <option value="1" data-min="0" data-max="10000000">All Price</option>
+                                    <option value="2" data-min="1000" data-max="10000">$1,000 - $10,000</option>
+                                    <option value="3" data-min="10000" data-max="20000">$10,000 - $20,000</option>
+                                    <option value="4" data-min="20000" data-max="30000">$20,000 - $30,000</option>
+                                    <option value="5" data-min="40000" data-max="50000">$40,000 - $50,000</option>
+                                    <option value="6" data-min="50000" data-max="100000">$50,000 - $100,000</option>
                                 </select>
                             </div>
                         </div>
+
+                        <!-- Hidden fields to store the selected price range -->
+                        <input type="hidden" name="min_price" id="min_price" value="{{ request('min_price', 0) }}">
+                        <input type="hidden" name="max_price" id="max_price" value="{{ request('max_price', 1000000) }}">
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Body Type</label>
-                                <select class="select">
-                                    <option value="1">All Body Type</option>
-                                    <option value="2">Sedan</option>
-                                    <option value="5">Compact</option>
-                                    <option value="3">Coupe</option>
-                                    <option value="4">Wagon</option>
+                                <select name="body_types[]" class="select">
+                                    <option selected disabled>All Body Type</option>
+                                    @if (isset($carBodyTypes) && count($carBodyTypes) > 0)
+                                        @foreach ($carBodyTypes as $carBodyType)
+                                            <option value="{{ $carBodyType->id }}">{{ $carBodyType->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
@@ -221,523 +221,22 @@
 
 
     <!-- about area -->
-    <div class="about-area py-120">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="about-left wow fadeInLeft" data-wow-delay=".25s">
-                        <div class="about-img">
-                            <img src="{{ asset('frontAssets/img/about/01.png') }}" alt="">
-                        </div>
-                        <div class="about-experience">
-                            <div class="about-experience-icon">
-                                <i class="flaticon-car"></i>
-                            </div>
-                            <b>30 Years Of <br> Quality Service</b>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="about-right wow fadeInRight" data-wow-delay=".25s">
-                        <div class="site-heading mb-3">
-                            <span class="site-title-tagline justify-content-start">
-                                <i class="flaticon-drive"></i> About Us
-                            </span>
-                            <h2 class="site-title">
-                                World Largest <span>Car Dealer</span> Marketplace.
-                            </h2>
-                        </div>
-                        <p class="about-text">
-                            There are many variations of passages of Lorem Ipsum available, but the majority have
-                            suffered alteration in some form, by injected humour.
-                        </p>
-                        <div class="about-list-wrapper">
-                            <ul class="about-list list-unstyled">
-                                <li>
-                                    At vero eos et accusamus et iusto odio.
-                                </li>
-                                <li>
-                                    Established fact that a reader will be distracted.
-                                </li>
-                                <li>
-                                    Sed ut perspiciatis unde omnis iste natus sit.
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="about.html" class="theme-btn mt-4">Discover More<i
-                                class="fas fa-arrow-right-long"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('frontend.sections.about-area')
     <!-- about area end -->
 
 
     <!-- counter area -->
-    <div class="counter-area pt-30 pb-30">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="counter-box">
-                        <div class="icon">
-                            <i class="flaticon-car-rental"></i>
-                        </div>
-                        <div>
-                            <span class="counter" data-count="+" data-to="500" data-speed="3000">500</span>
-                            <h6 class="title">+ Available Cars </h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="counter-box">
-                        <div class="icon">
-                            <i class="flaticon-car-key"></i>
-                        </div>
-                        <div>
-                            <span class="counter" data-count="+" data-to="900" data-speed="3000">900</span>
-                            <h6 class="title">+ Happy Clients</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="counter-box">
-                        <div class="icon">
-                            <i class="flaticon-screwdriver"></i>
-                        </div>
-                        <div>
-                            <span class="counter" data-count="+" data-to="1500" data-speed="3000">1500</span>
-                            <h6 class="title">+ Team Workers</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="counter-box">
-                        <div class="icon">
-                            <i class="flaticon-review"></i>
-                        </div>
-                        <div>
-                            <span class="counter" data-count="+" data-to="30" data-speed="3000">30</span>
-                            <h6 class="title">+ Years Of Experience</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('frontend.sections.counter-area')
     <!-- counter area end -->
 
 
     <!-- car area -->
-    <div class="car-area bg py-120">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 mx-auto">
-                    <div class="site-heading text-center">
-                        <span class="site-title-tagline"><i class="flaticon-drive"></i> New Arrivals</span>
-                        <h2 class="site-title">Let's Check Latest <span>Cars</span></h2>
-                        <div class="heading-divider"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4 col-xl-3">
-                    <div class="car-item wow fadeInUp" data-wow-delay=".25s">
-                        <div class="car-img">
-                            <span class="car-status status-1">Used</span>
-                            <img src="{{ asset('frontAssets/img/car/01.jpg') }}" alt="">
-                            <div class="car-btns">
-                                <a href="#"><i class="far fa-heart"></i></a>
-                                <a href="#"><i class="far fa-arrows-repeat"></i></a>
-                            </div>
-                        </div>
-                        <div class="car-content">
-                            <div class="car-top">
-                                <h4><a href="#">Mercedes Benz Car</a></h4>
-                                <div class="car-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span>5.0 (58.5k Review)</span>
-                                </div>
-                            </div>
-                            <ul class="car-list">
-                                <li><i class="far fa-steering-wheel"></i>Automatic</li>
-                                <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                <li><i class="far fa-car"></i>Model: 2023</li>
-                                <li><i class="far fa-gas-pump"></i>Hybrid</li>
-                            </ul>
-                            <div class="car-footer">
-                                <span class="car-price">$45,620</span>
-                                <a href="#" class="theme-btn"><span class="far fa-eye"></span>Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3">
-                    <div class="car-item wow fadeInUp" data-wow-delay=".50s">
-                        <div class="car-img">
-                            <img src="{{ asset('frontAssets/img/car/02.jpg') }}" alt="">
-                            <div class="car-btns">
-                                <a href="#"><i class="far fa-heart"></i></a>
-                                <a href="#"><i class="far fa-arrows-repeat"></i></a>
-                            </div>
-                        </div>
-                        <div class="car-content">
-                            <div class="car-top">
-                                <h4><a href="#">Yellow Ferrari 458</a></h4>
-                                <div class="car-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span>5.0 (58.5k Review)</span>
-                                </div>
-                            </div>
-                            <ul class="car-list">
-                                <li><i class="far fa-steering-wheel"></i>Automatic</li>
-                                <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                <li><i class="far fa-car"></i>Model: 2023</li>
-                                <li><i class="far fa-gas-pump"></i>Hybrid</li>
-                            </ul>
-                            <div class="car-footer">
-                                <span class="car-price">$90,250</span>
-                                <a href="#" class="theme-btn"><span class="far fa-eye"></span>Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3">
-                    <div class="car-item wow fadeInUp" data-wow-delay=".75s">
-                        <div class="car-img">
-                            <img src="{{ asset('frontAssets/img/car/03.jpg') }}" alt="">
-                            <div class="car-btns">
-                                <a href="#"><i class="far fa-heart"></i></a>
-                                <a href="#"><i class="far fa-arrows-repeat"></i></a>
-                            </div>
-                        </div>
-                        <div class="car-content">
-                            <div class="car-top">
-                                <h4><a href="#">Black Audi Q7</a></h4>
-                                <div class="car-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span>5.0 (58.5k Review)</span>
-                                </div>
-                            </div>
-                            <ul class="car-list">
-                                <li><i class="far fa-steering-wheel"></i>Automatic</li>
-                                <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                <li><i class="far fa-car"></i>Model: 2023</li>
-                                <li><i class="far fa-gas-pump"></i>Hybrid</li>
-                            </ul>
-                            <div class="car-footer">
-                                <span class="car-price">$44,350</span>
-                                <a href="#" class="theme-btn"><span class="far fa-eye"></span>Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3">
-                    <div class="car-item wow fadeInUp" data-wow-delay="1s">
-                        <div class="car-img">
-                            <span class="car-status status-2">New</span>
-                            <img src="{{ asset('frontAssets/img/car/04.jpg') }}" alt="">
-                            <div class="car-btns">
-                                <a href="#"><i class="far fa-heart"></i></a>
-                                <a href="#"><i class="far fa-arrows-repeat"></i></a>
-                            </div>
-                        </div>
-                        <div class="car-content">
-                            <div class="car-top">
-                                <h4><a href="#">BMW Sports Car</a></h4>
-                                <div class="car-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span>5.0 (58.5k Review)</span>
-                                </div>
-                            </div>
-                            <ul class="car-list">
-                                <li><i class="far fa-steering-wheel"></i>Automatic</li>
-                                <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                <li><i class="far fa-car"></i>Model: 2023</li>
-                                <li><i class="far fa-gas-pump"></i>Hybrid</li>
-                            </ul>
-                            <div class="car-footer">
-                                <span class="car-price">$78,760</span>
-                                <a href="#" class="theme-btn"><span class="far fa-eye"></span>Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3">
-                    <div class="car-item wow fadeInUp" data-wow-delay=".25s">
-                        <div class="car-img">
-                            <span class="car-status status-1">Used</span>
-                            <img src="{{ asset('frontAssets/img/car/05.jpg') }}" alt="">
-                            <div class="car-btns">
-                                <a href="#"><i class="far fa-heart"></i></a>
-                                <a href="#"><i class="far fa-arrows-repeat"></i></a>
-                            </div>
-                        </div>
-                        <div class="car-content">
-                            <div class="car-top">
-                                <h4><a href="#">White Tesla Car</a></h4>
-                                <div class="car-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span>5.0 (58.5k Review)</span>
-                                </div>
-                            </div>
-                            <ul class="car-list">
-                                <li><i class="far fa-steering-wheel"></i>Automatic</li>
-                                <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                <li><i class="far fa-car"></i>Model: 2023</li>
-                                <li><i class="far fa-gas-pump"></i>Hybrid</li>
-                            </ul>
-                            <div class="car-footer">
-                                <span class="car-price">$64,230</span>
-                                <a href="#" class="theme-btn"><span class="far fa-eye"></span>Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3">
-                    <div class="car-item wow fadeInUp" data-wow-delay=".50s">
-                        <div class="car-img">
-                            <span class="car-status status-2">New</span>
-                            <img src="{{ asset('frontAssets/img/car/06.jpg') }}" alt="">
-                            <div class="car-btns">
-                                <a href="#"><i class="far fa-heart"></i></a>
-                                <a href="#"><i class="far fa-arrows-repeat"></i></a>
-                            </div>
-                        </div>
-                        <div class="car-content">
-                            <div class="car-top">
-                                <h4><a href="#">White Nissan Car</a></h4>
-                                <div class="car-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span>5.0 (58.5k Review)</span>
-                                </div>
-                            </div>
-                            <ul class="car-list">
-                                <li><i class="far fa-steering-wheel"></i>Automatic</li>
-                                <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                <li><i class="far fa-car"></i>Model: 2023</li>
-                                <li><i class="far fa-gas-pump"></i>Hybrid</li>
-                            </ul>
-                            <div class="car-footer">
-                                <span class="car-price">$34,540</span>
-                                <a href="#" class="theme-btn"><span class="far fa-eye"></span>Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3">
-                    <div class="car-item wow fadeInUp" data-wow-delay=".75s">
-                        <div class="car-img">
-                            <img src="{{ asset('frontAssets/img/car/07.jpg') }}" alt="">
-                            <div class="car-btns">
-                                <a href="#"><i class="far fa-heart"></i></a>
-                                <a href="#"><i class="far fa-arrows-repeat"></i></a>
-                            </div>
-                        </div>
-                        <div class="car-content">
-                            <div class="car-top">
-                                <h4><a href="#">Mercedes Benz Suv</a></h4>
-                                <div class="car-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span>5.0 (58.5k Review)</span>
-                                </div>
-                            </div>
-                            <ul class="car-list">
-                                <li><i class="far fa-steering-wheel"></i>Automatic</li>
-                                <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                <li><i class="far fa-car"></i>Model: 2023</li>
-                                <li><i class="far fa-gas-pump"></i>Hybrid</li>
-                            </ul>
-                            <div class="car-footer">
-                                <span class="car-price">$75,820</span>
-                                <a href="#" class="theme-btn"><span class="far fa-eye"></span>Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-3">
-                    <div class="car-item wow fadeInUp" data-wow-delay="1s">
-                        <div class="car-img">
-                            <img src="{{ asset('frontAssets/img/car/08.jpg') }}" alt="">
-                            <div class="car-btns">
-                                <a href="#"><i class="far fa-heart"></i></a>
-                                <a href="#"><i class="far fa-arrows-repeat"></i></a>
-                            </div>
-                        </div>
-                        <div class="car-content">
-                            <div class="car-top">
-                                <h4><a href="#">Red Hyundai Car</a></h4>
-                                <div class="car-rate">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span>5.0 (58.5k Review)</span>
-                                </div>
-                            </div>
-                            <ul class="car-list">
-                                <li><i class="far fa-steering-wheel"></i>Automatic</li>
-                                <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                <li><i class="far fa-car"></i>Model: 2023</li>
-                                <li><i class="far fa-gas-pump"></i>Hybrid</li>
-                            </ul>
-                            <div class="car-footer">
-                                <span class="car-price">$25,620</span>
-                                <a href="#" class="theme-btn"><span class="far fa-eye"></span>Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-4">
-                <a href="#" class="theme-btn">Load More <i class="far fa-arrow-rotate-right"></i> </a>
-            </div>
-        </div>
-    </div>
+    @include('frontend.sections.recent-listings')
     <!-- car area end -->
 
 
     <!-- car category -->
-    <div class="car-category py-120">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 mx-auto">
-                    <div class="site-heading text-center">
-                        <span class="site-title-tagline"><i class="flaticon-drive"></i> Car Category</span>
-                        <h2 class="site-title">Car By Body <span>Types</span></h2>
-                        <div class="heading-divider"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="#" class="category-item wow fadeInUp" data-wow-delay=".25s">
-                        <div class="category-img">
-                            <img src="{{ asset('frontAssets/img/category/01.png') }}" alt="">
-                        </div>
-                        <h5>Sedan</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="#" class="category-item wow fadeInUp" data-wow-delay=".50s">
-                        <div class="category-img">
-                            <img src="{{ asset('frontAssets/img/category/02.png') }}" alt="">
-                        </div>
-                        <h5>Compact</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="#" class="category-item wow fadeInUp" data-wow-delay=".75s">
-                        <div class="category-img">
-                            <img src="{{ asset('frontAssets/img/category/03.png') }}" alt="">
-                        </div>
-                        <h5>Convertible</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="#" class="category-item wow fadeInUp" data-wow-delay="1s">
-                        <div class="category-img">
-                            <img src="{{ asset('frontAssets/img/category/04.png') }}" alt="">
-                        </div>
-                        <h5>SUV</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="#" class="category-item wow fadeInUp" data-wow-delay="1.25s">
-                        <div class="category-img">
-                            <img src="{{ asset('frontAssets/img/category/05.png') }}" alt="">
-                        </div>
-                        <h5>Crossover</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="#" class="category-item wow fadeInUp" data-wow-delay="1.50s">
-                        <div class="category-img">
-                            <img src="{{ asset('frontAssets/img/category/06.png') }}" alt="">
-                        </div>
-                        <h5>Wagon</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="#" class="category-item wow fadeInUp" data-wow-delay=".25s">
-                        <div class="category-img">
-                            <img src="{{ asset('frontAssets/img/category/07.png') }}" alt="">
-                        </div>
-                        <h5>Sports</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="#" class="category-item wow fadeInUp" data-wow-delay=".50s">
-                        <div class="category-img">
-                            <img src="{{ asset('frontAssets/img/category/08.png') }}" alt="">
-                        </div>
-                        <h5>Pickup</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="#" class="category-item wow fadeInUp" data-wow-delay=".75s">
-                        <div class="category-img">
-                            <img src="{{ asset('frontAssets/img/category/09.png') }}" alt="">
-                        </div>
-                        <h5>Family MPV</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="#" class="category-item wow fadeInUp" data-wow-delay="1s">
-                        <div class="category-img">
-                            <img src="{{ asset('frontAssets/img/category/10.png') }}" alt="">
-                        </div>
-                        <h5>Coupe</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="#" class="category-item wow fadeInUp" data-wow-delay="1.25s">
-                        <div class="category-img">
-                            <img src="{{ asset('frontAssets/img/category/11.png') }}" alt="">
-                        </div>
-                        <h5>Electric</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-4 col-lg-2">
-                    <a href="#" class="category-item wow fadeInUp" data-wow-delay="1.50s">
-                        <div class="category-img">
-                            <img src="{{ asset('frontAssets/img/category/12.png') }}" alt="">
-                        </div>
-                        <h5>Luxury</h5>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('frontend.sections.car-category')
     <!-- car category end-->
 
 
@@ -900,296 +399,17 @@
 
 
     <!-- choose area -->
-    <div class="choose-area py-120">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="choose-content">
-                        <div class="site-heading wow fadeInDown" data-wow-delay=".25s">
-                            <span class="site-title-tagline text-white justify-content-start">
-                                <i class="flaticon-drive"></i> Why Choose Us
-                            </span>
-                            <h2 class="site-title text-white mb-10">We are dedicated <span>to provide</span> quality
-                                service</h2>
-                            <p class="text-white">
-                                There are many variations of passages available but the majority have suffered alteration in
-                                some form going to use a passage by injected humour randomised words which don't look even
-                                slightly believable.
-                            </p>
-                        </div>
-                        <div class="choose-img wow fadeInUp" data-wow-delay=".25s">
-                            <img src="{{ asset('frontAssets/img/choose/01.png') }}" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="choose-content-wrapper wow fadeInRight" data-wow-delay=".25s">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-6 mt-lg-5">
-                                <div class="choose-item">
-                                    <span class="choose-count">01</span>
-                                    <div class="choose-item-icon">
-                                        <i class="flaticon-car"></i>
-                                    </div>
-                                    <div class="choose-item-info">
-                                        <h3>Best Quality Cars</h3>
-                                        <p>There are many variations of the passages available but the
-                                            majo have suffered fact that reader will be dist alteration.</p>
-                                    </div>
-                                </div>
-                                <div class="choose-item mb-lg-0">
-                                    <span class="choose-count">03</span>
-                                    <div class="choose-item-icon">
-                                        <i class="flaticon-drive-thru"></i>
-                                    </div>
-                                    <div class="choose-item-info">
-                                        <h3>Popular Brands</h3>
-                                        <p>There are many variations of the passages available but the
-                                            majo have suffered fact that reader will be dist alteration.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-6">
-                                <div class="choose-item">
-                                    <span class="choose-count">02</span>
-                                    <div class="choose-item-icon">
-                                        <i class="flaticon-chauffeur"></i>
-                                    </div>
-                                    <div class="choose-item-info">
-                                        <h3>Certified Mechanics</h3>
-                                        <p>There are many variations of the passages available but the
-                                            majo have suffered fact that reader will be dist alteration.</p>
-                                    </div>
-                                </div>
-                                <div class="choose-item mb-lg-0">
-                                    <span class="choose-count">04</span>
-                                    <div class="choose-item-icon">
-                                        <i class="flaticon-online-payment"></i>
-                                    </div>
-                                    <div class="choose-item-info">
-                                        <h3>Reasonable Price</h3>
-                                        <p>There are many variations of the passages available but the
-                                            majo have suffered fact that reader will be dist alteration.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('frontend.sections.choose-area')
     <!-- choose area end -->
 
 
     <!-- car brand -->
-    <div class="car-brand py-120">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 mx-auto">
-                    <div class="site-heading text-center">
-                        <span class="site-title-tagline"><i class="flaticon-drive"></i> Popular Brands</span>
-                        <h2 class="site-title">Our Top Quality <span>Brands</span></h2>
-                        <div class="heading-divider"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6 col-md-3 col-lg-2">
-                    <a href="#" class="brand-item wow fadeInUp" data-wow-delay=".25s">
-                        <div class="brand-img">
-                            <img src="{{ asset('frontAssets/img/brand/01.png') }}" alt="">
-                        </div>
-                        <h5>Ferrari</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                    <a href="#" class="brand-item wow fadeInUp" data-wow-delay=".50s">
-                        <div class="brand-img">
-                            <img src="{{ asset('frontAssets/img/brand/02.png') }}" alt="">
-                        </div>
-                        <h5>Hyundai</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                    <a href="#" class="brand-item wow fadeInUp" data-wow-delay=".75s">
-                        <div class="brand-img">
-                            <img src="{{ asset('frontAssets/img/brand/03.png') }}" alt="">
-                        </div>
-                        <h5>Mercedes Benz</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                    <a href="#" class="brand-item wow fadeInUp" data-wow-delay="1s">
-                        <div class="brand-img">
-                            <img src="{{ asset('frontAssets/img/brand/04.png') }}" alt="">
-                        </div>
-                        <h5>Toyota</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                    <a href="#" class="brand-item wow fadeInUp" data-wow-delay="1.25s">
-                        <div class="brand-img">
-                            <img src="{{ asset('frontAssets/img/brand/05.png') }}" alt="">
-                        </div>
-                        <h5>BMW</h5>
-                    </a>
-                </div>
-                <div class="col-6 col-md-3 col-lg-2">
-                    <a href="#" class="brand-item wow fadeInUp" data-wow-delay="1.50s">
-                        <div class="brand-img">
-                            <img src="{{ asset('frontAssets/img/brand/06.png') }}" alt="">
-                        </div>
-                        <h5>Nissan</h5>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('frontend.sections.car-brands')
     <!-- car brand end-->
 
 
     <!-- testimonial area -->
-    <div class="testimonial-area bg py-120">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 mx-auto">
-                    <div class="site-heading text-center">
-                        <span class="site-title-tagline"><i class="flaticon-drive"></i> Testimonials</span>
-                        <h2 class="site-title">What Our Client <span>Say's</span></h2>
-                        <div class="heading-divider"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-slider owl-carousel owl-theme">
-                <div class="testimonial-single">
-                    <div class="testimonial-content">
-                        <div class="testimonial-author-img">
-                            <img src="{{ asset('frontAssets/img/testimonial/01.jpg') }}" alt="">
-                        </div>
-                        <div class="testimonial-author-info">
-                            <h4>Sylvia H Green</h4>
-                            <p>Customer</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-quote">
-                        <span class="testimonial-quote-icon"><i class="flaticon-quote"></i></span>
-                        <p>
-                            There are many variations of passages available but the majority have
-                            suffered to the alteration in some injected.
-                        </p>
-                    </div>
-                    <div class="testimonial-rate">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                <div class="testimonial-single">
-                    <div class="testimonial-content">
-                        <div class="testimonial-author-img">
-                            <img src="{{ asset('frontAssets/img/testimonial/02.jpg') }}" alt="">
-                        </div>
-                        <div class="testimonial-author-info">
-                            <h4>Gordo Novak</h4>
-                            <p>Customer</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-quote">
-                        <span class="testimonial-quote-icon"><i class="flaticon-quote"></i></span>
-                        <p>
-                            There are many variations of passages available but the majority have
-                            suffered to the alteration in some injected.
-                        </p>
-                    </div>
-                    <div class="testimonial-rate">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                <div class="testimonial-single">
-                    <div class="testimonial-content">
-                        <div class="testimonial-author-img">
-                            <img src="{{ asset('frontAssets/img/testimonial/03.jpg') }}" alt="">
-                        </div>
-                        <div class="testimonial-author-info">
-                            <h4>Reid E Butt</h4>
-                            <p>Customer</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-quote">
-                        <span class="testimonial-quote-icon"><i class="flaticon-quote"></i></span>
-                        <p>
-                            There are many variations of passages available but the majority have
-                            suffered to the alteration in some injected.
-                        </p>
-                    </div>
-                    <div class="testimonial-rate">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                <div class="testimonial-single">
-                    <div class="testimonial-content">
-                        <div class="testimonial-author-img">
-                            <img src="{{ asset('frontAssets/img/testimonial/04.jpg') }}" alt="">
-                        </div>
-                        <div class="testimonial-author-info">
-                            <h4>Parker Jimenez</h4>
-                            <p>Customer</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-quote">
-                        <span class="testimonial-quote-icon"><i class="flaticon-quote"></i></span>
-                        <p>
-                            There are many variations of passages available but the majority have
-                            suffered to the alteration in some injected.
-                        </p>
-                    </div>
-                    <div class="testimonial-rate">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                <div class="testimonial-single">
-                    <div class="testimonial-content">
-                        <div class="testimonial-author-img">
-                            <img src="{{ asset('frontAssets/img/testimonial/05.jpg') }}" alt="">
-                        </div>
-                        <div class="testimonial-author-info">
-                            <h4>Heruli Nez</h4>
-                            <p>Customer</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-quote">
-                        <span class="testimonial-quote-icon"><i class="flaticon-quote"></i></span>
-                        <p>
-                            There are many variations of passages available but the majority have
-                            suffered to the alteration in some injected.
-                        </p>
-                    </div>
-                    <div class="testimonial-rate">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('frontend.sections.testimonials')
     <!-- testimonial area end -->
 
 
@@ -1268,52 +488,72 @@
     </div>
     <!-- blog area end -->
 
-
-    <!-- download area -->
-    <div class="download-area mb-120">
-        <div class="container">
-            <div class="download-wrapper">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="download-content">
-                            <div class="site-heading mb-4">
-                                <span class="site-title-tagline justify-content-start">
-                                    <i class="flaticon-drive"></i> Get Our App
-                                </span>
-                                <h2 class="site-title mb-10">Download <span>Our Motex</span> App For Free</h2>
-                                <p>
-                                    There are many variations of passages available but the majority have suffered in some
-                                    form going to use a passage by injected humour.
-                                </p>
-                            </div>
-                            <div class="download-btn">
-                                <a href="#">
-                                    <i class="fab fa-google-play"></i>
-                                    <div class="download-btn-content">
-                                        <span>Get It On</span>
-                                        <strong>Google Play</strong>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-app-store"></i>
-                                    <div class="download-btn-content">
-                                        <span>Get It On</span>
-                                        <strong>App Store</strong>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="download-img">
-                    <img src="{{ asset('frontAssets/img/download/01.png') }}" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- download area end -->
 @endsection
 
 @section('script')
-    <script></script>
+    <script>
+        $(document).ready(function () {
+            const currentYear = new Date().getFullYear();
+            const startYear = 1955;
+            let options = '<option selected disabled>All Year</option>';
+
+            for (let year = currentYear; year >= startYear; year--) {
+                options += `<option value="${year}">${year}</option>`;
+            }
+
+            $('#yearSelect').html(options); // update the HTML
+
+            // Re-initialize niceSelect properly
+            if ($.fn.niceSelect) {
+                $('#yearSelect').niceSelect('destroy');
+                $('#yearSelect').niceSelect();
+            }
+
+            $('#priceSelect').change(function() {
+                var selectedOption = $(this).find('option:selected');
+                var minPrice = selectedOption.data('min');
+                var maxPrice = selectedOption.data('max');
+
+                // Update the hidden fields with the selected price range
+                $('#min_price').val(minPrice);
+                $('#max_price').val(maxPrice);
+            });
+
+            // Trigger change event on page load to set the initial values
+            if ($('#priceSelect').val() !== "") {
+                $('#priceSelect').trigger('change');
+            }
+
+            $('#brandSelect').on('change', function () {
+                var brandId = $(this).val();
+                $('#modelSelect').empty().append('<option selected disabled>Loading...</option>');
+
+                if (brandId) {
+                    $.ajax({
+                        url: '/get-models-by-brand/' + brandId,
+                        type: 'GET',
+                        success: function (response) {
+                            let options = '<option selected disabled>All Models</option>';
+                            $.each(response.models, function (index, model) {
+                                options += '<option value="' + model.id + '">' + model.name + '</option>';
+                            });
+
+                            $('#modelSelect').html(options);
+
+                            // Force refresh if using custom select plugin
+                            if ($('.select').hasClass('nice-select')) {
+                                $('.select').niceSelect('update');
+                            }
+                        },
+
+                        error: function () {
+                            $('#modelSelect').empty().append('<option selected disabled>Error loading models</option>');
+                        }
+                    });
+                } else {
+                    $('#modelSelect').empty().append('<option selected disabled>All Models</option>');
+                }
+            });
+        });
+    </script>
 @endsection

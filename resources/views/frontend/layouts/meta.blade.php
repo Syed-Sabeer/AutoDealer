@@ -7,5 +7,5 @@
 <meta name="author" content="@yield('author')">
 <!-- Favicon -->
 <!-- favicon -->
-<link rel="icon" type="image/x-icon" href="{{ asset('frontAssets/img/logo/favicon.png') }}">
+<link rel="icon" type="image/x-icon" href="{{ asset(\App\Helpers\Helper::getFavicon()) }}">
 {{-- <link rel="icon" type="image/x-icon" href="{{asset(\App\Helpers\Helper::getFavicon())}}" /> --}}

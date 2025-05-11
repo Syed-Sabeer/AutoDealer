@@ -13,7 +13,10 @@ use App\Http\Controllers\Dashboard\RolePermission\RoleController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\User\ArchivedUserController;
 use App\Http\Controllers\Dashboard\User\UserController;
+use App\Http\Controllers\Frontend\AjaxController;
+use App\Http\Controllers\Frontend\CarListingController;
 use App\Http\Controllers\Frontend\HomeController as FrontendHomeController;
+use App\Http\Controllers\Frontend\User\DashboardController;
 use App\Http\Middleware\CheckAccountActivation;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -112,10 +115,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/notifications/{id}/delete', [NotificationController::class, 'deleteNotification']);
         Route::get('/notifications/send-test-noti/{id}', [NotificationController::class, 'testNotification']);
 
-        Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
+        Route::get('admin/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
         // Admin Dashboard Authentication Routes
-        Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::prefix('admin/dashboard')->name('dashboard.')->group(function () {
 
             Route::resource('user', UserController::class);
             Route::resource('archived-user', ArchivedUserController::class);
@@ -147,8 +150,48 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // Frontend Pages Routes
 Route::name('frontend.')->group(function () {
+    Route::group(['middleware' => ['guest']], function () {
+        //User Login Authentication Routes
+        Route::get('login', [LoginController::class, 'login'])->name('login');
+        Route::post('login-attempt', [LoginController::class, 'login_attempt'])->name('login.attempt');
+
+        //User Register Authentication Routes
+        Route::get('register', [RegisterController::class, 'register'])->name('register');
+        Route::post('registration-attempt', [RegisterController::class, 'register_attempt'])->name('register.attempt');
+
+    });
+
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/deactivated', function () {
+            return view('errors.deactivated');
+        })->name('deactivated');
+        Route::middleware(['check.activation'])->group(function () {
+            Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+            Route::get('dashboard/profile', [DashboardController::class, 'profile'])->name('profile');
+            Route::post('dashboard/update-profile-image', [DashboardController::class, 'updateProfileImage'])->name('update-profile-image');
+            Route::get('dashboard/my-listings', [DashboardController::class, 'myListings'])->name('my-listings');
+            Route::get('dashboard/add-listings', [DashboardController::class, 'addListings'])->name('add-listings');
+            Route::get('dashboard/my-favourites', [DashboardController::class, 'myFavourites'])->name('my-favourites');
+            Route::get('dashboard/settings', [DashboardController::class, 'settings'])->name('settings');
+            Route::get('dashboard/add-to-favourite/{id}', [DashboardController::class, 'addToFavourite'])->name('add.favourites');
+
+            //Car Listing
+            Route::get('car-listings/store', [CarListingController::class, 'store'])->name('car-listings.store');
+            Route::get('car-listings/delete/{id}', [CarListingController::class, 'destroy'])->name('car-listings.destroy');
+            Route::get('car-listings/edit/{id}', [CarListingController::class, 'edit'])->name('car-listings.edit');
+            Route::put('car-listings/update/{id}', [CarListingController::class, 'update'])->name('car-listings.update');
+            Route::get('car-listings/delete-car-image/{id}', [CarListingController::class, 'deleteImage'])->name('car-listings.delete-car-image');
+            // Route::resource('car-listings', CarListingController::class);
+        });
+
+    });
     Route::get('home', [FrontendHomeController::class, 'home'])->name('home');
     Route::get('about', [FrontendHomeController::class, 'about'])->name('about');
+    Route::get('inventory', [FrontendHomeController::class, 'inventory'])->name('inventory');
+    Route::get('contact', [FrontendHomeController::class, 'contact'])->name('contact');
+    Route::get('inventory-details/{carID}', [FrontendHomeController::class, 'inventoryDetails'])->name('inventory.details');
+    Route::get('/get-models-by-brand/{brand_id}', [AjaxController::class, 'getModelsByBrand'])->name('get-models');
+
 });
 
 

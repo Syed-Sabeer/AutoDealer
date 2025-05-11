@@ -13,44 +13,17 @@
 <script src="{{ asset('frontAssets/js/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('frontAssets/js/jquery.nice-select.min.js') }}"></script>
 <script src="{{ asset('frontAssets/js/wow.min.js') }}"></script>
+<script src="{{ asset('frontAssets/js/flex-slider.js') }}"></script>
 <script src="{{ asset('frontAssets/js/main.js') }}"></script>
-<!-- jQuery (required for Toastr) -->
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-<!-- Toastr JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @yield('script')
 
-<script>
-    $(document).ready(function() {
-        $(document).on('click', '.copy-icon', function() {
-            var textToCopy = $(this).prev().text().trim(); // Get text from previous element
+<!-- jQuery (required for Toastr) -->
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
-            // Create a temporary input element
-            var tempInput = $('<input>');
-            $('body').append(tempInput);
-            tempInput.val(textToCopy).select();
-            document.execCommand('copy');
-            tempInput.remove();
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-            var $this = $(this);
-            var tooltipInstance = bootstrap.Tooltip.getInstance(this); // Get existing tooltip instance
 
-            if (tooltipInstance) {
-                tooltipInstance.dispose(); // Destroy tooltip to update title
-            }
-
-            $this.attr('title', '{{__("Copied")}}'); // Update title
-            $this.tooltip({
-                trigger: 'manual'
-            }).tooltip('show'); // Show updated tooltip
-
-            // Reset tooltip after 1.5 seconds
-            setTimeout(() => {
-                $this.tooltip('hide').attr('title', '{{__("Copy")}}').tooltip();
-            }, 1500);
-        });
-    });
-</script>
 <script>
     toastr.options = {
         "closeButton": false,

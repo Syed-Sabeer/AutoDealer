@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
@@ -18,10 +19,13 @@ class AuthController extends Controller
      */
     public function logout()
     {
+        Log::info("Logout!");
         try {
             Auth::logout();
-            return Redirect::route('login')->with('success', 'Logout Successfully!');
+            Log::info("Logout Successfully!");
+            return Redirect::route('frontend.login')->with('success', 'Logout Successfully!');
         } catch (\Throwable $th) {
+            Log::error($th->getMessage());
             return Redirect::back()->with('error', "Something went wrong! Please try again later");
         }
     }

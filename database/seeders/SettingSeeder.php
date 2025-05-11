@@ -18,7 +18,12 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         CompanySetting::create([
-            'company_name' => 'Admin Panel',
+            'company_name' => 'Auto Dealer',
+            'about' => 'We connect buyers and sellers with a seamless, trusted platform for discovering the perfect car. Our curated listings and user-friendly experience make car buying and selling simple and reliable.',
+            'facebook_url' => 'https://www.facebook.com/',
+            'linkedin_url' => 'https://www.linkedin.com/',
+            'instagram_url' => 'https://www.instagram.com/',
+            'twitter_url' => 'https://www.twitter.com/',
         ]);
 
         RecaptchaSetting::create([

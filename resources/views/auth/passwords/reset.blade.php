@@ -1,8 +1,5 @@
-@extends('layouts.authentication.master')
+{{-- @extends('layouts.authentication.master')
 @section('title', 'Reset Password')
-
-@section('css')
-@endsection
 
 @section('css')
 @endsection
@@ -79,5 +76,81 @@
 @endsection
 
 @section('script')
+@endsection --}}
 
+@extends('frontend.layouts.master')
+
+@section('title', __('Reset Password'))
+@section('description', '')
+@section('keywords', '')
+@section('author', '')
+
+@section('css')
+@endsection
+<!-- Page Title -->
+@section('breadcrumbs')
+    @include('frontend.layouts.partials.breadcrumb', [
+        'title' => 'Reset Password',
+        'breadcrumbs' => [
+            // ['label' => 'Home', 'url' => route('frontend.home')],
+            ['label' => 'Reset Password'],
+        ],
+    ])
+@endsection
+
+@section('content')
+    <!-- Reset Password -->
+    <div class="login-area py-120">
+        <div class="container">
+            <div class="col-md-5 mx-auto">
+                <div class="login-form">
+                    <div class="login-header">
+                        <img src="{{ asset('FrontAssets/img/logo/logo.png') }}" alt="">
+                        <p>Reset your account password</p>
+                        <p class="mb-6">
+                            <span class="fw-medium">{{__('Your new password must be different from previously used passwords')}}</span>
+                        </p>
+                    </div>
+                    <form action="{{ route('password.update') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="token" value="{{ request()->route('token') }}">
+                        <input type="hidden" name="email" value="{{ request()->email }}">
+                        <div class="form-group">
+                            <label for="password">New Password</label>
+                            <input type="password" id="password" class="form-control @error('password') is-invalid @enderror"
+                                name="password"
+                                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                aria-describedby="password" />
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="password_confirmation">Confirm Password</label>
+                            <input type="password" id="password_confirmation"
+                                class="form-control @error('password_confirmation') is-invalid @enderror"
+                                name="password_confirmation"
+                                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                            />
+                            @error('password_confirmation')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <button type="submit" class="theme-btn"><i class="far fa-key"></i> Reset Password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- forgot password end -->
+@endsection
+
+@section('script')
+    {{-- {!! NoCaptcha::renderJs() !!} --}}
 @endsection

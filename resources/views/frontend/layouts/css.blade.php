@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="{{ asset('frontAssets/css/owl.carousel.min.css') }}">
 <link rel="stylesheet" href="{{ asset('frontAssets/css/jquery-ui.min.css') }}">
 <link rel="stylesheet" href="{{ asset('frontAssets/css/nice-select.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontAssets/css/flex-slider.min.css') }}">
 <link rel="stylesheet" href="{{ asset('frontAssets/css/style.css') }}">
 <style>
 </style>

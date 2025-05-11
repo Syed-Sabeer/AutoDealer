@@ -28,6 +28,15 @@ class DatabaseSeeder extends Seeder
             DesignationSeeder::class,
             TimezoneSeeder::class,
             SettingSeeder::class,
+            CarBrandsSeeder::class,
+            CarModelSeeder::class,
+            CarBodyTypeSeeder::class,
+            CarFuelTypeSeeder::class,
+            CarFeatureSeeder::class,
+            CarListingSeeder::class,
+            CarListingImageSeeder::class,
+            TestimonialSeeder::class,
+            CounterSeeder::class,
         ]);
     }
 }
