@@ -210,9 +210,8 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="drive_type">Drive Type <span
-                                                            class="text-danger">*</span></label>
-                                                    <select class="select" name="drive_type" required>
+                                                    <label for="drive_type">Drive Type </label>
+                                                    <select class="select" name="drive_type">
                                                         <option selected disabled>Choose</option>
                                                         <option value="2WD"
                                                             {{ old('drive_type', $carListing->drive_type) == '2WD' ? 'selected' : '' }}>
@@ -315,12 +314,11 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="fuel_efficiency">Fuel Efficiency per Litre (KM) <span
-                                                            class="text-danger">*</span></label>
+                                                    <label for="fuel_efficiency">Fuel Efficiency per Litre (KM) </label>
                                                     <input type="number" step="any" name="fuel_efficiency"
                                                         id="fuel_efficiency"
                                                         class="form-control @error('fuel_efficiency') is-invalid @enderror"
-                                                        placeholder="i.e 12.5" required
+                                                        placeholder="i.e 12.5"
                                                         value="{{ old('fuel_efficiency', $carListing->fuel_efficiency) }}">
                                                     @error('fuel_efficiency')
                                                         <span class="invalid-feedback" role="alert">
@@ -331,11 +329,10 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="cylenders">Cylenders <span
-                                                            class="text-danger">*</span></label>
+                                                    <label for="cylenders">Cylenders </label>
                                                     <input type="number" name="cylenders" id="cylenders"
                                                         class="form-control @error('cylenders') is-invalid @enderror"
-                                                        placeholder="Enter no of cylenders" required
+                                                        placeholder="Enter no of cylenders"
                                                         value="{{ old('cylenders', $carListing->cylenders) }}">
                                                     @error('cylenders')
                                                         <span class="invalid-feedback" role="alert">
@@ -388,11 +385,10 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="horsepower">Horsepower (HP) <span
-                                                            class="text-danger">*</span></label>
+                                                    <label for="horsepower">Horsepower (HP) </label>
                                                     <input type="number" name="horsepower" id="horsepower"
                                                         class="form-control @error('horsepower') is-invalid @enderror"
-                                                        placeholder="Enter horsepower" required
+                                                        placeholder="Enter horsepower"
                                                         value="{{ old('horsepower', $carListing->horsepower) }}">
                                                     @error('horsepower')
                                                         <span class="invalid-feedback" role="alert">
@@ -403,10 +399,10 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="vin">VIN <span class="text-danger">*</span></label>
+                                                    <label for="vin">VIN </label>
                                                     <input type="text" name="vin" id="vin"
                                                         class="form-control @error('vin') is-invalid @enderror"
-                                                        placeholder="Enter VIN" required
+                                                        placeholder="Enter VIN"
                                                         value="{{ old('vin', $carListing->vin) }}">
                                                     @error('vin')
                                                         <span class="invalid-feedback" role="alert">

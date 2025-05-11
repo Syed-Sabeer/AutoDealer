@@ -108,14 +108,19 @@ class SettingController extends Controller
         $validate = Validator::make($request->all(), [
             'company_name' => 'required|string|max:255',
             'email' => 'nullable|email|max:255',
-            'phone_number' => 'nullable|numeric', // Changed from integer
-            'country_id' => 'nullable|integer|exists:countries,id', // Ensuring it's an integer
+            'phone_number' => 'nullable|numeric',
+            'country_id' => 'nullable|integer|exists:countries,id',
             'city' => 'nullable|string|max:255',
-            'zip' => 'nullable|digits:6', // Ensuring it's exactly 6 digits
+            'zip' => 'nullable|integer',
             'address' => 'nullable|string|max:255',
+            'about' => 'nullable',
             'light_logo' => 'nullable|file|mimes:jpeg,png,jpg|max_size',
             'dark_logo' => 'nullable|file|mimes:jpeg,png,jpg|max_size',
             'favicon' => 'nullable|file|mimes:jpeg,png,jpg|max_size',
+            'facebook_url' => 'nullable|url',
+            'linkedin_url' => 'nullable|url',
+            'instagram_url' => 'nullable|url',
+            'twitter_url' => 'nullable|url',
         ]);
 
         if ($validate->fails()) {
@@ -133,6 +138,11 @@ class SettingController extends Controller
             $companySetting->city = $request->city;
             $companySetting->zip = $request->zip;
             $companySetting->address = $request->address;
+            $companySetting->facebook_url = $request->facebook_url;
+            $companySetting->linkedin_url = $request->linkedin_url;
+            $companySetting->instagram_url = $request->instagram_url;
+            $companySetting->twitter_url = $request->twitter_url;
+            $companySetting->about = $request->about;
             if ($request->hasFile('light_logo')) {
                 if (isset($companySetting->light_logo) && File::exists(public_path($companySetting->light_logo))) {
                     File::delete(public_path($companySetting->light_logo));

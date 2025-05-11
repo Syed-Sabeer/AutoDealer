@@ -6,17 +6,22 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="footer-widget-box about-us">
                         <a href="#" class="footer-logo">
-                            <img src="{{ asset('frontAssets/img/logo/logo-light.png') }}" alt="{{ env('APP_NAME') }}">
+                            <img src="{{ asset(\App\Helpers\Helper::getLogoLight()) }}" alt="{{ env('APP_NAME') }}">
                         </a>
                         <p class="mb-3">
-                            We are many variations of passages available but the majority have suffered alteration
-                            in some form by injected humour words believable.
+                            {{ \App\Helpers\Helper::getCompanyAbout() }}
                         </p>
                         <ul class="footer-contact">
-                            <li><a href="tel:+21236547898"><i class="far fa-phone"></i>+2 123 654 7898</a></li>
-                            <li><i class="far fa-map-marker-alt"></i>25/B Milford Road, New York</li>
-                            <li><a href="/cdn-cgi/l/email-protection#adc4c3cbc2edc8d5ccc0ddc1c883cec2c0"><i
-                                        class="far fa-envelope"></i><span class="__cf_email__" data-cfemail="026b6c646d42677a636f726e672c616d6f">[email&#160;protected]</span></a></li>
+                            <li><a href="tel:{{ \App\Helpers\Helper::getCompanyPhone() }}"><i
+                                        class="far fa-phone"></i>{{ \App\Helpers\Helper::getCompanyPhone() }}</a></li>
+                            <li><i class="far fa-map-marker-alt"></i>{{ \App\Helpers\Helper::getCompanyAddress() }},
+                                {{ \App\Helpers\Helper::getCompanyCity() }} {{ \App\Helpers\Helper::getCompanyZip() }},
+                                {{ \App\Helpers\Helper::getCompanyCountry() }}</li>
+                            <li><a href="mailto:{{ \App\Helpers\Helper::getCompanyEmail() }}">
+                                    <i class="far fa-envelope"></i>
+                                    <span>{{ \App\Helpers\Helper::getCompanyEmail() }}</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -24,25 +29,36 @@
                     <div class="footer-widget-box list">
                         <h4 class="footer-widget-title">Quick Links</h4>
                         <ul class="footer-list">
-                            <li><a href="#"><i class="fas fa-caret-right"></i> About Us</a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> Update News</a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> Testimonials</a></li>
+                            <li><a href="{{ route('frontend.home') }}"><i class="fas fa-caret-right"></i> Home</a></li>
+                            <li><a href="{{ route('frontend.about') }}"><i class="fas fa-caret-right"></i> About Us</a>
+                            </li>
+                            <li><a href="{{ route('frontend.contact') }}"><i class="fas fa-caret-right"></i> Contact
+                                    Us</a></li>
+                            <li><a href="{{ route('frontend.inventory') }}"><i class="fas fa-caret-right"></i>
+                                    Inventory</a></li>
                             <li><a href="#"><i class="fas fa-caret-right"></i> Terms Of Service</a></li>
                             <li><a href="#"><i class="fas fa-caret-right"></i> Privacy policy</a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> Our Dealers</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="footer-widget-box list">
-                        <h4 class="footer-widget-title">Support Center</h4>
+                        <h4 class="footer-widget-title">Trusted Brands</h4>
                         <ul class="footer-list">
-                            <li><a href="#"><i class="fas fa-caret-right"></i> FAQ's</a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> Affiliates</a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> Booking Tips</a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> Sell Vehicles</a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> Contact Us</a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i> Sitemap</a></li>
+                            @if (count(\App\Helpers\Helper::getFeaturedBrands()) > 0)
+                                @foreach (\App\Helpers\Helper::getFeaturedBrands() as $brand)
+                                    <li>
+                                        <a href="#" type="submit"
+                                            onclick="event.preventDefault(); document.getElementById('brandForm{{ $brand->id }}').submit();">
+                                            <i class="fas fa-caret-right"></i> {{ $brand->name }}
+                                        </a>
+                                    </li>
+                                    <form id="brandForm{{ $brand->id }}" action="{{ route('frontend.inventory') }}"
+                                        method="GET" hidden>
+                                        <input type="text" hidden name="brands[]" value="{{ $brand->id }}">
+                                    </form>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -70,15 +86,28 @@
             <div class="row">
                 <div class="col-md-6 align-self-center">
                     <p class="copyright-text">
-                        &copy; Copyright <span id="date"></span> <a href="#"> MOTEX </a> All Rights Reserved.
+                        © {{ date('Y') }}
+                        , {{ \App\Helpers\Helper::getfooterText() }}
                     </p>
                 </div>
                 <div class="col-md-6 align-self-center">
                     <ul class="footer-social">
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        @if (\App\Helpers\Helper::getCompanyFacebook() !== null)
+                            <li><a href="{{ \App\Helpers\Helper::getCompanyFacebook() }}"><i
+                                        class="fab fa-facebook-f"></i></a></li>
+                        @endif
+                        @if (\App\Helpers\Helper::getCompanyInstagram() !== null)
+                            <li><a href="{{ \App\Helpers\Helper::getCompanyInstagram() }}"><i
+                                        class="fab fa-instagram"></i></a></li>
+                        @endif
+                        @if (\App\Helpers\Helper::getCompanyTwitter() !== null)
+                            <li><a href="{{ \App\Helpers\Helper::getCompanyTwitter() }}"><i
+                                        class="fab fa-twitter"></i></a></li>
+                        @endif
+                        @if (\App\Helpers\Helper::getCompanyLinkedin() !== null)
+                            <li><a href="{{ \App\Helpers\Helper::getCompanyLinkedin() }}"><i
+                                        class="fab fa-linkedin-in"></i></a></li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -86,14 +115,3 @@
     </div>
 </footer>
 <!-- footer area end -->
-
- {{-- <footer class="content-footer footer bg-footer-theme">
-     <div class="container-xxl">
-         <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-             <div class="text-body">
-                 © {{ date('Y') }}
-                 , {{ \App\Helpers\Helper::getfooterText() }}
-             </div>
-         </div>
-     </div>
- </footer> --}}

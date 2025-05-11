@@ -35,6 +35,8 @@ class DatabaseSeeder extends Seeder
             CarFeatureSeeder::class,
             CarListingSeeder::class,
             CarListingImageSeeder::class,
+            TestimonialSeeder::class,
+            CounterSeeder::class,
         ]);
     }
 }

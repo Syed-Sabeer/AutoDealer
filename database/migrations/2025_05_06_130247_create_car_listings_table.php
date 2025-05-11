@@ -24,9 +24,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('car_id')->unique();
             $table->enum('condition', ['new', 'used', 'certified'])->default('new');
-            $table->integer('year');
+            $table->integer('year')->nullable();
             $table->decimal('price', 12, 2);
-            $table->enum('drive_type', ['2WD', '4WD', 'AWD', 'RWD'])->default('2WD');
+            $table->enum('drive_type', ['2WD', '4WD', 'AWD', 'RWD'])->nullable()->default('2WD');
             $table->enum('transmission', ['automatic', 'manual', 'semi-automatic', 'cvt'])->default('automatic');
             $table->string('mileage')->nullable();
             $table->string('horsepower')->nullable();

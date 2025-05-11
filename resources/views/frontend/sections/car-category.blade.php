@@ -13,16 +13,16 @@
         <div class="row">
             @if (count(\App\Helpers\Helper::getCarBodyTypes()) > 0)
                 @foreach (\App\Helpers\Helper::getCarBodyTypes() as $bodyType)
-                <div class="col-6 col-md-4 col-lg-2">
-                        <form action="{{route('frontend.inventory')}}" method="GET">
-                        <input type="text" hidden name="body_types[]" value="{{ $bodyType->id }}">
-                        <button type="submit" class="btn category-item wow fadeInUp" data-wow-delay=".25s">
-                            <div class="category-img">
-                                <img src="{{ asset($bodyType->image) }}" alt="">
-                            </div>
-                            <h5>{{ $bodyType->name }}</h5>
-                        </button>
-                    </form>
+                    <div class="col-6 col-md-4 col-lg-2">
+                        <form action="{{ route('frontend.inventory') }}" method="GET">
+                            <input type="text" hidden name="body_types[]" value="{{ $bodyType->id }}">
+                            <button type="submit" class="btn category-item wow fadeInUp" data-wow-delay=".25s">
+                                <div class="category-img">
+                                    <img src="{{ asset($bodyType->image) }}" alt="">
+                                </div>
+                                <h5>{{ $bodyType->name }}</h5>
+                            </button>
+                        </form>
                     </div>
                 @endforeach
             @endif

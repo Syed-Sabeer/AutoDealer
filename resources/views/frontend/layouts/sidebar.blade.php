@@ -4,36 +4,57 @@
         <div class="sidebar-content">
             <button type="button" class="close-sidebar-popup"><i class="far fa-xmark"></i></button>
             <div class="sidebar-logo">
-                <img src="{{ asset('frontAssets/img/logo/logo.png') }}" alt="">
+                <img src="{{ asset(\App\Helpers\Helper::getLogoDark()) }}" alt="{{ env('APP_NAME') }}">
             </div>
             <div class="sidebar-about">
                 <h4>About Us</h4>
-                <p>There are many variations of passages available sure there majority have suffered alteration in
-                    some form by injected humour or randomised words which don't look even slightly believable.</p>
+                <p>{{ \App\Helpers\Helper::getCompanyAbout() }}</p>
             </div>
             <div class="sidebar-contact">
                 <h4>Contact Info</h4>
                 <ul>
                     <li>
                         <h6>Email</h6>
-                        <a href="/cdn-cgi/l/email-protection#8de4e3ebe2cde8f5ece0fde1e8a3eee2e0"><i class="far fa-envelope"></i><span class="__cf_email__" data-cfemail="cea7a0a8a18eabb6afa3bea2abe0ada1a3">[email&#160;protected]</span></a>
+                        <a href="mailto:{{ \App\Helpers\Helper::getCompanyEmail() }}"><i
+                                class="far fa-envelope"></i><span>{{ \App\Helpers\Helper::getCompanyEmail() }}</span></a>
                     </li>
                     <li>
                         <h6>Phone</h6>
-                        <a href="tel:+21236547898"><i class="far fa-phone"></i>+2 123 654 7898</a>
+                        <a href="tel:{{ \App\Helpers\Helper::getCompanyPhone() }}"><i
+                                class="far fa-phone"></i>{{ \App\Helpers\Helper::getCompanyPhone() }}</a>
                     </li>
                     <li>
                         <h6>Address</h6>
-                        <a href="#"><i class="far fa-location-dot"></i>25/B Milford Road, New York</a>
+                        <a href="#"><i
+                                class="far fa-location-dot"></i>{{ \App\Helpers\Helper::getCompanyAddress() }},
+                            {{ \App\Helpers\Helper::getCompanyCity() }} {{ \App\Helpers\Helper::getCompanyZip() }},
+                            {{ \App\Helpers\Helper::getCompanyCountry() }}
+                        </a>
                     </li>
                 </ul>
             </div>
             <div class="sidebar-social">
                 <h4>Follow Us</h4>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
+                @if (\App\Helpers\Helper::getCompanyFacebook() !== null)
+                    <a href="{{ \App\Helpers\Helper::getCompanyFacebook() }}">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                @endif
+                @if (\App\Helpers\Helper::getCompanyInstagram() !== null)
+                    <a href="{{ \App\Helpers\Helper::getCompanyInstagram() }}">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                @endif
+                @if (\App\Helpers\Helper::getCompanyTwitter() !== null)
+                    <a href="{{ \App\Helpers\Helper::getCompanyTwitter() }}">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                @endif
+                @if (\App\Helpers\Helper::getCompanyLinkedin() !== null)
+                    <a href="{{ \App\Helpers\Helper::getCompanyLinkedin() }}">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                @endif
             </div>
         </div>
     </div>

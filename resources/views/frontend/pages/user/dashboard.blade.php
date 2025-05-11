@@ -30,40 +30,46 @@
                 <div class="col-lg-9">
                     <div class="user-profile-wrapper">
                         <div class="row">
+                            <!-- Total Listings -->
                             <div class="col-md-6 col-lg-4">
                                 <div class="dashboard-widget dashboard-widget-color-1">
                                     <div class="dashboard-widget-info">
-                                        <h1>450</h1>
-                                        <span>Active Listing</span>
+                                        <h1>{{ $totalListings }}</h1>
+                                        <span>Total Listings</span>
                                     </div>
                                     <div class="dashboard-widget-icon">
-                                        <i class="fal fa-list"></i>
+                                        <i class="fas fa-list-alt"></i> <!-- Changed to solid icon for better visibility -->
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Published Listings -->
                             <div class="col-md-6 col-lg-4">
                                 <div class="dashboard-widget dashboard-widget-color-2">
                                     <div class="dashboard-widget-info">
-                                        <h1>18.6k</h1>
-                                        <span>Total Views</span>
+                                        <h1>{{ $publishedListings }}</h1>
+                                        <span>Published Listings</span>
                                     </div>
                                     <div class="dashboard-widget-icon">
-                                        <i class="fal fa-eye"></i>
+                                        <i class="fas fa-bullhorn"></i> <!-- Represents something being announced/published -->
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Sold Listings -->
                             <div class="col-md-6 col-lg-4">
                                 <div class="dashboard-widget dashboard-widget-color-3">
                                     <div class="dashboard-widget-info">
-                                        <h1>1560</h1>
-                                        <span>Total Listing</span>
+                                        <h1>{{ $soldListings }}</h1>
+                                        <span>Sold Listings</span>
                                     </div>
                                     <div class="dashboard-widget-icon">
-                                        <i class="fal fa-layer-group"></i>
+                                        <i class="fas fa-dollar-sign"></i> <!-- Represents a sale -->
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="user-profile-card">
@@ -122,6 +128,17 @@
                                                             </td>
                                                         </tr>
                                                     @endforeach
+                                                @else
+                                                    <tr>
+                                                        <td>
+                                                            <p>No Listings</p>
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
                                                 @endif
                                             </tbody>
                                         </table>

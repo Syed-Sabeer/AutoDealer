@@ -36,6 +36,16 @@ class HomeController extends Controller
             throw $th;
         }
     }
+    public function contact()
+    {
+        try {
+            return view('frontend.pages.contact');
+        } catch (\Throwable $th) {
+            Log::error('Contact view Failed', ['error' => $th->getMessage()]);
+            return redirect()->back()->with('error', "Something went wrong! Please try again later");
+            throw $th;
+        }
+    }
     public function inventory()
     {
         // dd(request()->all());

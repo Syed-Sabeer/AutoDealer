@@ -102,6 +102,15 @@
                     @enderror
                 </div>
                 <div class="mb-4 col-md-4">
+                    <label for="phone_number" class="form-label">{{ __('Phone Number') }}</label>
+                    <input class="form-control @error('phone_number') is-invalid @enderror" type="text" id="phone_number" name="phone_number" value="{{$companySetting->phone_number}}" placeholder="{{ __('i.e. +1 202 555 0111') }}" />
+                    @error('phone_number')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                {{-- <div class="mb-4 col-md-4">
                     <label class="form-label" for="phone_number">{{ __('Phone Number') }}</label>
                     <div class="input-group input-group-merge">
                         <span class="input-group-text">US (+1)</span>
@@ -112,7 +121,7 @@
                             </span>
                         @enderror
                     </div>
-                </div>
+                </div> --}}
                 <div class="mb-4 col-md-4">
                     <label class="form-label" for="country">{{ __('Country') }}</label>
                     <select id="country" name="country_id" class="select2 form-select @error('country_id') is-invalid @enderror">
@@ -155,6 +164,58 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
+                </div>
+                <div class="mb-4 col-md-12">
+                    <label for="about" class="form-label">{{ __('about') }}</label>
+                    <textarea class="form-control @error('about') is-invalid @enderror" id="about" name="about" cols="10" rows="5" placeholder="{{ __('Describe your company here') }}">{{ $companySetting->about }}</textarea>
+                    @error('about')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="mb-4 col-md-12">
+                    <label class="form-label" for="facebook_url">{{ __('Social Links') }}</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fab fa-facebook fa-lg"></i></span>
+                        <input type="text" id="facebook_url" name="facebook_url" class="form-control @error('facebook_url') is-invalid @enderror"
+                            value="{{ $companySetting->facebook_url }}" placeholder="i.e. https://facebook.com/" />
+                        @error('facebook_url')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fab fa-linkedin fa-lg"></i></span>
+                        <input type="text" id="linkedin_url" name="linkedin_url" class="form-control @error('linkedin_url') is-invalid @enderror"
+                            value="{{ $companySetting->linkedin_url }}" placeholder="i.e. https://linkedin.com/" />
+                        @error('linkedin_url')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fab fa-twitter fa-lg"></i></span>
+                        <input type="text" id="twitter_url" name="twitter_url" class="form-control @error('twitter_url') is-invalid @enderror"
+                            value="{{ $companySetting->twitter_url }}" placeholder="i.e. https://twitter.com/" />
+                        @error('twitter_url')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fab fa-instagram fa-lg"></i></span>
+                        <input type="text" id="instagram_url" name="instagram_url" class="form-control @error('instagram_url') is-invalid @enderror"
+                            value="{{ $companySetting->instagram_url }}" placeholder="i.e. https://instagram.com/" />
+                        @error('instagram_url')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                 </div>
             </div>
             @canany(['create setting', 'update setting'])

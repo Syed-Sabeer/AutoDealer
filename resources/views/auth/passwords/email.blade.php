@@ -1,4 +1,4 @@
-@extends('layouts.authentication.master')
+{{-- @extends('layouts.authentication.master')
 @section('title', 'Forgot Password')
 
 @section('css')
@@ -51,4 +51,62 @@
 @endsection
 
 @section('script')
+@endsection --}}
+
+@extends('frontend.layouts.master')
+
+@section('title', __('Forgot Password'))
+@section('description', '')
+@section('keywords', '')
+@section('author', '')
+
+@section('css')
+@endsection
+
+<!-- Page Title -->
+@section('breadcrumbs')
+    @include('frontend.layouts.partials.breadcrumb', [
+        'title' => 'Forgot Password',
+        'breadcrumbs' => [
+            // ['label' => 'Home', 'url' => route('frontend.home')],
+            ['label' => 'Forgot Password'],
+        ],
+    ])
+@endsection
+
+@section('content')
+    <!-- forgot password -->
+    <div class="login-area py-120">
+        <div class="container">
+            <div class="col-md-5 mx-auto">
+                <div class="login-form">
+                    <div class="login-header">
+                        <img src="{{ asset('FrontAssets/img/logo/logo.png') }}" alt="">
+                        <p>Reset your motex account password</p>
+                    </div>
+                    <form action="{{ route('password.email') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="{{__('Enter your email')}}" autofocus />
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <button type="submit" class="theme-btn"><i class="far fa-key"></i> Send Reset
+                                Link</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- forgot password end -->
+@endsection
+
+@section('script')
+    {{-- {!! NoCaptcha::renderJs() !!} --}}
 @endsection

@@ -34,45 +34,72 @@
                                 <div class="user-profile-card">
                                     <h4 class="user-profile-card-title">Profile Info</h4>
                                     <div class="user-profile-form">
-                                        <form action="#">
+                                        <form action="{{ route('profile.update', $user->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>First Name</label>
-                                                        <input type="text" class="form-control" value="Antoni"
-                                                            placeholder="First Name">
+                                                        <label for="first_name">First Name</label>
+                                                        <input type="text" name="first_name" id="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name', $profile->first_name) }}"
+                                                            placeholder="First Name" >
+                                                        @error('first_name')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Last Name</label>
-                                                        <input type="text" class="form-control" value="Jonson"
-                                                            placeholder="Last Name">
+                                                        <label for="last_name">Last Name</label>
+                                                        <input type="text" name="last_name" id="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name', $profile->last_name) }}"
+                                                            placeholder="First Name" >
+                                                        @error('last_name')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Email</label>
-                                                        <input type="text" class="form-control"
-                                                            value="antoni@example.com" placeholder="Email">
+                                                        <label for="email">Email</label>
+                                                        <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $user->email) }}"
+                                                            placeholder="Enter Email" disabled>
+                                                        @error('email')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Phone</label>
-                                                        <input type="text" class="form-control"
-                                                            value="+2 134 562 458" placeholder="Phone">
+                                                        <label for="phone_number">Phone</label>
+                                                        <input type="text" name="phone_number" id="phone_number" class="form-control @error('phone_number') is-invalid @enderror" value="{{ old('phone_number', $profile->phone_number) }}"
+                                                            placeholder="Enter Phone" >
+                                                        @error('phone_number')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label>Address</label>
-                                                        <input type="text" class="form-control"
-                                                            value="New York, USA" placeholder="Address">
+                                                        <label for="address">Address</label>
+                                                        <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address', $profile->address) }}"
+                                                            placeholder="Enter Phone" >
+                                                        @error('address')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="button" class="theme-btn my-3"><span class="far fa-user"></span> Save Changes</button>
+                                            <button type="submit" class="theme-btn my-3"><span class="far fa-user"></span> Save Changes</button>
                                         </form>
                                     </div>
                                 </div>
@@ -82,29 +109,52 @@
                                     <h4 class="user-profile-card-title">Change Password</h4>
                                     <div class="col-lg-12">
                                         <div class="user-profile-form">
-                                            <form action="#">
+                                            <form  action="{{route('update.password', $user->id)}}" method="POST">
+                                                @csrf
                                                 <div class="form-group">
-                                                    <label>Old Password</label>
-                                                    <input type="password" class="form-control"
-                                                        placeholder="Old Password">
+                                                    <label for="currentPassword">{{ __('Current Password') }}</label>
+                                                    <input class="form-control @error('currentPassword') is-invalid @enderror"
+                                                        type="password" name="currentPassword" id="currentPassword"
+                                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                                        required
+                                                    >
+                                                    @error('currentPassword')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>New Password</label>
-                                                    <input type="password" class="form-control"
-                                                        placeholder="New Password">
+                                                    <label for="newPassword">{{ __('New Password') }}</label>
+                                                    <input class="form-control @error('newPassword') is-invalid @enderror" type="password" id="newPassword" name="newPassword"
+                                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                                        required
+                                                    >
+                                                    @error('newPassword')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Re-Type Password</label>
-                                                    <input type="password" class="form-control"
-                                                        placeholder="Re-Type Password">
+                                                    <label for="confirmPassword">{{ __('Confirm New Password') }}</label>
+                                                    <input class="form-control @error('confirmPassword') is-invalid @enderror" type="password" name="confirmPassword" id="confirmPassword"
+                                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                                        required
+                                                    >
+                                                    @error('confirmPassword')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
-                                                <button type="button" class="theme-btn my-3"><span class="far fa-key"></span> Change Password</button>
+                                                <button type="submit" class="theme-btn my-3"><span class="far fa-key"></span> Change Password</button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            {{-- <div class="col-lg-12">
                                 <div class="user-profile-card profile-store">
                                     <h4 class="user-profile-card-title">Store Info</h4>
                                     <div class="col-lg-12">
@@ -144,7 +194,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

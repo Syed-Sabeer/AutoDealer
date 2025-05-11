@@ -10,6 +10,7 @@ use App\Models\CarFuelType;
 use App\Models\CarListing;
 use App\Models\Profile;
 use App\Models\User;
+use App\Models\UserFavourite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -22,7 +23,10 @@ class DashboardController extends Controller
         try {
             $user = User::where('id', auth()->user()->id)->first();
             $carListings = CarListing::with('carBrand','carModel', 'carBodyType')->where('user_id', $user->id)->latest()->limit(6)->get();
-            return view('frontend.pages.user.dashboard',compact('carListings','user'));
+            $totalListings = CarListing::where('user_id', $user->id)->count();
+            $publishedListings = CarListing::where('user_id', $user->id)->where('status', 'published')->count();
+            $soldListings = CarListing::where('user_id', $user->id)->where('status', 'sold')->count();
+            return view('frontend.pages.user.dashboard',compact('carListings','user','totalListings','publishedListings','soldListings'));
         } catch (\Throwable $th) {
             Log::error('Frontend Dashboard Index Failed', ['error' => $th->getMessage()]);
             return redirect()->back()->with('error', "Something went wrong! Please try again later");
@@ -73,9 +77,33 @@ class DashboardController extends Controller
         try {
             $user = Auth::user();
             $profile = Profile::with('gender','maritalStatus','language','designation','country')->where('user_id', $user->id)->first();
-            return view('frontend.pages.user.my-favourite',compact('profile','user'));
+            $userFavourites = UserFavourite::with('carListing.carFuelType')->where('user_id', $user->id)->paginate(6);
+            return view('frontend.pages.user.my-favourite',compact('profile','user','userFavourites'));
         } catch (\Throwable $th) {
             Log::error('Frontend Dashboard Index Failed', ['error' => $th->getMessage()]);
+            return redirect()->back()->with('error', "Something went wrong! Please try again later");
+            throw $th;
+        }
+    }
+    public function addToFavourite($id)
+    {
+        try {
+            $user = Auth::user();
+            $carListing = CarListing::findOrFail($id);
+            $userFavourite = UserFavourite::where('user_id', $user->id)->where('car_listing_id', $carListing->id)->first();
+            if ($userFavourite) {
+                $userFavourite->delete();
+                $message = "Removed from Favourite Successfully";
+            } else {
+                $userFavourite = new UserFavourite();
+                $userFavourite->user_id = $user->id;
+                $userFavourite->car_listing_id = $carListing->id;
+                $userFavourite->save();
+                $message = "Added to Favourite Successfully";
+            }
+            return redirect()->back()->with('success', $message);
+        } catch (\Throwable $th) {
+            Log::error('Frontend Add to Favourite Failed', ['error' => $th->getMessage()]);
             return redirect()->back()->with('error', "Something went wrong! Please try again later");
             throw $th;
         }

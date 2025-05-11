@@ -91,7 +91,7 @@
 @section('script')
     <script src="{{ asset('assets/js/custom-js/settings.js') }}"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             let countryData = {
                 @foreach ($countries as $country)
                     "{{ $country->id }}": {
@@ -101,30 +101,25 @@
                     },
                 @endforeach
             };
-
-            function updatePhoneCode(countryId) {
-                if (countryId in countryData) {
-                    let countryCode = countryData[countryId].code;
+    
+            function setPhoneCode(countryId) {
+                if (countryData[countryId]) {
                     let phoneCode = countryData[countryId].phone_code;
-                    let phoneLimit = countryData[countryId].phone_limit;
-
-                    $('.input-group-text').text(countryCode + " (" + phoneCode + ")"); // Update phone prefix
-                    $('#phone_number').attr('maxlength', phoneLimit); // Set max length
+                    $('#phone_number').val(phoneCode); // Prefill phone field with country code
+                    // $('#phone_number').attr('maxlength', countryData[countryId].phone_limit);
                 }
             }
-
-            // On page load, set phone code based on saved country
-            let savedCountryId = "{{ $companySetting->country_id }}";
-            if (savedCountryId) {
-                updatePhoneCode(savedCountryId);
+    
+            let initialCountry = "{{ $companySetting->country_id }}";
+            if (initialCountry) {
+                setPhoneCode(initialCountry);
             }
-
-            // When country is changed
-            $('#country').change(function() {
+    
+            $('#country').change(function () {
                 let selectedCountryId = $(this).val();
-                updatePhoneCode(selectedCountryId);
-                $('#phone_number').val(''); // Clear phone input on change
+                setPhoneCode(selectedCountryId);
             });
         });
     </script>
+    
 @endsection

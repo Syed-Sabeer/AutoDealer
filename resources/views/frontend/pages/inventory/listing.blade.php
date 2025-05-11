@@ -22,7 +22,7 @@
 
 @section('content')
     <!-- car area -->
-    <div class="car-area grid bg py-120">
+    <div class="car-area {{ request('view') == 'list' ? 'list' : 'grid' }} bg py-120">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -37,8 +37,8 @@
                                     {{ $carListings->total() }} Results
                                 </h6>
                                 <div class="car-sort-list-grid">
-                                    <a class="car-sort-grid active" href="listing-grid.html"><i class="far fa-grid-2"></i></a>
-                                    <a class="car-sort-list" href="listing-list.html"><i class="far fa-list-ul"></i></a>
+                                    <a class="car-sort-grid {{ request('view') !== 'list' ? 'active' : '' }}" href="{{ request()->fullUrlWithQuery(['view' => 'grid']) }}"><i class="far fa-grid-2"></i></a>
+                                    <a class="car-sort-list {{ request('view') === 'list' ? 'active' : '' }}" href="{{ request()->fullUrlWithQuery(['view' => 'list']) }}"><i class="far fa-list-ul"></i></a>
                                 </div>
                                 <div class="col-md-3 car-sort-box">
                                     <form method="GET" id="sortForm">
@@ -63,47 +63,94 @@
                         </div>
                         <div class="row">
                             @foreach ($carListings as $car)
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="car-item">
-                                        <div class="car-img">
-                                            <span
-                                                class="car-status status-{{ $car->condition == 'new' ? '2' : '1' }}">{{ ucfirst($car->condition) }}</span>
-                                            <img src="{{ asset($car->main_image) }}" alt="">
-                                            <div class="car-btns">
-                                                <a href="#"><i class="far fa-heart"></i></a>
-                                                <a href="#"><i class="far fa-arrows-repeat"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="car-content">
-                                            <div class="car-top">
-                                                <h4><a
-                                                        href="{{ route('frontend.inventory.details', $car->car_id) }}">{{ $car->title }}</a>
-                                                </h4>
-                                                <div class="car-rate">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <span>5.0 (58.5k Review)</span>
+                                @php
+                                    $isFavourited = auth()->check() && auth()->user()->userFavourites->contains('car_listing_id', $car->id);
+                                @endphp
+                                @if (request('view') === 'list')
+                                    {{-- List View --}}
+                                    <div class="col-md-6 col-lg-12">
+                                        <div class="car-item">
+                                            <div class="car-img">
+                                                <span class="car-status status-{{ $car->condition == 'new' ? '2' : '1' }}">{{ ucfirst($car->condition) }}</span>
+                                                <img src="{{ asset($car->main_image) }}" alt="">
+                                                <div class="car-btns">
+                                                    <a href="{{ route('frontend.add.favourites', $car->id) }}"><i class="{{ $isFavourited ? 'fas' : 'far' }} fa-heart"></i></a>
+                                                    {{-- <a href="#"><i class="far fa-arrows-repeat"></i></a> --}}
                                                 </div>
                                             </div>
-                                            <ul class="car-list">
-                                                <li><i class="far fa-steering-wheel"></i>{{ ucfirst($car->transmission) }}
-                                                </li>
-                                                <li><i class="far fa-road"></i>{{ $car->fuel_efficiency }}km / 1-litre</li>
-                                                <li><i class="far fa-car"></i>Model: {{ $car->year }}</li>
-                                                <li><i class="far fa-gas-pump"></i>{{ $car->carFuelType->name }}</li>
-                                            </ul>
-                                            <div class="car-footer">
-                                                <span
-                                                    class="car-price">{{ \App\Helpers\Helper::formatCurrency($car->price) }}</span>
-                                                <a href="{{ route('frontend.inventory.details', $car->car_id) }}"
-                                                    class="theme-btn"><span class="far fa-eye"></span>Details</a>
+                                            <div class="car-content">
+                                                <div class="car-top">
+                                                    <h4><a href="{{ route('frontend.inventory.details', $car->car_id) }}">{{ $car->title }}</a></h4>
+                                                    <div class="car-rate">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <span>5.0 (58.5k Review)</span>
+                                                    </div>
+                                                </div>
+                                                <ul class="car-list">
+                                                    <li><i class="far fa-steering-wheel"></i>{{ ucfirst($car->transmission) }}
+                                                    </li>
+                                                    <li><i class="far fa-road"></i>{{ $car->fuel_efficiency }}km / 1-litre</li>
+                                                    <li><i class="far fa-car"></i>Model: {{ $car->year }}</li>
+                                                    <li><i class="far fa-gas-pump"></i>{{ $car->carFuelType->name }}</li>
+                                                </ul>
+                                                <p>
+                                                    {{ $car->description }}
+                                                </p>
+                                                <div class="car-footer">
+                                                    <span class="car-price">{{ \App\Helpers\Helper::formatCurrency($car->price) }}</span>
+                                                    <a href="{{ route('frontend.inventory.details', $car->car_id) }}" class="theme-btn"><span class="far fa-eye"></span>Details</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                @else
+                                    {{-- Grid View --}}
+                                    <div class="col-md-6 col-lg-4">
+                                        <div class="car-item">
+                                            <div class="car-img">
+                                                <span
+                                                    class="car-status status-{{ $car->condition == 'new' ? '2' : '1' }}">{{ ucfirst($car->condition) }}</span>
+                                                <img src="{{ asset($car->main_image) }}" alt="">
+                                                <div class="car-btns">
+                                                    <a href="{{ route('frontend.add.favourites', $car->id) }}"><i class="{{ $isFavourited ? 'fas' : 'far' }} fa-heart"></i></a>
+                                                    {{-- <a href="#"><i class="far fa-arrows-repeat"></i></a> --}}
+                                                </div>
+                                            </div>
+                                            <div class="car-content">
+                                                <div class="car-top">
+                                                    <h4><a
+                                                            href="{{ route('frontend.inventory.details', $car->car_id) }}">{{ $car->title }}</a>
+                                                    </h4>
+                                                    <div class="car-rate">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <span>5.0 (58.5k Review)</span>
+                                                    </div>
+                                                </div>
+                                                <ul class="car-list">
+                                                    <li><i class="far fa-steering-wheel"></i>{{ ucfirst($car->transmission) }}
+                                                    </li>
+                                                    <li><i class="far fa-road"></i>{{ $car->fuel_efficiency }}km / 1-litre</li>
+                                                    <li><i class="far fa-car"></i>Model: {{ $car->year }}</li>
+                                                    <li><i class="far fa-gas-pump"></i>{{ $car->carFuelType->name }}</li>
+                                                </ul>
+                                                <div class="car-footer">
+                                                    <span
+                                                        class="car-price">{{ \App\Helpers\Helper::formatCurrency($car->price) }}</span>
+                                                    <a href="{{ route('frontend.inventory.details', $car->car_id) }}"
+                                                        class="theme-btn"><span class="far fa-eye"></span>Details</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                             @endforeach
                         </div>
                         <!-- pagination -->

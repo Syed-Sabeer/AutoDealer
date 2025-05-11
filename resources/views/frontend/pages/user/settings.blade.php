@@ -12,10 +12,7 @@
 @section('breadcrumbs')
     @include('frontend.layouts.partials.breadcrumb', [
         'title' => 'Settings',
-        'breadcrumbs' => [
-            ['label' => 'Dashboard', 'url' => route('frontend.dashboard')],
-            ['label' => 'Settings'],
-        ],
+        'breadcrumbs' => [['label' => 'Dashboard', 'url' => route('frontend.dashboard')], ['label' => 'Settings']],
     ])
 @endsection
 
@@ -32,55 +29,33 @@
                         <div class="user-profile-card profile-setting">
                             <h4 class="user-profile-card-title">Settings</h4>
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <h6 class="mb-3">Privacy Setting</h6>
-                                    <div class="profile-privacy-setting">
-                                        <form action="#">
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" name="privacy-setting" value="1" type="checkbox" role="switch" id="privacy-setting-1" checked>
-                                                <label class="form-check-label" for="privacy-setting-1">Enable Messages</label>
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <h5 class="card-header">{{ __('Deactivate Account') }}</h5>
+                                        <div class="card-body row">
+                                            <div class="mb-6 col-12 mb-0">
+                                                <div class="alert alert-warning">
+                                                    <h5 class="alert-heading mb-1">
+                                                        {{ __('Are you sure you want to deactivate your account?') }}</h5>
+                                                    <p class="mb-0">
+                                                        {{ __('Once you deactivate your account, there is no going back. Please be certain.') }}
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" name="privacy-setting" value="2" type="checkbox" role="switch" id="privacy-setting-2">
-                                                <label class="form-check-label" for="privacy-setting-2">I Want To Receive Email Notify</label>
-                                            </div>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" name="privacy-setting" value="3" type="checkbox" role="switch" id="privacy-setting-3" checked>
-                                                <label class="form-check-label" for="privacy-setting-3">Hide My Phone Number From Public</label>
-                                            </div>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" name="privacy-setting" value="4" type="checkbox" role="switch" id="privacy-setting-4">
-                                                <label class="form-check-label" for="privacy-setting-4">I Want To Receive Message</label>
-                                            </div>
-                                            <div class="form-check form-switch">
-                                                <input class="form-check-input" name="privacy-setting" value="5" type="checkbox" role="switch" id="privacy-setting-5" checked>
-                                                <label class="form-check-label" for="privacy-setting-5">Make My Profile Private</label>
-                                            </div>
-                                            <div class="my-4">
-                                                <button type="submit" class="theme-btn"><span class="far fa-gear"></span>Update Settings</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <h6 class="mb-3">Delete Account</h6>
-                                    <div class="user-profile-form">
-                                        <form action="#">
-                                            <div class="form-group">
-                                                <select class="select mb-4">
-                                                    <option value="">Choose Reason</option>
-                                                    <option value="1">Reason One</option>
-                                                    <option value="2">Reason Two</option>
-                                                    <option value="3">Reason Three</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <textarea class="form-control" cols="30" rows="4" placeholder="Describe Your Reason"></textarea>
-                                            </div>
-                                            <div class="my-4">
-                                                <button type="submit" class="theme-btn"><span class="far fa-trash-can"></span>Delete Account</button>
-                                            </div>
-                                        </form>
+                                            <form id="formAccountDeactivation" method="POST"
+                                                action="{{ route('account.deactivate', $profile->user->id) }}">
+                                                @csrf
+                                                <div class="form-check my-8">
+                                                    <input class="form-check-input" type="checkbox" name="accountActivation"
+                                                        id="accountActivation" />
+                                                    <label class="form-check-label"
+                                                        for="accountActivation">{{ __('I confirm my account deactivation') }}</label>
+                                                </div>
+                                                <button class="btn btn-danger deactivate-account" disabled>
+                                                    {{ __('Deactivate Account') }}
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -91,8 +66,17 @@
         </div>
     </div>
     <!-- user-profile end -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkbox = document.getElementById('accountActivation');
+            const button = document.querySelector('.deactivate-account');
+
+            checkbox.addEventListener('change', function() {
+                button.disabled = !this.checked;
+            });
+        });
+    </script>
 @endsection
 
 @section('script')
-    <script></script>
 @endsection

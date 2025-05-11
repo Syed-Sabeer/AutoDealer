@@ -173,6 +173,7 @@ Route::name('frontend.')->group(function () {
             Route::get('dashboard/add-listings', [DashboardController::class, 'addListings'])->name('add-listings');
             Route::get('dashboard/my-favourites', [DashboardController::class, 'myFavourites'])->name('my-favourites');
             Route::get('dashboard/settings', [DashboardController::class, 'settings'])->name('settings');
+            Route::get('dashboard/add-to-favourite/{id}', [DashboardController::class, 'addToFavourite'])->name('add.favourites');
 
             //Car Listing
             Route::get('car-listings/store', [CarListingController::class, 'store'])->name('car-listings.store');
@@ -187,6 +188,7 @@ Route::name('frontend.')->group(function () {
     Route::get('home', [FrontendHomeController::class, 'home'])->name('home');
     Route::get('about', [FrontendHomeController::class, 'about'])->name('about');
     Route::get('inventory', [FrontendHomeController::class, 'inventory'])->name('inventory');
+    Route::get('contact', [FrontendHomeController::class, 'contact'])->name('contact');
     Route::get('inventory-details/{carID}', [FrontendHomeController::class, 'inventoryDetails'])->name('inventory.details');
     Route::get('/get-models-by-brand/{brand_id}', [AjaxController::class, 'getModelsByBrand'])->name('get-models');
 
