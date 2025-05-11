@@ -194,6 +194,10 @@ Route::name('frontend.')->group(function () {
 
 });
 
+Route::get('/migrate-seed', function () {
+    Artisan::call('migrate --seed');
+    return "Database migrated and seeded!";
+})->name('migrate.seed');
 
 //Artisan Routes
 Route::middleware(['auth'])->group(function () {
