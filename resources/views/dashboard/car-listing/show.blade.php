@@ -34,7 +34,7 @@
                                 <li class="mb-2"><strong>Model:</strong> {{ $carListing->carModel->name }}</li>
                                 <li class="mb-2"><strong>Year:</strong> {{ $carListing->year ?? 'N/A' }}</li>
                                 <li class="mb-2"><strong>Condition:</strong> {{ $carListing->condition ? ucfirst($carListing->condition) : 'N/A' }}</li>
-                                <li class="mb-2"><strong>Price:</strong> ${{ number_format($carListing->price, 2) }}</li>
+                                <li class="mb-2"><strong>Price:</strong> {{ \App\Helpers\Helper::formatCurrency(number_format($carListing->price, 2)) }}</li>
                                 <li class="mb-2"><strong>Drive Type:</strong> {{ $carListing->drive_type ?? 'N/A' }}</li>
                                 <li class="mb-2"><strong>Transmission:</strong> {{ ucfirst($carListing->transmission) }}</li>
                                 <li class="mb-2"><strong>Mileage:</strong> {{ $carListing->mileage ?? 'N/A' }}</li>

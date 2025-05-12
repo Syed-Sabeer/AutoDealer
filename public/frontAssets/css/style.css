@@ -89,7 +89,7 @@ Table of contents
 :root {
   --body-font: 'Roboto', sans-serif;
   --heading-font: 'Inter', sans-serif;
-  --theme-color: #EF1D26;
+  --theme-color: #0069a4;
   --theme-bg-light: #F9F9F9;
   --body-text-color: #757F95;
   --color-white: #ffffff;
@@ -5889,15 +5889,15 @@ body.rtl-mode .price-wrapper {
 
 .dashboard-widget-color-3 {
   background: rgba(239, 29, 38, 0.15);
-  color: #EF1D26;
+  color: #0069a4;
 }
 
 .dashboard-widget-color-3 h1 {
-  color: #EF1D26;
+  color: #0069a4;
 }
 
 .dashboard-widget-color-3 .dashboard-widget-icon {
-  background: #EF1D26;
+  background: #0069a4;
   color: #fff;
 }
 
@@ -6293,7 +6293,7 @@ body.rtl-mode .price-wrapper {
 
 .profile-message .header-account .dropdown-item:hover{
   background: transparent;
-  color: #EF1D26;
+  color: #0069a4;
   padding-left: 20px;
 }
 
