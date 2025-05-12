@@ -86,7 +86,7 @@
                                     <li><a class="dropdown-item" href="{{ route('frontend.my-favourites') }}"><i
                                                 class="far fa-heart"></i>
                                             My Favorites</a></li>
-                                    <li><a class="dropdown-item" href="profile-setting.html"><i class="far fa-cog"></i>
+                                    <li><a class="dropdown-item" href="{{ route('frontend.settings') }}"><i class="far fa-cog"></i>
                                             Settings</a></li>
                                     <li>
                                         <a class="dropdown-item" href="#"
@@ -159,7 +159,7 @@
                                                     class="far fa-layer-group"></i> My Listing</a></li>
                                         <li><a class="dropdown-item" href="{{ route('frontend.my-favourites') }}"><i
                                                     class="far fa-heart"></i> My Favorites</a></li>
-                                        <li><a class="dropdown-item" href="profile-setting.html"><i
+                                        <li><a class="dropdown-item" href="{{ route('frontend.settings') }}"><i
                                                     class="far fa-cog"></i> Settings</a></li>
                                         <li>
                                             <a class="dropdown-item" href="#"
