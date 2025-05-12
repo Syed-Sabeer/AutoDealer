@@ -232,7 +232,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="car-single-widget">
+                            {{-- <div class="car-single-widget">
                                 <div class="car-single-review">
                                     <div class="blog-comments mb-0">
                                         <h4>Reviews (05)</h4>
@@ -314,7 +314,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="col-lg-4">

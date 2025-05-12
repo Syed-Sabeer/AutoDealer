@@ -120,14 +120,14 @@
                                 href="{{ route('frontend.about') }}">About</a></li>
                         <li class="nav-item"><a
                                 class="nav-link {{ request()->routeIs('frontend.inventory') ? 'active' : '' }}"
-                                href="{{ route('frontend.inventory') }}">Inventory</a></li>
-                        <li class="nav-item dropdown">
+                                href="{{ route('frontend.inventory') }}">Vehicles</a></li>
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Blog</a>
                             <ul class="dropdown-menu fade-down">
                                 <li><a class="dropdown-item" href="blog.html">Blog</a></li>
                                 <li><a class="dropdown-item" href="blog-single.html">Blog Single</a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('frontend.contact') ? 'active' : '' }}"
                                 href="{{ route('frontend.contact') }}">Contact</a>
