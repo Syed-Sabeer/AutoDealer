@@ -42,6 +42,31 @@ class UserRolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update setting']);
         Permission::create(['name' => 'delete setting']);
 
+        Permission::create(['name' => 'view car brand']);
+        Permission::create(['name' => 'create car brand']);
+        Permission::create(['name' => 'update car brand']);
+        Permission::create(['name' => 'delete car brand']);
+
+        Permission::create(['name' => 'view car model']);
+        Permission::create(['name' => 'create car model']);
+        Permission::create(['name' => 'update car model']);
+        Permission::create(['name' => 'delete car model']);
+
+        Permission::create(['name' => 'view body type']);
+        Permission::create(['name' => 'create body type']);
+        Permission::create(['name' => 'update body type']);
+        Permission::create(['name' => 'delete body type']);
+
+        Permission::create(['name' => 'view fuel type']);
+        Permission::create(['name' => 'create fuel type']);
+        Permission::create(['name' => 'update fuel type']);
+        Permission::create(['name' => 'delete fuel type']);
+
+        Permission::create(['name' => 'view feature']);
+        Permission::create(['name' => 'create feature']);
+        Permission::create(['name' => 'update feature']);
+        Permission::create(['name' => 'delete feature']);
+
 
         // Create Roles
         $superAdminRole = Role::create(['name' => 'super-admin']); //as super-admin

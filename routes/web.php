@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Dashboard\CarBrandController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Dashboard\ProfileController;
@@ -140,6 +141,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::post('send-mail/setting', [SettingController::class, 'sendTestMail'])->name('setting.send_test_mail');
 
             // User Dashboard Authentication Routes
+
+            // Car Brands
+            Route::resource('car-brands', CarBrandController::class);
+            Route::get('car-brands/status/{id}', [CarBrandController::class, 'updateStatus'])->name('car-brands.status.update');
 
 
 

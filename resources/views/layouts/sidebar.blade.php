@@ -28,6 +28,14 @@
         <li class="menu-header small">
             <span class="menu-header-text">{{__('Apps & Pages')}}</span>
         </li>
+        @can(['view car brand'])
+            <li class="menu-item {{ request()->routeIs('dashboard.car-brands.*') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.car-brands.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-steering-wheel"></i>
+                    <div>{{__('Car Brands')}}</div>
+                </a>
+            </li>
+        @endcan
         @canany(['view user', 'view archived user'])
             <li class="menu-item {{ request()->routeIs('dashboard.user.*') || request()->routeIs('dashboard.archived-user.*') ? 'open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">

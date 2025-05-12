@@ -26,8 +26,8 @@
             <div class="col-md-5 mx-auto">
                 <div class="login-form">
                     <div class="login-header">
-                        <img src="{{ asset('frontAssets/img/logo/logo.png') }}" alt="">
-                        <p>Login with your motex account</p>
+                        <img src="{{ asset(\App\Helpers\Helper::getLogoDark()) }}" alt="{{ env('APP_NAME') }}">
+                        <p>Login with your account</p>
                     </div>
                     <form id="frontFormLogin" action="{{route('frontend.login.attempt')}}" method="POST">
                         @csrf
@@ -83,14 +83,14 @@
                     </form>
                     <div class="login-footer">
                         <p>Don't have an account? <a href="{{route('frontend.register')}}">Register.</a></p>
-                        <div class="social-login">
+                        {{-- <div class="social-login">
                             <p>Continue with social media</p>
                             <div class="social-login-list">
                                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                                 <a href="#"><i class="fab fa-google"></i></a>
                                 <a href="#"><i class="fab fa-twitter"></i></a>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

@@ -134,10 +134,10 @@
                         </li>
                     </ul>
                     <div class="nav-right">
-                        <div class="cart-btn">
+                        {{-- <div class="cart-btn">
                             <a href="#" class="nav-right-link"><i
                                     class="far fa-cart-plus"></i><span>0</span></a>
-                        </div>
+                        </div> --}}
                         @if (Auth::check())
                             <div class="nav-right-account">
                                 <div class="dropdown">
