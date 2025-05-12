@@ -1,23 +1,23 @@
 @extends('layouts.master')
 
-@section('title', __('Car Brands'))
+@section('title', __('Car Features'))
 
 @section('css')
 @endsection
 
-
 @section('breadcrumb-items')
-    <li class="breadcrumb-item active">{{ __('Car Brands') }}</li>
+    <li class="breadcrumb-item active">{{ __('Car Features') }}</li>
 @endsection
+
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-        <!-- Car Brands List Table -->
+        <!-- Car Features List Table -->
         <div class="card">
             <div class="card-header">
-                @canany(['create car brand'])
-                    <a href="{{route('dashboard.car-brands.create')}}" class="add-new btn btn-primary waves-effect waves-light">
+                @canany(['create feature'])
+                    <a href="{{route('dashboard.features.create')}}" class="add-new btn btn-primary waves-effect waves-light">
                         <i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span
-                            class="d-none d-sm-inline-block">{{ __('Add New Car Brand') }}</span>
+                            class="d-none d-sm-inline-block">{{ __('Add New Car Feature') }}</span>
                     </a>
                 @endcan
             </div>
@@ -27,74 +27,64 @@
                         <tr>
                             <th>{{ __('Sr.') }}</th>
                             <th>{{ __('Name') }}</th>
-                            <th>{{ __('Logo') }}</th>
+                            <th>{{ __('Image') }}</th>
                             <th>{{ __('Feature') }}</th>
                             <th>{{ __('Status') }}</th>
-                            @canany(['delete car brand', 'update car brand','view car model'])<th>{{ __('Action') }}</th>@endcan
+                            @canany(['delete feature', 'update feature'])<th>{{ __('Action') }}</th>@endcan
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($carBrands as $index => $brand)
+                        @foreach ($carFeatures as $index => $feature)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $brand->name }}</td>
+                                <td>{{ $feature->name }}</td>
                                 <td>
-                                    @if (isset($brand->logo))
-                                        <img src="{{ asset($brand->logo) }}" alt="{{ $brand->name }}"
+                                    @if (isset($feature->logo))
+                                        <img src="{{ asset($feature->logo) }}" alt="{{ $feature->name }}"
                                             height="35px" width="35px">
                                     @else
-                                        {{ __('No Logo') }}
+                                        {{ __('No Image') }}
                                     @endif
                                 </td>
                                 <td>
-                                    <span class="badge me-4 bg-label-{{ $brand->is_featured == '1' ? 'success' : 'danger' }}">{{ $brand->is_featured == '1' ? 'Featured' : 'Not Featured' }}</span>
+                                    <span class="badge me-4 bg-label-{{ $feature->is_featured == '1' ? 'success' : 'danger' }}">{{ $feature->is_featured == '1' ? 'Featured' : 'Not Featured' }}</span>
                                 </td>
                                 <td>
-                                    <span class="badge me-4 bg-label-{{ $brand->is_active == 'active' ? 'success' : 'danger' }}">{{ ucfirst($brand->is_active) }}</span>
+                                    <span class="badge me-4 bg-label-{{ $feature->is_active == 'active' ? 'success' : 'danger' }}">{{ ucfirst($feature->is_active) }}</span>
                                 </td>
-                                @canany(['delete car brand', 'update car brand','view car model'])
+                                @canany(['delete feature', 'update feature'])
                                     <td class="d-flex">
-                                        @canany(['delete car brand'])
-                                            <form action="{{ route('dashboard.car-brands.destroy', $brand->id) }}" method="POST">
+                                        @canany(['delete feature'])
+                                            <form action="{{ route('dashboard.features.destroy', $feature->id) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 <a href="#" type="submit"
                                                     class="btn btn-icon btn-text-danger waves-effect waves-light rounded-pill delete-record delete_confirmation"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="{{ __('Delete Car Brand') }}">
+                                                    title="{{ __('Delete Car Feature') }}">
                                                     <i class="ti ti-trash ti-md"></i>
                                                 </a>
                                             </form>
                                         @endcan
-                                        @canany(['update car brand'])
+                                        @canany(['update feature'])
                                             <span class="text-nowrap">
-                                                <a href="{{ route('dashboard.car-brands.edit', $brand->id) }}"
+                                                <a href="{{ route('dashboard.features.edit', $feature->id) }}"
                                                     class="btn btn-icon btn-text-primary waves-effect waves-light rounded-pill me-1"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="{{ __('Edit Car Brand') }}">
+                                                    title="{{ __('Edit Car Feature') }}">
                                                     <i class="ti ti-edit ti-md"></i>
                                                 </a>
                                             </span>
                                             <span class="text-nowrap">
-                                                <a href="{{ route('dashboard.car-brands.status.update', $brand->id) }}"
+                                                <a href="{{ route('dashboard.features.status.update', $feature->id) }}"
                                                     class="btn btn-icon btn-text-primary waves-effect waves-light rounded-pill me-1"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="{{ $brand->is_active == 'active' ? __('Deactivate Car Brand') : __('Activate Car Brand') }}">
-                                                    @if ($brand->is_active == 'active')
+                                                    title="{{ $feature->is_active == 'active' ? __('Deactivate Car Feature') : __('Activate Car Feature') }}">
+                                                    @if ($feature->is_active == 'active')
                                                         <i class="ti ti-toggle-right ti-md text-success"></i>
                                                     @else
                                                         <i class="ti ti-toggle-left ti-md text-danger"></i>
                                                     @endif
-                                                </a>
-                                            </span>
-                                        @endcan
-                                        @canany(['view car model'])
-                                            <span class="text-nowrap">
-                                                <a href="{{ route('dashboard.car-models.index', $brand->id) }}"
-                                                    class="btn btn-icon btn-text-warning waves-effect waves-light rounded-pill me-1"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="{{ __('Car Models') }}">
-                                                    <i class="ti ti-car ti-md"></i>
                                                 </a>
                                             </span>
                                         @endcan

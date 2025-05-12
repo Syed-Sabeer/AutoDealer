@@ -1,7 +1,7 @@
 <!doctype html>
 
 <html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact" dir="ltr"
-    data-theme="theme-default" data-assets-path="../../assets/" data-template="vertical-menu-template" data-style="light">
+    data-theme="theme-default" data-assets-path="{{asset('assets')}}/" data-template="vertical-menu-template" data-style="light">
 
 <head>
     <title>{{ \App\Helpers\Helper::getCompanyName() }} - @yield('title')</title>

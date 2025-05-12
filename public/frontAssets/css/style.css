@@ -979,7 +979,7 @@ label {
 }
 
 .navbar-brand img {
-  width: 200px;
+  width: 100px;
 }
 
 .navbar .dropdown-toggle::after {
@@ -1440,7 +1440,7 @@ label {
 }
 
 .sidebar-logo img{
-  width: 220px;
+  width: 120px;
 }
 
 .sidebar-about{
@@ -6564,7 +6564,7 @@ body.rtl-mode .price-wrapper {
 }
 
 .footer-logo img {
-  width: 250px;
+  width: 110px;
   margin-bottom: 35px;
 }
 
