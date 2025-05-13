@@ -620,9 +620,7 @@
         </div>
     </div>
     <!-- user-profile end -->
-@endsection
-
-@section('script')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const input = document.querySelector('.list-img-file');
@@ -768,4 +766,7 @@
             });
         });
     </script>
+@endsection
+
+@section('script')
 @endsection
