@@ -5291,8 +5291,8 @@ label {
   background-position: center !important;
   background-size: cover !important;
   position: relative;
-  padding-top: 150px;
-  padding-bottom: 150px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   z-index: 1;
 }
 

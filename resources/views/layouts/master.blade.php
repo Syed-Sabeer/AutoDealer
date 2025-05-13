@@ -67,6 +67,7 @@
 
     <!-- JS -->
     @include('layouts.script')
+    @yield('script')
     <script>
         function updateTime() {
             fetch('/current-time')
