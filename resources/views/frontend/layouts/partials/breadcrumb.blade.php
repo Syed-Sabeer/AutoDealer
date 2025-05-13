@@ -1,5 +1,5 @@
 <!-- breadcrumb -->
-<div class="site-breadcrumb" style="background: url({{ asset('frontAssets/img/breadcrumb/01.jpg') }})">
+<div class="site-breadcrumb" style="background: #0cb0ff;">
     <div class="container">
         <h2 class="breadcrumb-title">{{ $title ?? 'Page Title' }}</h2>
         <ul class="breadcrumb-menu">
