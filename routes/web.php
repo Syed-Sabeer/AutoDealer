@@ -213,7 +213,7 @@ Route::name('frontend.')->group(function () {
             Route::get('dashboard/add-to-favourite/{id}', [DashboardController::class, 'addToFavourite'])->name('add.favourites');
 
             //Car Listing
-            Route::get('car-listings/store', [CarListingController::class, 'store'])->name('car-listings.store');
+            Route::post('car-listings/store', [CarListingController::class, 'store'])->name('car-listings.store');
             Route::get('car-listings/delete/{id}', [CarListingController::class, 'destroy'])->name('car-listings.destroy');
             Route::get('car-listings/edit/{id}', [CarListingController::class, 'edit'])->name('car-listings.edit');
             Route::put('car-listings/update/{id}', [CarListingController::class, 'update'])->name('car-listings.update');

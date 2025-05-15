@@ -12,6 +12,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+
+        if ($user->hasRole(['seller', 'user'])) {
+            return redirect()->route('frontend.dashboard');
+        }
         return view('dashboard.index');
     }
 
