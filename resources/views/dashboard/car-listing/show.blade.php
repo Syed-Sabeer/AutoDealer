@@ -25,7 +25,7 @@
                             <i class="ti ti-activity me-1"></i> {{ ucfirst($carListing->status) }}
                         </span>
                     </div>
-            
+
                     <div class="row gy-4">
                         <!-- Left Column -->
                         <div class="col-md-6">
@@ -42,7 +42,7 @@
                                 <li class="mb-2"><strong>Fuel Efficiency:</strong> {{ $carListing->fuel_efficiency ?? 'N/A' }} mi/l</li>
                             </ul>
                         </div>
-                    
+
                         <!-- Right Column -->
                         <div class="col-md-6">
                             <ul class="list-unstyled mb-0">
@@ -57,15 +57,15 @@
                             </ul>
                         </div>
                     </div>
-                    
-            
+
+
                     <hr>
-            
+
                     <div class="mb-3">
                         <h5><i class="ti ti-file-description me-2"></i>Description</h5>
                         <p>{{ $carListing->description ?? 'No description provided.' }}</p>
                     </div>
-            
+
                     @if ($carListing->features)
                     <div class="mb-3">
                         <h5><i class="ti ti-checklist me-2"></i>Features</h5>
@@ -76,7 +76,7 @@
                         </ul>
                     </div>
                     @endif
-            
+
                     <div class="mb-3">
                         <h5><i class="ti ti-user-circle me-2"></i>Contact Information</h5>
                         <ul class="list-unstyled">
@@ -85,25 +85,25 @@
                             <li><strong>Email:</strong> {{ $carListing->contact_email ?? 'N/A' }}</li>
                         </ul>
                     </div>
-            
+
                     <div class="mb-3">
                         <h5><i class="ti ti-user me-2"></i>Listed By</h5>
                         <p>{{ $carListing->user->name }} ({{ $carListing->user->email }})</p>
                     </div>
-            
+
                     @if ($carListingImages->count())
                     <div class="mb-3">
                         <h5><i class="ti ti-photo me-2"></i>Images</h5>
                         <div class="row">
                             @foreach ($carListingImages as $image)
                                 <div class="col-md-3 mb-3">
-                                    <img src="{{ asset('storage/' . $image->image_path) }}" class="img-fluid rounded" alt="Car Image">
+                                    <img src="{{ asset($image->image_url) }}" class="img-fluid rounded" alt="Car Image">
                                 </div>
                             @endforeach
                         </div>
                     </div>
                     @endif
-            
+
                 </div>
             </div>
             <!-- /Invoice -->
