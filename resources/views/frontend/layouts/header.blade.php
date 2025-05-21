@@ -61,7 +61,7 @@
     <div class="main-navigation">
         <nav class="navbar navbar-expand-lg">
             <div class="container position-relative">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{ route('frontend.home') }}">
                     <img src="{{ asset(\App\Helpers\Helper::getLogoDark()) }}" alt="logo">
                 </a>
                 <div class="mobile-menu-right">

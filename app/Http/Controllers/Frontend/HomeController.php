@@ -57,9 +57,17 @@ class HomeController extends Controller
                 $carListings->whereIn('car_brand_id', request('brands'));
             }
 
-            if (request('year')) {
-                $carListings->whereIn('year', request('year'));
+            // if (request('year')) {
+            //     $carListings->whereIn('year', request('year'));
+            // }
+            if (request('from_year') && request('to_year')) {
+                $carListings->whereBetween('year', [request('from_year'), request('to_year')]);
+            } elseif (request('from_year')) {
+                $carListings->where('year', '>=', request('from_year'));
+            } elseif (request('to_year')) {
+                $carListings->where('year', '<=', request('to_year'));
             }
+
 
             if (request('condition')) {
                 $carListings->whereIn('condition', request('condition'));
@@ -86,7 +94,7 @@ class HomeController extends Controller
                 foreach ((array) $features as $feature) {
                     $carListings->whereJsonContains('features', $feature);
                 }
-            }            
+            }
 
             if (request('min_price') !== null && request('max_price') !== null) {
                 $carListings->whereBetween('price', [

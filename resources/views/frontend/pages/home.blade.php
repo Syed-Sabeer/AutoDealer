@@ -23,8 +23,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-12 col-lg-6">
                             <div class="hero-content">
-                                <h6 class="hero-sub-title" data-animation="fadeInUp" data-delay=".25s">Welcome To
-                                    Motex!</h6>
+                                <h6 class="hero-sub-title" data-animation="fadeInUp" data-delay=".25s">Welcome To {{\App\Helpers\Helper::getCompanyName()}}!</h6>
                                 <h1 class="hero-title" data-animation="fadeInRight" data-delay=".50s">
                                     Best Way To Find Your <span>Dream</span> Car
                                 </h1>
@@ -56,8 +55,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-12 col-lg-6">
                             <div class="hero-content">
-                                <h6 class="hero-sub-title" data-animation="fadeInUp" data-delay=".25s">Welcome To
-                                    Motex!</h6>
+                                <h6 class="hero-sub-title" data-animation="fadeInUp" data-delay=".25s">Welcome To {{\App\Helpers\Helper::getCompanyName()}}!</h6>
                                 <h1 class="hero-title" data-animation="fadeInRight" data-delay=".50s">
                                     Best Way To Find Your <span>Dream</span> Car
                                 </h1>
@@ -89,8 +87,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-12 col-lg-6">
                             <div class="hero-content">
-                                <h6 class="hero-sub-title" data-animation="fadeInUp" data-delay=".25s">Welcome To
-                                    Motex!</h6>
+                                <h6 class="hero-sub-title" data-animation="fadeInUp" data-delay=".25s">Welcome To {{\App\Helpers\Helper::getCompanyName()}}!</h6>
                                 <h1 class="hero-title" data-animation="fadeInRight" data-delay=".50s">
                                     Best Way To Find Your <span>Dream</span> Car
                                 </h1>
@@ -129,7 +126,7 @@
                 <h4 class="find-car-title">Let's Find Your Perfect Car</h4>
                 <form  action="{{ route('frontend.inventory') }}" method="GET">
                     <div class="row">
-                        <div class="col-lg-3">
+                        {{-- <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Car Condition</label>
                                 <select name="condition[]" class="select">
@@ -138,7 +135,7 @@
                                     <option value="used">Used Car</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Brand Name</label>
@@ -160,14 +157,32 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        {{-- <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Choose Year</label>
                                 <select name="year[]" id="yearSelect" class="select">
                                     <option selected disabled>All Year</option>
                                 </select>
                             </div>
+                        </div> --}}
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>From Year</label>
+                                <select name="from_year" id="fromYearSelect" class="select">
+                                    <option selected disabled>From Year</option>
+                                </select>
+                            </div>
                         </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>To Year</label>
+                                <select name="to_year" id="toYearSelect" class="select">
+                                    <option selected disabled>To Year</option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Choose Transmission</label>
@@ -183,11 +198,21 @@
                                 <label>Price Range</label>
                                 <select id="priceSelect" class="select">
                                     <option value="1" data-min="0" data-max="10000000">All Price</option>
-                                    <option value="2" data-min="1000" data-max="10000">$1,000 - $10,000</option>
-                                    <option value="3" data-min="10000" data-max="20000">$10,000 - $20,000</option>
-                                    <option value="4" data-min="20000" data-max="30000">$20,000 - $30,000</option>
-                                    <option value="5" data-min="40000" data-max="50000">$40,000 - $50,000</option>
-                                    <option value="6" data-min="50000" data-max="100000">$50,000 - $100,000</option>
+                                    <option value="2" data-min="1000" data-max="10000">
+                                        {{ \App\Helpers\Helper::formatCurrency(1000) }} - {{ \App\Helpers\Helper::formatCurrency(10000) }}
+                                    </option>
+                                    <option value="3" data-min="10000" data-max="20000">
+                                        {{ \App\Helpers\Helper::formatCurrency(10000) }} - {{ \App\Helpers\Helper::formatCurrency(20000) }}
+                                    </option>
+                                    <option value="4" data-min="20000" data-max="30000">
+                                        {{ \App\Helpers\Helper::formatCurrency(20000) }} - {{ \App\Helpers\Helper::formatCurrency(30000) }}
+                                    </option>
+                                    <option value="5" data-min="40000" data-max="50000">
+                                        {{ \App\Helpers\Helper::formatCurrency(40000) }} - {{ \App\Helpers\Helper::formatCurrency(50000) }}
+                                    </option>
+                                    <option value="6" data-min="50000" data-max="100000">
+                                        {{ \App\Helpers\Helper::formatCurrency(50000) }} - {{ \App\Helpers\Helper::formatCurrency(100000) }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -493,20 +518,35 @@
 @section('script')
     <script>
         $(document).ready(function () {
+            // const currentYear = new Date().getFullYear();
+            // const startYear = 1955;
+            // let options = '<option selected disabled>All Year</option>';
+
+            // for (let year = currentYear; year >= startYear; year--) {
+            //     options += `<option value="${year}">${year}</option>`;
+            // }
+
+            // $('#yearSelect').html(options); // update the HTML
+
+            // // Re-initialize niceSelect properly
+            // if ($.fn.niceSelect) {
+            //     $('#yearSelect').niceSelect('destroy');
+            //     $('#yearSelect').niceSelect();
+            // }
             const currentYear = new Date().getFullYear();
             const startYear = 1955;
-            let options = '<option selected disabled>All Year</option>';
+            let options = '<option selected disabled>Year</option>';
 
             for (let year = currentYear; year >= startYear; year--) {
                 options += `<option value="${year}">${year}</option>`;
             }
 
-            $('#yearSelect').html(options); // update the HTML
+            $('#fromYearSelect, #toYearSelect').html(options);
 
-            // Re-initialize niceSelect properly
+            // Re-initialize niceSelect
             if ($.fn.niceSelect) {
-                $('#yearSelect').niceSelect('destroy');
-                $('#yearSelect').niceSelect();
+                $('#fromYearSelect').niceSelect('destroy').niceSelect();
+                $('#toYearSelect').niceSelect('destroy').niceSelect();
             }
 
             $('#priceSelect').change(function() {

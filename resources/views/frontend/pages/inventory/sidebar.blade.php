@@ -60,7 +60,7 @@
                 </li>
             </ul>
         </div>
-        <div class="car-widget">
+        {{-- <div class="car-widget">
             <h4 class="car-widget-title">Condition</h4>
             <ul>
                 <li>
@@ -76,7 +76,7 @@
                     </div>
                 </li>
             </ul>
-        </div>
+        </div> --}}
         <div class="car-widget">
             <h4 class="car-widget-title">Fuel Type</h4>
             <ul>

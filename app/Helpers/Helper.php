@@ -19,7 +19,7 @@ class Helper
     public static function dashboard_route()
     {
         $user = User::find(Auth::user()->id);
-        $route = $user->role->role.'.dashboard';
+        $route = $user->role->role . '.dashboard';
         return $route;
     }
     public static function getLogoLight()
@@ -94,23 +94,43 @@ class Helper
 
 
     // example use of currency format {{ \App\Helpers\Helper::formatCurrency($price) }}
+    // public static function formatCurrency($amount)
+    // {
+    //     $currencySetting = SystemSetting::first();
+
+    //     if (!$currencySetting) {
+    //         return $amount; // Return the amount as is if settings are not found
+    //     }
+
+    //     $symbol = $currencySetting->currency_symbol;
+    //     $position = $currencySetting->currency_symbol_position; // 'prefix' or 'postfix'
+
+    //     if ($position === 'prefix') {
+    //         return $symbol . $amount;
+    //     }
+
+    //     return $amount . $symbol;
+    // }
     public static function formatCurrency($amount)
     {
         $currencySetting = SystemSetting::first();
 
         if (!$currencySetting) {
-            return $amount; // Return the amount as is if settings are not found
+            return number_format($amount); // fallback with formatting
         }
 
         $symbol = $currencySetting->currency_symbol;
         $position = $currencySetting->currency_symbol_position; // 'prefix' or 'postfix'
 
+        $formattedAmount = number_format((float) $amount); // ensure number is formatted with commas
+
         if ($position === 'prefix') {
-            return $symbol . $amount;
+            return $symbol . $formattedAmount;
         }
 
-        return $amount . $symbol;
+        return $formattedAmount . $symbol;
     }
+
 
     public static function currencySymbol()
     {
