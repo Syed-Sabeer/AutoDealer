@@ -393,6 +393,25 @@
                                 </div>
                             </div>
                             <div class="car-widget col-lg-12" style="margin-bottom: 0px !important;">
+                                <h4 class="car-widget-title">Distance from You (miles)</h4>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Postcode</label>
+                                            <input class="form-control" type="text" placeholder="Enter your postcode" name="postcode"
+                                                value="{{ request('postcode') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Distance (within miles)</label>
+                                            <input class="form-control" type="number" placeholder="Enter distance within miles" name="distance"
+                                                value="{{ request('distance') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="car-widget col-lg-12" style="margin-bottom: 0px !important;">
                                 <h4 class="car-widget-title">Year</h4>
                                 <div class="row">
                                     <div class="col-lg-6">

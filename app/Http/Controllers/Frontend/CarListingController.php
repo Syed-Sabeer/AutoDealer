@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Http;
 
 class CarListingController extends Controller
 {
@@ -120,6 +121,15 @@ class CarListingController extends Controller
             $carListing->contact_email = $request->contact_email;
             $carListing->contact_phone = $request->contact_phone;
             $carListing->horsepower = $request->horsepower ?? null;
+
+            if ($request->zip_code) {
+                $geo = Http::get("https://api.postcodes.io/postcodes/" . urlencode($request->zip_code));
+                if ($geo->successful() && isset($geo['result'])) {
+                    $carListing->latitude = $geo['result']['latitude'];
+                    $carListing->longitude = $geo['result']['longitude'];
+                }
+            }
+
             if ($request->feature) {
                 $feature = json_encode(collect($request->feature)->values()->all());
                 $carListing->features = $feature;
@@ -271,6 +281,15 @@ class CarListingController extends Controller
                 $carListing->contact_email = $request->contact_email;
                 $carListing->contact_phone = $request->contact_phone;
                 $carListing->horsepower = $request->horsepower ?? null;
+
+                if ($request->zip_code) {
+                    $geo = Http::get("https://api.postcodes.io/postcodes/" . urlencode($request->zip_code));
+                    if ($geo->successful() && isset($geo['result'])) {
+                        $carListing->latitude = $geo['result']['latitude'];
+                        $carListing->longitude = $geo['result']['longitude'];
+                    }
+                }
+
                 if ($request->feature) {
                     $feature = json_encode(collect($request->feature)->values()->all());
                     $carListing->features = $feature;

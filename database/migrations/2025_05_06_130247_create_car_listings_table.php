@@ -56,6 +56,8 @@ return new class extends Migration
             $table->enum('is_featured', ['0', '1'])->default('0');
             $table->enum('status', ['draft', 'published', 'sold', 'archived','expired'])->default('draft');
 
+            $table->decimal('latitude', 10, 6)->nullable();
+            $table->decimal('longitude', 10, 6)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
