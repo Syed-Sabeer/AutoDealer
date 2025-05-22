@@ -83,8 +83,7 @@
                         <div class="contact-form">
                             <div class="contact-form-header">
                                 <h2>Get In Touch</h2>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page randomised words which don't look even slightly when looking at its layout. </p>
+                                <p>Whether you have a question, need support, or want to learn more about our services, we're here to help. </p>
                             </div>
                             <form method="post" action="" id="contact-form">
                                 <div class="row">

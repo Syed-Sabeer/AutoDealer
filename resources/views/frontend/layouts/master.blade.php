@@ -44,6 +44,10 @@
             height: 470px;
         }
 
+        .hero-single{
+            background: rgba(0, 105, 164, 0.15) !important;
+        }
+
         .hero-single .hero-title,
         .hero-single p {
             color: #111111;

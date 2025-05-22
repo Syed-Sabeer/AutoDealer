@@ -152,6 +152,7 @@ class HomeController extends Controller
             $carFeatures = CarFeature::where('is_featured', '1')->where('is_active', 'active')->get();
             $carBodyTypes = CarBodyType::where('is_active', 'active')->get();
             $maxPrice = CarListing::where('status', 'published')->max('price');
+
             return view('frontend.pages.inventory.listing', compact('carListings','carBrands','carFuelTypes','carFeatures','maxPrice','allBrands','carBodyTypes'));
         } catch (\Throwable $th) {
             Log::error('Inventory view Failed', ['error' => $th->getMessage()]);
@@ -168,7 +169,11 @@ class HomeController extends Controller
             $carFuelTypes = CarFuelType::where('is_featured', '1')->where('is_active', 'active')->get();
             $carFeatures = CarFeature::where('is_featured', '1')->where('is_active', 'active')->get();
             $maxPrice = CarListing::where('status', 'published')->max('price');
-            return view('frontend.pages.inventory.single', compact('carListing','carListingImages'));
+            $relatedListings = CarListing::with('carBrand','carFuelType')->where('status', 'published')
+                ->inRandomOrder()
+                ->take(4)
+                ->get();
+            return view('frontend.pages.inventory.single', compact('carListing','carListingImages','relatedListings'));
         } catch (\Throwable $th) {
             Log::error('Inventory Details view Failed', ['error' => $th->getMessage()]);
             return redirect()->back()->with('error', "Something went wrong! Please try again later");

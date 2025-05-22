@@ -128,12 +128,11 @@
                                 Best Way To Find Your <span>Dream</span> Car
                             </h1>
                             <p class="wow fadeInLeft" data-wow-delay=".75s">
-                                There are many variations of passages orem psum available but the majority have
-                                suffered alteration in some form by injected humour.
+                                Discover a seamless way to explore, compare, and drive away in the car that perfectly fits your lifestyle and budget.
                             </p>
                             <div class="hero-btn wow fadeInUp" data-wow-delay="1s">
-                                <a href="#" class="theme-btn">About More<i class="fas fa-arrow-right-long"></i></a>
-                                <a href="#" class="theme-btn theme-btn2">Learn More<i
+                                <a href="{{route('frontend.about')}}" class="theme-btn">About Us<i class="fas fa-arrow-right-long"></i></a>
+                                <a href="{{route('frontend.inventory')}}" class="theme-btn theme-btn2">Explore More<i
                                         class="fas fa-arrow-right-long"></i></a>
                             </div>
                         </div>
@@ -610,7 +609,7 @@
 
 
     <!-- blog area -->
-    <div class="blog-area py-120">
+    {{-- <div class="blog-area py-120">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 mx-auto">
@@ -681,7 +680,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- blog area end -->
 
 @endsection

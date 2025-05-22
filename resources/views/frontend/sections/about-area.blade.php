@@ -22,28 +22,30 @@
                             <i class="flaticon-drive"></i> About Us
                         </span>
                         <h2 class="site-title">
-                            World Largest <span>Car Dealer</span> Marketplace.
+                            World's Largest <span>Car Dealer</span> Marketplace.
                         </h2>
                     </div>
                     <p class="about-text">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have
-                        suffered alteration in some form, by injected humour.
+                        We connect thousands of trusted car dealers and individual sellers with buyers from all around
+                        the world. Whether you're searching for a brand-new vehicle or a pre-owned gem, our platform
+                        offers a seamless and reliable experience to make your car-buying journey easier than ever.
                     </p>
                     <div class="about-list-wrapper">
                         <ul class="about-list list-unstyled">
                             <li>
-                                At vero eos et accusamus et iusto odio.
+                                Trusted by millions of car buyers and sellers globally.
                             </li>
                             <li>
-                                Established fact that a reader will be distracted.
+                                Verified listings from certified dealerships and individuals.
                             </li>
                             <li>
-                                Sed ut perspiciatis unde omnis iste natus sit.
+                                Advanced tools to compare, finance, and track your dream car.
                             </li>
                         </ul>
                     </div>
-                    <a href="about.html" class="theme-btn mt-4">Discover More<i class="fas fa-arrow-right-long"></i></a>
+                    <a href="{{route('frontend.about')}}" class="theme-btn mt-4">Discover More<i class="fas fa-arrow-right-long"></i></a>
                 </div>
+
             </div>
         </div>
     </div>

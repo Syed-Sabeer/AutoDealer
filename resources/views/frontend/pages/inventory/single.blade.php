@@ -373,144 +373,48 @@
                 <div class="car-single-related mt-5">
                     <h3 class="mb-30">Related Listing</h3>
                     <div class="row">
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="car-item">
-                                <div class="car-img">
-                                    <span class="car-status status-1">Used</span>
-                                    <img src="{{ asset('frontAssets/img/car/01.jpg') }}" alt="">
-                                    <div class="car-btns">
-                                        <a href="#"><i class="far fa-heart"></i></a>
-                                        <a href="#"><i class="far fa-arrows-repeat"></i></a>
-                                    </div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="car-top">
-                                        <h4><a href="#">Mercedes Benz Car</a></h4>
-                                        <div class="car-rate">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span>5.0 (58.5k Review)</span>
+                        @if (isset($relatedListings) && count($relatedListings) > 0)
+                            @foreach ($relatedListings as $car)
+                                @php
+                                    $isFavourited = auth()->check() && auth()->user()->userFavourites->contains('car_listing_id', $car->id);
+                                @endphp
+                                <div class="col-md-6 col-lg-4 col-xl-3">
+                                    <div class="car-item">
+                                        <div class="car-img">
+                                            <span class="car-status status-{{ $car->condition == 'new' ? '2' : '1' }}">{{ ucfirst($car->condition) }}</span>
+                                            <img src="{{ asset($car->main_image) }}" alt="{{ $car->title }}">
+                                            <div class="car-btns">
+                                                <a href="{{ route('frontend.add.favourites', $car->id) }}"><i class="{{ $isFavourited ? 'fas' : 'far' }} fa-heart"></i></a>
+                                                {{-- <a href="#"><i class="far fa-arrows-repeat"></i></a> --}}
+                                            </div>
+                                        </div>
+                                        <div class="car-content">
+                                            <div class="car-top">
+                                                <h4><a href="{{ route('frontend.inventory.details', $car->car_id) }}">{{ $car->title }}</a></h4>
+                                                <div class="car-rate">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <span>5.0 (58.5k Review)</span>
+                                                </div>
+                                            </div>
+                                            <ul class="car-list">
+                                                <li><i class="far fa-steering-wheel"></i>{{ ucfirst($car->transmission) }}</li>
+                                                <li><i class="far fa-road"></i>{{ $car->fuel_efficiency }}km / 1-litre</li>
+                                                <li><i class="far fa-car"></i>Model: {{ $car->year }}</li>
+                                                <li><i class="far fa-gas-pump"></i>{{ $car->carFuelType->name }}</li>
+                                            </ul>
+                                            <div class="car-footer">
+                                                <span class="car-price">{{ \App\Helpers\Helper::formatCurrency($car->price) }}</span>
+                                                <a href="{{ route('frontend.inventory.details', $car->car_id) }}" class="theme-btn"><span class="far fa-eye"></span>Details</a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <ul class="car-list">
-                                        <li><i class="far fa-steering-wheel"></i>Automatic</li>
-                                        <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                        <li><i class="far fa-car"></i>Model: 2023</li>
-                                        <li><i class="far fa-gas-pump"></i>Hybrid</li>
-                                    </ul>
-                                    <div class="car-footer">
-                                        <span class="car-price">$45,620</span>
-                                        <a href="#" class="theme-btn"><span class="far fa-eye"></span>Details</a>
-                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="car-item">
-                                <div class="car-img">
-                                    <img src="{{ asset('frontAssets/img/car/02.jpg') }}" alt="">
-                                    <div class="car-btns">
-                                        <a href="#"><i class="far fa-heart"></i></a>
-                                        <a href="#"><i class="far fa-arrows-repeat"></i></a>
-                                    </div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="car-top">
-                                        <h4><a href="#">Yellow Ferrari 458</a></h4>
-                                        <div class="car-rate">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span>5.0 (58.5k Review)</span>
-                                        </div>
-                                    </div>
-                                    <ul class="car-list">
-                                        <li><i class="far fa-steering-wheel"></i>Automatic</li>
-                                        <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                        <li><i class="far fa-car"></i>Model: 2023</li>
-                                        <li><i class="far fa-gas-pump"></i>Hybrid</li>
-                                    </ul>
-                                    <div class="car-footer">
-                                        <span class="car-price">$90,250</span>
-                                        <a href="#" class="theme-btn"><span class="far fa-eye"></span>Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="car-item">
-                                <div class="car-img">
-                                    <img src="{{ asset('frontAssets/img/car/03.jpg') }}" alt="">
-                                    <div class="car-btns">
-                                        <a href="#"><i class="far fa-heart"></i></a>
-                                        <a href="#"><i class="far fa-arrows-repeat"></i></a>
-                                    </div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="car-top">
-                                        <h4><a href="#">Black Audi Q7</a></h4>
-                                        <div class="car-rate">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span>5.0 (58.5k Review)</span>
-                                        </div>
-                                    </div>
-                                    <ul class="car-list">
-                                        <li><i class="far fa-steering-wheel"></i>Automatic</li>
-                                        <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                        <li><i class="far fa-car"></i>Model: 2023</li>
-                                        <li><i class="far fa-gas-pump"></i>Hybrid</li>
-                                    </ul>
-                                    <div class="car-footer">
-                                        <span class="car-price">$44,350</span>
-                                        <a href="#" class="theme-btn"><span class="far fa-eye"></span>Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="car-item">
-                                <div class="car-img">
-                                    <span class="car-status status-2">New</span>
-                                    <img src="{{ asset('frontAssets/img/car/04.jpg') }}" alt="">
-                                    <div class="car-btns">
-                                        <a href="#"><i class="far fa-heart"></i></a>
-                                        <a href="#"><i class="far fa-arrows-repeat"></i></a>
-                                    </div>
-                                </div>
-                                <div class="car-content">
-                                    <div class="car-top">
-                                        <h4><a href="#">BMW Sports Car</a></h4>
-                                        <div class="car-rate">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span>5.0 (58.5k Review)</span>
-                                        </div>
-                                    </div>
-                                    <ul class="car-list">
-                                        <li><i class="far fa-steering-wheel"></i>Automatic</li>
-                                        <li><i class="far fa-road"></i>10.15km / 1-litre</li>
-                                        <li><i class="far fa-car"></i>Model: 2023</li>
-                                        <li><i class="far fa-gas-pump"></i>Hybrid</li>
-                                    </ul>
-                                    <div class="car-footer">
-                                        <span class="car-price">$78,760</span>
-                                        <a href="#" class="theme-btn"><span class="far fa-eye"></span>Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

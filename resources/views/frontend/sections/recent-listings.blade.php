@@ -29,8 +29,7 @@
                             </div>
                             <div class="car-content">
                                 <div class="car-top">
-                                    <h4><a
-                                            href="{{ route('frontend.inventory.details', $car->car_id) }}">{{ $car->title }}</a>
+                                    <h4><a href="{{ route('frontend.inventory.details', $car->car_id) }}">{{ $car->title }}</a>
                                     </h4>
                                     <div class="car-rate">
                                         <i class="fas fa-star"></i>
