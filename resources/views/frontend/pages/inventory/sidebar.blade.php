@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="car-widget" style="background: transparent !important; margin-top: 0 !important;">
-            <button type="button" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#filtersModal">
+            <button type="button" class="theme-btn float-end" style="padding: 5px 14px !important;" data-bs-toggle="modal" data-bs-target="#filtersModal">
                 Additional Filters
             </button>
         </div>
