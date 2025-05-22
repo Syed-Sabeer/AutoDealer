@@ -6,17 +6,17 @@
 @section('author', '')
 
 @section('css')
-<style>
-    .nice-select ul{
-        height: 150px;
-        overflow-y: auto !important;
-    }
-</style>
+    <style>
+        .nice-select ul {
+            height: 150px;
+            overflow-y: auto !important;
+        }
+    </style>
 @endsection
 
 @section('content')
     <!-- hero slider -->
-    <div class="hero-section">
+    {{-- <div class="hero-section">
         <div class="hero-slider owl-carousel owl-theme">
             <div class="hero-single" style="background: url({{ asset('frontAssets/img/slider/slider-1.jpg') }})">
                 <div class="container">
@@ -115,18 +115,183 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+    <div class="hero-section">
+        <div class="hero-single">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-12 col-lg-6">
+                        <div class="hero-content">
+                            <h6 class="hero-sub-title wow fadeInUp" data-wow-delay=".25s">Welcome To
+                                {{ \App\Helpers\Helper::getCompanyName() }}!</h6>
+                            <h1 class="hero-title wow fadeInRight" data-wow-delay=".50s">
+                                Best Way To Find Your <span>Dream</span> Car
+                            </h1>
+                            <p class="wow fadeInLeft" data-wow-delay=".75s">
+                                There are many variations of passages orem psum available but the majority have
+                                suffered alteration in some form by injected humour.
+                            </p>
+                            <div class="hero-btn wow fadeInUp" data-wow-delay="1s">
+                                <a href="#" class="theme-btn">About More<i class="fas fa-arrow-right-long"></i></a>
+                                <a href="#" class="theme-btn theme-btn2">Learn More<i
+                                        class="fas fa-arrow-right-long"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        <div class="hero-right">
+                            <div class="find-car">
+                                <div class="container">
+                                    <div class="find-car-form">
+                                        <h4 class="find-car-title">Let's Find Your Perfect Car</h4>
+                                        <form action="{{ route('frontend.inventory') }}" method="GET">
+                                            <div class="row">
+                                                {{-- <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label>Car Condition</label>
+                                                        <select name="condition[]" class="select">
+                                                            <option selected disabled>All Status</option>
+                                                            <option value="new">New Car</option>
+                                                            <option value="used">Used Car</option>
+                                                        </select>
+                                                    </div>
+                                                </div> --}}
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Brand Name</label>
+                                                        <select name="brands[]" id="brandSelect" class="select">
+                                                            <option selected disabled>All Brand</option>
+                                                            @if (isset($carBrands) && count($carBrands) > 0)
+                                                                @foreach ($carBrands as $brand)
+                                                                    <option value="{{ $brand->id }}">{{ $brand->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Car Model</label>
+                                                        <select name="models[]" id="modelSelect" class="select">
+                                                            <option selected disabled>All Models</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                {{-- <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label>Choose Year</label>
+                                                        <select name="year[]" id="yearSelect" class="select">
+                                                            <option selected disabled>All Year</option>
+                                                        </select>
+                                                    </div>
+                                                </div> --}}
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>From Year</label>
+                                                        <select name="from_year" id="fromYearSelect" class="select">
+                                                            <option selected disabled>From Year</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>To Year</label>
+                                                        <select name="to_year" id="toYearSelect" class="select">
+                                                            <option selected disabled>To Year</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>Body Type</label>
+                                                        <select name="body_types[]" class="select">
+                                                            <option selected disabled>All Body Type</option>
+                                                            @if (isset($carBodyTypes) && count($carBodyTypes) > 0)
+                                                                @foreach ($carBodyTypes as $carBodyType)
+                                                                    <option value="{{ $carBodyType->id }}">
+                                                                        {{ $carBodyType->name }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Price Range</label>
+                                                        <select id="priceSelect" class="select">
+                                                            <option value="1" data-min="0" data-max="10000000">All
+                                                                Price</option>
+                                                            <option value="2" data-min="1000" data-max="10000">
+                                                                {{ \App\Helpers\Helper::formatCurrency(1000) }} -
+                                                                {{ \App\Helpers\Helper::formatCurrency(10000) }}
+                                                            </option>
+                                                            <option value="3" data-min="10000" data-max="20000">
+                                                                {{ \App\Helpers\Helper::formatCurrency(10000) }} -
+                                                                {{ \App\Helpers\Helper::formatCurrency(20000) }}
+                                                            </option>
+                                                            <option value="4" data-min="20000" data-max="30000">
+                                                                {{ \App\Helpers\Helper::formatCurrency(20000) }} -
+                                                                {{ \App\Helpers\Helper::formatCurrency(30000) }}
+                                                            </option>
+                                                            <option value="5" data-min="40000" data-max="50000">
+                                                                {{ \App\Helpers\Helper::formatCurrency(40000) }} -
+                                                                {{ \App\Helpers\Helper::formatCurrency(50000) }}
+                                                            </option>
+                                                            <option value="6" data-min="50000" data-max="100000">
+                                                                {{ \App\Helpers\Helper::formatCurrency(50000) }} -
+                                                                {{ \App\Helpers\Helper::formatCurrency(100000) }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Hidden fields to store the selected price range -->
+                                                <input type="hidden" name="min_price" id="min_price"
+                                                    value="{{ request('min_price', 0) }}">
+                                                <input type="hidden" name="max_price" id="max_price"
+                                                    value="{{ request('max_price', 1000000) }}">
+
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Choose Transmission</label>
+                                                        <select name="transmission[]" class="select">
+                                                            <option selected disabled>All Transmissions</option>
+                                                            <option value="automatic">Automatic</option>
+                                                            <option value="manual">Manual</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 align-self-end mt-4">
+                                                    <button class="theme-btn" type="submit"><span
+                                                            class="far fa-search"></span> Find Your
+                                                        Car</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- hero slider end -->
 
 
     <!-- find car form -->
-    <div class="find-car">
+    {{-- <div class="find-car">
         <div class="container">
             <div class="find-car-form">
                 <h4 class="find-car-title">Let's Find Your Perfect Car</h4>
-                <form  action="{{ route('frontend.inventory') }}" method="GET">
+                <form action="{{ route('frontend.inventory') }}" method="GET">
                     <div class="row">
-                        {{-- <div class="col-lg-3">
+                        <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Car Condition</label>
                                 <select name="condition[]" class="select">
@@ -135,7 +300,7 @@
                                     <option value="used">Used Car</option>
                                 </select>
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Brand Name</label>
@@ -157,14 +322,14 @@
                                 </select>
                             </div>
                         </div>
-                        {{-- <div class="col-lg-3">
+                        <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Choose Year</label>
                                 <select name="year[]" id="yearSelect" class="select">
                                     <option selected disabled>All Year</option>
                                 </select>
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>From Year</label>
@@ -199,19 +364,24 @@
                                 <select id="priceSelect" class="select">
                                     <option value="1" data-min="0" data-max="10000000">All Price</option>
                                     <option value="2" data-min="1000" data-max="10000">
-                                        {{ \App\Helpers\Helper::formatCurrency(1000) }} - {{ \App\Helpers\Helper::formatCurrency(10000) }}
+                                        {{ \App\Helpers\Helper::formatCurrency(1000) }} -
+                                        {{ \App\Helpers\Helper::formatCurrency(10000) }}
                                     </option>
                                     <option value="3" data-min="10000" data-max="20000">
-                                        {{ \App\Helpers\Helper::formatCurrency(10000) }} - {{ \App\Helpers\Helper::formatCurrency(20000) }}
+                                        {{ \App\Helpers\Helper::formatCurrency(10000) }} -
+                                        {{ \App\Helpers\Helper::formatCurrency(20000) }}
                                     </option>
                                     <option value="4" data-min="20000" data-max="30000">
-                                        {{ \App\Helpers\Helper::formatCurrency(20000) }} - {{ \App\Helpers\Helper::formatCurrency(30000) }}
+                                        {{ \App\Helpers\Helper::formatCurrency(20000) }} -
+                                        {{ \App\Helpers\Helper::formatCurrency(30000) }}
                                     </option>
                                     <option value="5" data-min="40000" data-max="50000">
-                                        {{ \App\Helpers\Helper::formatCurrency(40000) }} - {{ \App\Helpers\Helper::formatCurrency(50000) }}
+                                        {{ \App\Helpers\Helper::formatCurrency(40000) }} -
+                                        {{ \App\Helpers\Helper::formatCurrency(50000) }}
                                     </option>
                                     <option value="6" data-min="50000" data-max="100000">
-                                        {{ \App\Helpers\Helper::formatCurrency(50000) }} - {{ \App\Helpers\Helper::formatCurrency(100000) }}
+                                        {{ \App\Helpers\Helper::formatCurrency(50000) }} -
+                                        {{ \App\Helpers\Helper::formatCurrency(100000) }}
                                     </option>
                                 </select>
                             </div>
@@ -219,7 +389,8 @@
 
                         <!-- Hidden fields to store the selected price range -->
                         <input type="hidden" name="min_price" id="min_price" value="{{ request('min_price', 0) }}">
-                        <input type="hidden" name="max_price" id="max_price" value="{{ request('max_price', 1000000) }}">
+                        <input type="hidden" name="max_price" id="max_price"
+                            value="{{ request('max_price', 1000000) }}">
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label>Body Type</label>
@@ -241,7 +412,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- findcar form end -->
 
 
@@ -285,7 +456,7 @@
 
 
     <!-- car dealer -->
-    <div class="car-dealer pb-120">
+    {{-- <div class="car-dealer pb-120">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 mx-auto">
@@ -419,7 +590,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- car dealer end-->
 
 
@@ -517,7 +688,7 @@
 
 @section('script')
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             // const currentYear = new Date().getFullYear();
             // const startYear = 1955;
             // let options = '<option selected disabled>All Year</option>';
@@ -564,7 +735,7 @@
                 $('#priceSelect').trigger('change');
             }
 
-            $('#brandSelect').on('change', function () {
+            $('#brandSelect').on('change', function() {
                 var brandId = $(this).val();
                 $('#modelSelect').empty().append('<option selected disabled>Loading...</option>');
 
@@ -572,10 +743,11 @@
                     $.ajax({
                         url: '/get-models-by-brand/' + brandId,
                         type: 'GET',
-                        success: function (response) {
+                        success: function(response) {
                             let options = '<option selected disabled>All Models</option>';
-                            $.each(response.models, function (index, model) {
-                                options += '<option value="' + model.id + '">' + model.name + '</option>';
+                            $.each(response.models, function(index, model) {
+                                options += '<option value="' + model.id + '">' + model
+                                    .name + '</option>';
                             });
 
                             $('#modelSelect').html(options);
@@ -586,8 +758,9 @@
                             }
                         },
 
-                        error: function () {
-                            $('#modelSelect').empty().append('<option selected disabled>Error loading models</option>');
+                        error: function() {
+                            $('#modelSelect').empty().append(
+                                '<option selected disabled>Error loading models</option>');
                         }
                     });
                 } else {

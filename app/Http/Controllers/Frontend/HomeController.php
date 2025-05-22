@@ -68,6 +68,18 @@ class HomeController extends Controller
                 $carListings->where('year', '<=', request('to_year'));
             }
 
+            if (request('seats')) {
+                $carListings->where('seats', request('seats'));
+            }
+
+            if (request('doors')) {
+                $carListings->where('doors', request('doors'));
+            }
+
+            if (request('color')) {
+                $carListings->where('color', request('color'));
+            }
+
 
             if (request('condition')) {
                 $carListings->whereIn('condition', request('condition'));
@@ -103,6 +115,13 @@ class HomeController extends Controller
                 ]);
             }
 
+            if (request('from_mileage') !== null && request('to_mileage') !== null) {
+                $carListings->whereBetween('mileage', [
+                    request('from_mileage'),
+                    request('to_mileage')
+                ]);
+            }
+
             switch (request('sort')) {
                 case 'featured':
                     $carListings->orderByDesc('is_featured');
@@ -128,10 +147,12 @@ class HomeController extends Controller
             $carListings = $carListings->paginate(9)->withQueryString();
 
             $carBrands = CarBrand::where('is_featured', '1')->where('is_active', 'active')->get();
+            $allBrands = CarBrand::where('is_active', 'active')->get();
             $carFuelTypes = CarFuelType::where('is_featured', '1')->where('is_active', 'active')->get();
             $carFeatures = CarFeature::where('is_featured', '1')->where('is_active', 'active')->get();
+            $carBodyTypes = CarBodyType::where('is_active', 'active')->get();
             $maxPrice = CarListing::where('status', 'published')->max('price');
-            return view('frontend.pages.inventory.listing', compact('carListings','carBrands','carFuelTypes','carFeatures','maxPrice'));
+            return view('frontend.pages.inventory.listing', compact('carListings','carBrands','carFuelTypes','carFeatures','maxPrice','allBrands','carBodyTypes'));
         } catch (\Throwable $th) {
             Log::error('Inventory view Failed', ['error' => $th->getMessage()]);
             return redirect()->back()->with('error', "Something went wrong! Please try again later");
