@@ -90,7 +90,7 @@
                                                     <div class="form-group">
                                                         <label for="address">Address</label>
                                                         <input type="text" name="address" id="address" class="form-control @error('address') is-invalid @enderror" value="{{ old('address', $profile->address) }}"
-                                                            placeholder="Enter Phone" >
+                                                            placeholder="Enter Address" >
                                                         @error('address')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>

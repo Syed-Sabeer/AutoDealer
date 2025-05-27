@@ -178,10 +178,12 @@
                         <div class="search-btn">
                             <button type="button" class="nav-right-link"><i class="far fa-search"></i></button>
                         </div>
-                        <div class="nav-right-btn mt-2">
-                            <a href="{{ route('frontend.add-listings') }}" class="theme-btn"><span class="far fa-plus-circle"></span>Add
-                                Listing</a>
-                        </div>
+                        @if (Auth::check())
+                            <div class="nav-right-btn mt-2">
+                                <a href="{{ route('frontend.add-listings') }}" class="theme-btn"><span class="far fa-plus-circle"></span>Add
+                                    Listing</a>
+                            </div>
+                        @endif
                         <div class="sidebar-btn">
                             <button type="button" class="nav-right-link"><i class="far fa-bars-sort"></i></button>
                         </div>

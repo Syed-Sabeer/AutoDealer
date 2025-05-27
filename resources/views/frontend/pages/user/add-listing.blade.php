@@ -483,10 +483,10 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="state">State <span class="text-danger">*</span></label>
+                                                    <label for="state">County <span class="text-danger">*</span></label>
                                                     <input type="text" name="state" id="state"
                                                         class="form-control @error('state') is-invalid @enderror"
-                                                        placeholder="Enter state" required value="{{ old('state') }}">
+                                                        placeholder="Enter county" required value="{{ old('state') }}">
                                                     @error('state')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -496,11 +496,11 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="zip_code">Zip Code <span
+                                                    <label for="zip_code">Post Code <span
                                                             class="text-danger">*</span></label>
-                                                    <input type="number" name="zip_code" id="zip_code"
+                                                    <input type="text" name="zip_code" id="zip_code"
                                                         class="form-control @error('zip_code') is-invalid @enderror"
-                                                        placeholder="Enter zip code" required
+                                                        placeholder="Enter post code" required
                                                         value="{{ old('zip_code') }}">
                                                     @error('zip_code')
                                                         <span class="invalid-feedback" role="alert">

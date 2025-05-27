@@ -408,10 +408,10 @@
                             @enderror
                         </div>
                         <div class="mb-4 col-md-4">
-                            <label for="state" class="form-label">{{ __('State') }}</label><span
+                            <label for="state" class="form-label">{{ __('County') }}</label><span
                                 class="text-danger">*</span>
                             <input class="form-control @error('state') is-invalid @enderror" type="text"
-                                id="state" name="state" required placeholder="{{ __('Enter state') }}"
+                                id="state" name="state" required placeholder="{{ __('Enter county') }}"
                                 value="{{ old('state', $carListing->state) }}" />
                             @error('state')
                                 <span class="invalid-feedback" role="alert">
@@ -420,10 +420,10 @@
                             @enderror
                         </div>
                         <div class="mb-4 col-md-4">
-                            <label for="zip_code" class="form-label">{{ __('Zip Code') }}</label><span
+                            <label for="zip_code" class="form-label">{{ __('Post Code') }}</label><span
                                 class="text-danger">*</span>
                             <input class="form-control @error('zip_code') is-invalid @enderror" type="number"
-                                id="zip_code" name="zip_code" required placeholder="{{ __('Enter zip code') }}"
+                                id="zip_code" name="zip_code" required placeholder="{{ __('Enter post code') }}"
                                 value="{{ old('zip_code', $carListing->zip_code) }}" />
                             @error('zip_code')
                                 <span class="invalid-feedback" role="alert">

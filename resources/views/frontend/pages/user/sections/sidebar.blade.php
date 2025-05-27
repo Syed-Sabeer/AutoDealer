@@ -22,8 +22,8 @@
                 href="{{ route('frontend.my-favourites') }}"><i class="far fa-heart"></i> My Favorites</a></li>
         {{-- <li><a href="profile-message.html"><i class="far fa-envelope"></i> Messages <span
                     class="badge badge-danger">02</span></a></li> --}}
-        <li><a class="{{ request()->routeIs('frontend.settings') ? 'active' : '' }}"
-                href="{{ route('frontend.settings') }}"><i class="far fa-gear"></i> Settings</a></li>
+        {{-- <li><a class="{{ request()->routeIs('frontend.settings') ? 'active' : '' }}"
+                href="{{ route('frontend.settings') }}"><i class="far fa-gear"></i> Settings</a></li> --}}
         <li>
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form1').submit();">
                 <i class="far fa-sign-out"></i> Logout

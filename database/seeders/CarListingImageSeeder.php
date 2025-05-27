@@ -16,38 +16,46 @@ class CarListingImageSeeder extends Seeder
         $images = [
             [
                 'car_listing_id' => 1,
-                'image_url' => 'frontAssets/img/car/single-1.jpg',
+                'image_url' => 'frontAssets/images/section/listing-detai-1.jpg',
             ],
             [
                 'car_listing_id' => 1,
-                'image_url' => 'frontAssets/img/car/single-2.jpg',
+                'image_url' => 'frontAssets/images/section/listing-detai-2.jpg',
             ],
             [
                 'car_listing_id' => 1,
-                'image_url' => 'frontAssets/img/car/single-3.jpg',
+                'image_url' => 'frontAssets/images/section/listing-detai-3.jpg',
             ],
             [
                 'car_listing_id' => 1,
-                'image_url' => 'frontAssets/img/car/single-4.jpg',
+                'image_url' => 'frontAssets/images/section/listing-detai-1.jpg',
+            ],
+            [
+                'car_listing_id' => 1,
+                'image_url' => 'frontAssets/images/section/listing-detai-2.jpg',
             ],
             [
                 'car_listing_id' => 2,
-                'image_url' => 'frontAssets/img/car/single-1.jpg',
+                'image_url' => 'frontAssets/images/section/listing-detai-1.jpg',
             ],
             [
                 'car_listing_id' => 2,
-                'image_url' => 'frontAssets/img/car/single-2.jpg',
+                'image_url' => 'frontAssets/images/section/listing-detai-2.jpg',
             ],
             [
                 'car_listing_id' => 2,
-                'image_url' => 'frontAssets/img/car/single-3.jpg',
+                'image_url' => 'frontAssets/images/section/listing-detai-3.jpg',
             ],
             [
                 'car_listing_id' => 2,
-                'image_url' => 'frontAssets/img/car/single-4.jpg',
+                'image_url' => 'frontAssets/images/section/listing-detai-1.jpg',
+            ],
+            [
+                'car_listing_id' => 2,
+                'image_url' => 'frontAssets/images/section/listing-detai-2.jpg',
             ],
         ];
-        
+
         foreach ($images as $image) {
             CarListingImage::create($image);
         }

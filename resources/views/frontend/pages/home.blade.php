@@ -416,12 +416,12 @@
 
 
     <!-- about area -->
-    @include('frontend.sections.about-area')
+    {{-- @include('frontend.sections.about-area') --}}
     <!-- about area end -->
 
 
     <!-- counter area -->
-    @include('frontend.sections.counter-area')
+    {{-- @include('frontend.sections.counter-area') --}}
     <!-- counter area end -->
 
 
@@ -436,7 +436,7 @@
 
 
     <!-- video area -->
-    <div class="video-area pb-120">
+    {{-- <div class="video-area pb-120">
         <div class="container-fluid px-0">
             <div class="video-content" style="background-image: url({{ asset('frontAssets/img/video/01.jpg') }});">
                 <div class="row align-items-center">
@@ -450,7 +450,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- video area end -->
 
 
