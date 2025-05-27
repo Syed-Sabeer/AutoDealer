@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\CarListing;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,7 +19,27 @@ class HomeController extends Controller
         if ($user->hasRole(['seller', 'user'])) {
             return redirect()->route('frontend.dashboard');
         }
-        return view('dashboard.index');
+        $totalSellers = User::role('seller')->count();
+        $totalDeactivatedSellers = User::role('seller')->where('is_active', 'inactive')->count();
+        $totalActiveSellers = User::role('seller')->where('is_active', 'active')->count();
+        $totalUnverifiedSellers = User::role('seller')->where('email_verified_at', null)->count();
+        $totalArchivedSellers = User::role('seller')->onlyTrashed()->count();
+
+        $totalCarListed = CarListing::count();
+        $draftedCarListings = CarListing::where('status', 'draft')->count();
+        $publishedCarListings = CarListing::where('status', 'published')->count();
+        $soldCarListings = CarListing::where('status', 'sold')->count();
+        return view('dashboard.index', compact(
+            'totalSellers', 
+            'totalDeactivatedSellers', 
+            'totalActiveSellers',
+            'totalUnverifiedSellers',
+            'totalArchivedSellers',
+            'totalCarListed',
+            'draftedCarListings',
+            'publishedCarListings',
+            'soldCarListings',
+        ));
     }
 
     /**
