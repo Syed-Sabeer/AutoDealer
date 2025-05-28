@@ -128,11 +128,13 @@
                                 Best Way To Find Your <span>Dream</span> Car
                             </h1>
                             <p class="wow fadeInLeft" data-wow-delay=".75s">
-                                Discover a seamless way to explore, compare, and drive away in the car that perfectly fits your lifestyle and budget.
+                                Discover a seamless way to explore, compare, and drive away in the car that perfectly fits
+                                your lifestyle and budget.
                             </p>
                             <div class="hero-btn wow fadeInUp" data-wow-delay="1s">
-                                <a href="{{route('frontend.about')}}" class="theme-btn">About Us<i class="fas fa-arrow-right-long"></i></a>
-                                <a href="{{route('frontend.inventory')}}" class="theme-btn theme-btn2">Explore More<i
+                                <a href="{{ route('frontend.about') }}" class="theme-btn">About Us<i
+                                        class="fas fa-arrow-right-long"></i></a>
+                                <a href="{{ route('frontend.inventory') }}" class="theme-btn theme-btn2">Explore More<i
                                         class="fas fa-arrow-right-long"></i></a>
                             </div>
                         </div>
@@ -217,7 +219,6 @@
                                                     </div>
                                                 </div>
 
-
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label>Price Range</label>
@@ -262,6 +263,27 @@
                                                             <option value="automatic">Automatic</option>
                                                             <option value="manual">Manual</option>
                                                         </select>
+                                                    </div>
+                                                </div>
+                                                <div class="car-widget col-lg-12" style="margin-bottom: 0px !important;">
+                                                    <h4 class="car-widget-title" style="margin-bottom: 0px !important;">Distance from You (miles)</h4>
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Postcode</label>
+                                                                <input class="form-control" style="padding-left: 15px;" type="text"
+                                                                    placeholder="Enter your postcode" name="postcode"
+                                                                    value="{{ request('postcode') }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Distance (within miles)</label>
+                                                                <input class="form-control" style="padding-left: 15px;" type="number"
+                                                                    placeholder="Enter distance in miles"
+                                                                    name="distance" value="{{ request('distance') }}">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 align-self-end mt-4">
@@ -604,7 +626,7 @@
 
 
     <!-- testimonial area -->
-    @include('frontend.sections.testimonials')
+    {{-- @include('frontend.sections.testimonials') --}}
     <!-- testimonial area end -->
 
 

@@ -19,7 +19,7 @@ class FeatureController extends Controller
     {
         $this->authorize('view feature');
         try {
-            $carFeatures = CarFeature::get();
+            $carFeatures = CarFeature::orderBy('name')->get();
             return view('dashboard.feature.index', compact('carFeatures'));
         } catch (\Throwable $th) {
             Log::error('carFeatures Index Failed', ['error' => $th->getMessage()]);

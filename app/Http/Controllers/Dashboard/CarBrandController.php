@@ -19,7 +19,7 @@ class CarBrandController extends Controller
     {
         $this->authorize('view car brand');
         try {
-            $carBrands = CarBrand::get();
+            $carBrands = CarBrand::orderBy('name')->get();
             return view('dashboard.car-brand.index', compact('carBrands'));
         } catch (\Throwable $th) {
             Log::error('CarBrand Index Failed', ['error' => $th->getMessage()]);

@@ -21,7 +21,7 @@ class CarModelController extends Controller
         $this->authorize('view car model');
         try {
             $carBrand = CarBrand::find($id);
-            $carModels = CarModel::where('car_brand_id', $id)->get();
+            $carModels = CarModel::where('car_brand_id', $id)->orderBy('name')->get();
             return view('dashboard.car-model.index', compact('carModels','carBrand'));
         } catch (\Throwable $th) {
             Log::error('CarModel Index Failed', ['error' => $th->getMessage()]);

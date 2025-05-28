@@ -19,8 +19,8 @@ class HomeController extends Controller
     public function home()
     {
         try {
-            $carBrands = CarBrand::where('is_active', 'active')->get();
-            $carBodyTypes = CarBodyType::where('is_active', 'active')->get();
+            $carBrands = CarBrand::where('is_active', 'active')->orderBy('name')->get();
+            $carBodyTypes = CarBodyType::where('is_active', 'active')->orderBy('name')->get();
             return view('frontend.pages.home', compact('carBrands', 'carBodyTypes'));
         } catch (\Throwable $th) {
             Log::error('Home view Failed', ['error' => $th->getMessage()]);
@@ -183,7 +183,7 @@ class HomeController extends Controller
                             $dist = acos($dist);
                             $dist = rad2deg($dist);
                             $miles = $dist * 60 * 1.1515;
-                            Log::info("Distance between user and car: " . $miles . " miles");   
+                            Log::info("Distance between user and car: " . $miles . " miles");
 
                             if ($miles <= $distance) {
                                 $matchingIds[] = $car->id;
@@ -256,11 +256,11 @@ class HomeController extends Controller
 
             $carListings = $carListings->paginate(9)->withQueryString();
 
-            $carBrands = CarBrand::where('is_featured', '1')->where('is_active', 'active')->get();
-            $allBrands = CarBrand::where('is_active', 'active')->get();
-            $carFuelTypes = CarFuelType::where('is_featured', '1')->where('is_active', 'active')->get();
-            $carFeatures = CarFeature::where('is_featured', '1')->where('is_active', 'active')->get();
-            $carBodyTypes = CarBodyType::where('is_active', 'active')->get();
+            $carBrands = CarBrand::where('is_featured', '1')->where('is_active', 'active')->orderBy('name')->get();
+            $allBrands = CarBrand::where('is_active', 'active')->orderBy('name')->get();
+            $carFuelTypes = CarFuelType::where('is_featured', '1')->where('is_active', 'active')->orderBy('name')->get();
+            $carFeatures = CarFeature::where('is_featured', '1')->where('is_active', 'active')->orderBy('name')->get();
+            $carBodyTypes = CarBodyType::where('is_active', 'active')->orderBy('name')->get();
             $maxPrice = CarListing::where('status', 'published')->max('price');
 
             return view('frontend.pages.inventory.listing', compact('carListings', 'carBrands', 'carFuelTypes', 'carFeatures', 'maxPrice', 'allBrands', 'carBodyTypes'));

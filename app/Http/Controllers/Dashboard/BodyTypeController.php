@@ -19,7 +19,7 @@ class BodyTypeController extends Controller
     {
         $this->authorize('view body type');
         try {
-            $carBodyTypes = CarBodyType::get();
+            $carBodyTypes = CarBodyType::orderBy('name')->get();
             return view('dashboard.body-type.index', compact('carBodyTypes'));
         } catch (\Throwable $th) {
             Log::error('CarBodyType Index Failed', ['error' => $th->getMessage()]);

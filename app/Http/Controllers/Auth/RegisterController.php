@@ -40,14 +40,7 @@ class RegisterController extends Controller
         $rules = [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => [
-                'required',
-                Password::min(8)
-                ->letters()
-                ->mixedCase()
-                ->numbers()
-                ->symbols()
-            ],
+            'password' => ['required', 'string', 'min:8'],
             'confirm-password' => 'required|same:password',
             'terms' => 'required|string|max:255',
         ];

@@ -148,7 +148,7 @@
                     @enderror
                 </div>
                 <div class="mb-4 col-md-4">
-                    <label for="zip" class="form-label">{{ __('Zip Code') }}</label>
+                    <label for="zip" class="form-label">{{ __('Post Code') }}</label>
                     <input type="text" class="form-control @error('zip') is-invalid @enderror" id="zip" name="zip" value="{{$companySetting->zip}}" placeholder="i.e. 231465" maxlength="6" />
                     @error('zip')
                         <span class="invalid-feedback" role="alert">

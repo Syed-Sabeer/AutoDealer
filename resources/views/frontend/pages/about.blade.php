@@ -27,12 +27,12 @@
 
 
     <!-- counter area -->
-    @include('frontend.sections.counter-area')
+    {{-- @include('frontend.sections.counter-area') --}}
     <!-- counter area end -->
 
 
     <!-- testimonial area -->
-    @include('frontend.sections.testimonials')
+    {{-- @include('frontend.sections.testimonials') --}}
     <!-- testimonial area end -->
 
 

@@ -19,7 +19,7 @@ class FuelTypeController extends Controller
     {
         $this->authorize('view fuel type');
         try {
-            $carFuelTypes = CarFuelType::get();
+            $carFuelTypes = CarFuelType::orderBy('name')->get();
             return view('dashboard.fuel-type.index', compact('carFuelTypes'));
         } catch (\Throwable $th) {
             Log::error('carFuelType Index Failed', ['error' => $th->getMessage()]);

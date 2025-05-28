@@ -14,7 +14,7 @@ class AjaxController extends Controller
         try {
             $models = CarModel::where('car_brand_id', $brand_id)
                 ->where('is_active', 'active')
-                ->get();
+                ->orderBy('name')->get();
 
             return response()->json([
                 'success' => true,

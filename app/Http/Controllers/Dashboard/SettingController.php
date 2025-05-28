@@ -111,7 +111,7 @@ class SettingController extends Controller
             'phone_number' => 'nullable|numeric',
             'country_id' => 'nullable|integer|exists:countries,id',
             'city' => 'nullable|string|max:255',
-            'zip' => 'nullable|integer',
+            'zip' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
             'about' => 'nullable',
             'light_logo' => 'nullable|file|mimes:jpeg,png,jpg|max_size',

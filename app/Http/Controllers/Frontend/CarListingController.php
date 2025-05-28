@@ -121,6 +121,7 @@ class CarListingController extends Controller
             $carListing->contact_email = $request->contact_email;
             $carListing->contact_phone = $request->contact_phone;
             $carListing->horsepower = $request->horsepower ?? null;
+            $carListing->status = 'published';
 
             if ($request->zip_code) {
                 $geo = Http::get("https://api.postcodes.io/postcodes/" . urlencode($request->zip_code));
