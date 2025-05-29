@@ -407,6 +407,8 @@
                                                         id="main_image"
                                                         class="form-control @error('main_image') is-invalid @enderror"
                                                         required>
+                                                    <div class="main-image-preview-container mt-2 row g-2"></div>
+                                                    <!-- Preview container -->
                                                     @error('main_image')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -483,7 +485,8 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="state">County <span class="text-danger">*</span></label>
+                                                    <label for="state">County <span
+                                                            class="text-danger">*</span></label>
                                                     <input type="text" name="state" id="state"
                                                         class="form-control @error('state') is-invalid @enderror"
                                                         placeholder="Enter county" required value="{{ old('state') }}">
@@ -663,6 +666,31 @@
             }
         });
         $(document).ready(function() {
+            $('#main_image').on('change', function(e) {
+                const file = e.target.files[0];
+                const $previewContainer = $('.main-image-preview-container');
+                $previewContainer.empty(); // Clear previous preview
+
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const previewHTML = `
+                        <div class="col-auto position-relative">
+                            <img src="${event.target.result}" class="img-thumbnail" style="width: 120px;">
+                            <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 remove-main-image" style="border-radius: 50%;"><i class="fas fa-times"></i></button>
+                        </div>
+                    `;
+                        $previewContainer.html(previewHTML);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Event delegation for dynamically added remove button
+            $(document).on('click', '.remove-main-image', function() {
+                $('.main-image-preview-container').empty();
+                $('#main_image').val('');
+            });
             const currentYear = new Date().getFullYear();
             const startYear = 1955;
             let options = '<option selected disabled>All Year</option>';
