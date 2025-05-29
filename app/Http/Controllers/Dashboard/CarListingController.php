@@ -140,7 +140,8 @@ class CarListingController extends Controller
             $carListing->status = 'published';
 
             if($request->zip_code){
-                $geo = Http::get("https://api.postcodes.io/postcodes/" . urlencode($request->zip_code));
+                $postcode = trim(preg_replace('/\s+/', '', $request->zip_code));
+                $geo = Http::get("https://api.postcodes.io/postcodes/" . $postcode);
                 if ($geo->successful() && isset($geo['result'])) {
                     $carListing->latitude = $geo['result']['latitude'];
                     $carListing->longitude = $geo['result']['longitude'];
@@ -309,7 +310,8 @@ class CarListingController extends Controller
             $carListing->horsepower = $request->horsepower ?? null;
 
             if($request->zip_code){
-                $geo = Http::get("https://api.postcodes.io/postcodes/" . urlencode($request->zip_code));
+                $postcode = trim(preg_replace('/\s+/', '', $request->zip_code));
+                $geo = Http::get("https://api.postcodes.io/postcodes/" . $postcode);
                 if ($geo->successful() && isset($geo['result'])) {
                     $carListing->latitude = $geo['result']['latitude'];
                     $carListing->longitude = $geo['result']['longitude'];
