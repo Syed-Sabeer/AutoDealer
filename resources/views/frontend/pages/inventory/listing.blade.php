@@ -103,6 +103,7 @@
 @endsection
 <!-- End Page Title -->
 
+{{-- @dd($carListings) --}}
 @section('content')
     <!-- car area -->
     <div class="car-area {{ request('view') == 'list' ? 'list' : 'grid' }} bg py-120">
@@ -171,23 +172,26 @@
                                             </div>
                                             <div class="car-content">
                                                 <div class="car-top">
+                                                    <span>{{ $car->carBrand->name }} {{ $car->carModel->name }}</span>
                                                     <h4><a
                                                             href="{{ route('frontend.inventory.details', $car->car_id) }}">{{ $car->title }}</a>
                                                     </h4>
-                                                    <div class="car-rate">
+                                                    {{-- <div class="car-rate">
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
                                                         <span>5.0 (58.5k Review)</span>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                                 <ul class="car-list">
                                                     <li><i
                                                             class="far fa-steering-wheel"></i>{{ ucfirst($car->transmission) }}
                                                     </li>
-                                                    <li><i class="far fa-road"></i>{{ $car->fuel_efficiency }}km / 1-litre
+                                                    @if ($car->fuel_efficiency)
+                                                        <li><i class="far fa-road"></i>{{ $car->fuel_efficiency }}km / 1-litre
+                                                    @endif
                                                     </li>
                                                     <li><i class="far fa-car"></i>Model: {{ $car->year }}</li>
                                                     <li><i class="far fa-gas-pump"></i>{{ $car->carFuelType->name }}</li>
@@ -195,9 +199,22 @@
                                                 <p>
                                                     {{ $car->description }}
                                                 </p>
+                                                <!-- Additional Tags -->
+                                                <div class="car-tags" style="margin-top: 10px;">
+                                                    <span>{{ $car->color ?? 'N/A' }}</span> |
+                                                    <span>{{ $car->mileage ? number_format($car->mileage) . ' miles' : 'N/A' }}</span>
+                                                </div>
                                                 <div class="car-footer">
-                                                    <span
-                                                        class="car-price">{{ \App\Helpers\Helper::formatCurrency($car->price) }}</span>
+                                                    <div class="d-flex flex-column">
+                                                        <span class="car-price">{{ \App\Helpers\Helper::formatCurrency($car->price) }}</span>
+                                                        <span style="font-size: 12px;">
+                                                            <i class="far fa-location"></i>
+                                                            {{ $car->city }}
+                                                            @if (isset($car->calculated_distance))
+                                                                ({{ number_format($car->calculated_distance) }} miles)
+                                                            @endif
+                                                        </span>
+                                                    </div>
                                                     <a href="{{ route('frontend.inventory.details', $car->car_id) }}"
                                                         class="theme-btn"><span class="far fa-eye"></span>Details</a>
                                                 </div>
@@ -220,32 +237,46 @@
                                             </div>
                                             <div class="car-content">
                                                 <div class="car-top">
-                                                    <h4><a
-                                                            href="{{ route('frontend.inventory.details', $car->car_id) }}">{{ $car->title }}</a>
-                                                    </h4>
-                                                    <div class="car-rate">
+                                                    <span>{{ $car->carBrand->name }} {{ $car->carModel->name }}</span>
+                                                    <h4><a href="{{ route('frontend.inventory.details', $car->car_id) }}">{{ $car->title }}</a></h4>
+                                                    {{-- <div class="car-rate">
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
                                                         <span>5.0 (58.5k Review)</span>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                                 <ul class="car-list">
                                                     <li><i
                                                             class="far fa-steering-wheel"></i>{{ ucfirst($car->transmission) }}
                                                     </li>
-                                                    <li><i class="far fa-road"></i>{{ $car->fuel_efficiency }}km / 1-litre
+                                                    @if ($car->fuel_efficiency)
+                                                        <li><i class="far fa-road"></i>{{ $car->fuel_efficiency }}km / 1-litre
+                                                    @endif
                                                     </li>
                                                     <li><i class="far fa-car"></i>Model: {{ $car->year }}</li>
                                                     <li><i class="far fa-gas-pump"></i>{{ $car->carFuelType->name }}</li>
                                                 </ul>
+                                                <!-- Additional Tags -->
+                                                <div class="car-tags" style="margin-top: 10px;">
+                                                    <span>{{ $car->color ?? 'N/A' }}</span> |
+                                                    <span>{{ $car->mileage ? number_format($car->mileage) . ' miles' : 'N/A' }}</span>
+                                                </div>
                                                 <div class="car-footer">
-                                                    <span
-                                                        class="car-price">{{ \App\Helpers\Helper::formatCurrency($car->price) }}</span>
-                                                    <a href="{{ route('frontend.inventory.details', $car->car_id) }}"
-                                                        class="theme-btn"><span class="far fa-eye"></span>Details</a>
+                                                    <div class="d-flex flex-column">
+                                                        <span class="car-price">{{ \App\Helpers\Helper::formatCurrency($car->price) }}</span>
+                                                        <span style="font-size: 12px;">
+                                                            <i class="far fa-location"></i>
+                                                            {{ $car->city }}
+                                                            @if (isset($car->calculated_distance))
+                                                                ({{ number_format($car->calculated_distance) }} miles)
+                                                            @endif
+                                                        </span>
+                                                    </div>
+                                                    {{-- <a href="{{ route('frontend.inventory.details', $car->car_id) }}"
+                                                        class="theme-btn"><span class="far fa-eye"></span>Details</a> --}}
                                                 </div>
                                             </div>
                                         </div>

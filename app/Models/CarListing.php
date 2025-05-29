@@ -44,6 +44,8 @@ class CarListing extends Model
         'contact_email',
         'is_featured',
         'status',
+        'latitude',
+        'longitude',
     ];
 
     // protected static function boot()

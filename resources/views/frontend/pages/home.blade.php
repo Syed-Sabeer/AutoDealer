@@ -145,7 +145,19 @@
                                 <div class="container">
                                     <div class="find-car-form">
                                         <h4 class="find-car-title">Let's Find Your Perfect Car</h4>
-                                        <form action="{{ route('frontend.inventory') }}" method="GET">
+                                        <form id="geoFilterForm" action="{{ route('frontend.inventory') }}" method="GET">
+                                            <input type="hidden" name="lat" id="lat">
+                                            <input type="hidden" name="lng" id="lng">
+                                            {{-- preserve any existing filters on reload: --}}
+                                            @foreach(request()->except(['lat','lng','page']) as $key => $val)
+                                                @if(is_array($val))
+                                                    @foreach($val as $v)
+                                                        <input type="hidden" name="{{ $key }}[]" value="{{ $v }}">
+                                                    @endforeach
+                                                @else
+                                                    <input type="hidden" name="{{ $key }}" value="{{ $val }}">
+                                                @endif
+                                            @endforeach
                                             <div class="row">
                                                 {{-- <div class="col-lg-3">
                                                     <div class="form-group">
@@ -709,6 +721,19 @@
 
 @section('script')
     <script>
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(pos) {
+                const lat = pos.coords.latitude.toFixed(6),
+                    lng = pos.coords.longitude.toFixed(6);
+                const url = new URL(window.location.href);
+                // only inject once to avoid reload loops:
+                if (!url.searchParams.has('lat') || !url.searchParams.has('lng')) {
+                    document.getElementById('lat').value = lat;
+                    document.getElementById('lng').value = lng;
+                    // document.getElementById('geoFilterForm').submit();
+                }
+            });
+        }
         $(document).ready(function() {
             // const currentYear = new Date().getFullYear();
             // const startYear = 1955;

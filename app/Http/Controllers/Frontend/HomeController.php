@@ -53,7 +53,7 @@ class HomeController extends Controller
         // dd(request()->all());
         try {
             // $carListings = CarListing::with('carBrand','carFuelType')->where('status', 'published')->paginate(9);
-            $carListings = CarListing::with('carBrand', 'carFuelType')->where('status', 'published');
+            $carListings = CarListing::with('carBrand', 'carFuelType', 'carBrand', 'carModel')->where('status', 'published');
 
             if (request('brands')) {
                 $carListings->whereIn('car_brand_id', request('brands'));
@@ -147,61 +147,9 @@ class HomeController extends Controller
                 $carListings->where('title', 'like', '%' . request('search') . '%');
             }
 
-            if (request('postcode') && request('distance')) {
-                Log::info('Postcode filter initiated');
-
-                $postcode = strtoupper(str_replace(' ', '', request('postcode')));
-                $distance = (float) request('distance');
-
-                try {
-                    // Get lat/lng of user input postcode
-                    $userGeo = Http::get("https://api.postcodes.io/postcodes/{$postcode}");
-                    Log::info("User Geo API Response: " . json_encode($userGeo->json()));
-
-                    if ($userGeo->successful() && isset($userGeo['result'])) {
-                        Log::info('User Geo API successful');
-                        $userLat = $userGeo['result']['latitude'];
-                        $userLng = $userGeo['result']['longitude'];
-
-                        $matchingIds = [];
-
-                        $allCars = $carListings->get();
-                        foreach ($allCars as $car) {
-                            Log::info('Foreach init');
-                            if (!isset($car->latitude) || !isset($car->longitude)) {
-                                Log::info('Car does not have lat/lng');
-                                continue;
-                            }
-
-                            $lat = $car->latitude;
-                            $lng = $car->longitude;
-
-                            // Haversine formula
-                            $theta = $userLng - $lng;
-                            $dist = sin(deg2rad($userLat)) * sin(deg2rad($lat)) +
-                                cos(deg2rad($userLat)) * cos(deg2rad($lat)) * cos(deg2rad($theta));
-                            $dist = acos($dist);
-                            $dist = rad2deg($dist);
-                            $miles = $dist * 60 * 1.1515;
-                            Log::info("Distance between user and car: " . $miles . " miles");
-
-                            if ($miles <= $distance) {
-                                $matchingIds[] = $car->id;
-                            }
-                        }
-
-                        Log::info("Matching Car IDs: " . json_encode($matchingIds));
-
-                        $carListings = $carListings->whereIn('id', $matchingIds);
-                    }
-                } catch (\Exception $e) {
-                    Log::error("Postcode API Error: " . $e->getMessage());
-                }
-            }
-
-
             // if (request('postcode') && request('distance')) {
-            //     Log::info('Test');
+            //     Log::info('Postcode filter initiated');
+
             //     $postcode = strtoupper(str_replace(' ', '', request('postcode')));
             //     $distance = (float) request('distance');
 
@@ -209,52 +157,103 @@ class HomeController extends Controller
             //         // Get lat/lng of user input postcode
             //         $userGeo = Http::get("https://api.postcodes.io/postcodes/{$postcode}");
             //         Log::info("User Geo API Response: " . json_encode($userGeo->json()));
+
             //         if ($userGeo->successful() && isset($userGeo['result'])) {
+            //             Log::info('User Geo API successful');
             //             $userLat = $userGeo['result']['latitude'];
             //             $userLng = $userGeo['result']['longitude'];
 
-            //             // Get all car zip codes in listings (paged later)
-            //             $carZipCodes = $carListings->pluck('zip_code')->unique();
-            //             Log::info("Car Zip Codes: " . json_encode($carZipCodes));
+            //             $matchingIds = [];
 
-            //             $matchingZips = [];
+            //             $allCars = $carListings->get();
+            //             foreach ($allCars as $car) {
+            //                 Log::info('Foreach init');
+            //                 if (!isset($car->latitude) || !isset($car->longitude)) {
+            //                     Log::info('Car does not have lat/lng');
+            //                     continue;
+            //                 }
 
-            //             foreach ($carZipCodes as $zip) {
-            //                 // $zip = strtoupper(str_replace(' ', '', $zip));
-            //                 try {
-            //                     $geo = Http::get("https://api.postcodes.io/postcodes/{$zip}");
-            //                     Log::info("User Geo API Response: " . json_encode($geo->json()));
-            //                     if ($geo->successful() && isset($geo['result'])) {
-            //                         $lat = $geo['result']['latitude'];
-            //                         $lng = $geo['result']['longitude'];
+            //                 $lat = $car->latitude;
+            //                 $lng = $car->longitude;
 
-            //                         // Haversine
-            //                         $theta = $userLng - $lng;
-            //                         $dist = sin(deg2rad($userLat)) * sin(deg2rad($lat)) +
-            //                             cos(deg2rad($userLat)) * cos(deg2rad($lat)) * cos(deg2rad($theta));
-            //                         $dist = acos($dist);
-            //                         $dist = rad2deg($dist);
-            //                         $miles = $dist * 60 * 1.1515;
+            //                 // Haversine formula
+            //                 $theta = $userLng - $lng;
+            //                 $dist = sin(deg2rad($userLat)) * sin(deg2rad($lat)) +
+            //                     cos(deg2rad($userLat)) * cos(deg2rad($lat)) * cos(deg2rad($theta));
+            //                 $dist = acos($dist);
+            //                 $dist = rad2deg($dist);
+            //                 $miles = $dist * 60 * 1.1515;
+            //                 Log::info("Distance between user and car: " . $miles . " miles");
 
-            //                         if ($miles <= $distance) {
-            //                             $matchingZips[] = $zip;
-            //                         }
-            //                     }
-            //                 } catch (\Exception $e) {
-            //                     Log::error("Failed zip API for {$zip}: " . $e->getMessage());
+            //                 if ($miles <= $distance) {
+            //                     $matchingIds[] = $car->id;
             //                 }
             //             }
-            //             Log::info("Matching Zips: " . json_encode($matchingZips));
 
-            //             // Now apply like your `whereIn`
-            //             $carListings->whereIn(DB::raw("zip_code"), $matchingZips);
+            //             Log::info("Matching Car IDs: " . json_encode($matchingIds));
+
+            //             $carListings = $carListings->whereIn('id', $matchingIds);
             //         }
             //     } catch (\Exception $e) {
             //         Log::error("Postcode API Error: " . $e->getMessage());
             //     }
             // }
 
-            $carListings = $carListings->paginate(9)->withQueryString();
+            // Distance filtering
+            $userLat = $userLng = $maxRadius = null;
+            $filteredCars = collect();
+
+            if (request('postcode')) {
+                try {
+                    $pc = strtoupper(str_replace(' ', '', request('postcode')));
+                    $resp = Http::get("https://api.postcodes.io/postcodes/{$pc}");
+                    if ($resp->successful() && $resp['result']) {
+                        $userLat = $resp['result']['latitude'];
+                        $userLng = $resp['result']['longitude'];
+                    }
+                } catch (\Exception $e) {
+                    Log::error("Postcode lookup failed: " . $e->getMessage());
+                }
+            } elseif (request()->has(['lat', 'lng'])) {
+                $userLat = (float) request('lat');
+                $userLng = (float) request('lng');
+            }
+
+            $maxRadius = request('distance') ? (float) request('distance') : null;
+
+            if ($userLat && $userLng) {
+                $allCars = $carListings->get();
+                foreach ($allCars as $car) {
+                    if (!$car->latitude || !$car->longitude) continue;
+
+                    $theta = $userLng - $car->longitude;
+                    $dist = sin(deg2rad($userLat)) * sin(deg2rad($car->latitude)) +
+                            cos(deg2rad($userLat)) * cos(deg2rad($car->latitude)) * cos(deg2rad($theta));
+                    $dist = acos($dist);
+                    $dist = rad2deg($dist) * 60 * 1.1515; // miles
+
+                    $car->calculated_distance = round($dist, 2);
+
+                    if (is_null($maxRadius) || $dist <= $maxRadius) {
+                        $filteredCars->push($car);
+                    }
+                }
+
+                // Sort by distance
+                $carListings = $filteredCars->sortBy('calculated_distance')->values();
+                $carListings = new \Illuminate\Pagination\LengthAwarePaginator(
+                    $carListings->forPage(request()->get('page', 1), 9),
+                    $carListings->count(),
+                    9,
+                    request()->get('page', 1),
+                    ['path' => request()->url(), 'query' => request()->query()]
+                );
+            } else {
+                // Regular pagination
+                $carListings = $carListings->paginate(9)->withQueryString();
+            }
+
+            // $carListings = $carListings->paginate(9)->withQueryString();
 
             $carBrands = CarBrand::where('is_featured', '1')->where('is_active', 'active')->orderBy('name')->get();
             $allBrands = CarBrand::where('is_active', 'active')->orderBy('name')->get();
