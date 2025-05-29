@@ -422,7 +422,7 @@
                         <div class="mb-4 col-md-4">
                             <label for="zip_code" class="form-label">{{ __('Post Code') }}</label><span
                                 class="text-danger">*</span>
-                            <input class="form-control @error('zip_code') is-invalid @enderror" type="number"
+                            <input class="form-control @error('zip_code') is-invalid @enderror" type="text"
                                 id="zip_code" name="zip_code" required placeholder="{{ __('Enter post code') }}"
                                 value="{{ old('zip_code', $carListing->zip_code) }}" />
                             @error('zip_code')
