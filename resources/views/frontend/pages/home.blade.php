@@ -11,6 +11,15 @@
             height: 150px;
             overflow-y: auto !important;
         }
+        @media (max-width: 767.98px) {
+            .home-filter-form {
+                margin-top: 100px;
+            }
+            .hero-single {
+                padding-top: 100px !important;
+            }
+        }
+
     </style>
 @endsection
 
@@ -139,7 +148,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 col-lg-6">
+                    <div class="col-md-12 col-lg-6 home-filter-form">
                         <div class="hero-right">
                             <div class="find-car">
                                 <div class="container">

@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="{{ asset('frontAssets/css/nice-select.min.css') }}">
 <link rel="stylesheet" href="{{ asset('frontAssets/css/flex-slider.min.css') }}">
 <link rel="stylesheet" href="{{ asset('frontAssets/css/style.css') }}">
+<!-- Toastr CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <style>
 </style>
 @yield('css')
