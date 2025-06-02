@@ -16,7 +16,7 @@
                 margin-top: 100px;
             }
             .hero-single {
-                padding-top: 100px !important;
+                padding-top: 150px !important;
             }
         }
 
