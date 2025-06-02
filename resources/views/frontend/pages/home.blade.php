@@ -18,6 +18,9 @@
             .hero-single {
                 padding-top: 150px !important;
             }
+            .navbar-brand img {
+                width: 100px;
+            }
         }
 
     </style>
