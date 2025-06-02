@@ -90,6 +90,10 @@
                 right: 50px;
             }
         }
+
+        .nav-item .active{
+            color: #0069a4 !important;
+        }
     </style>
 </head>
 

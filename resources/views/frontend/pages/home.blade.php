@@ -11,7 +11,7 @@
             height: 150px;
             overflow-y: auto !important;
         }
-        @media (max-width: 767.98px) {
+        @media (max-width: 1200px) {
             .home-filter-form {
                 margin-top: 100px;
             }

@@ -104,8 +104,12 @@
                     @else
                         <a href="{{ route('frontend.login') }}"><i class="far fa-arrow-right-to-arc"></i> Login</a>
                     @endif
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"
+                    {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"
                         aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-mobile-icon"><i class="far fa-bars"></i></span>
+                    </button> --}}
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu"
+                        aria-controls="offcanvasMenu" aria-label="Toggle navigation">
                         <span class="navbar-toggler-mobile-icon"><i class="far fa-bars"></i></span>
                     </button>
                 </div>
@@ -201,6 +205,42 @@
                 </div>
             </div>
         </nav>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel" style="background-color: #B3C8CF !important;">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasMenuLabel"><a class="navbar-brand" href="{{ route('frontend.home') }}">
+                    <img src="{{ asset(\App\Helpers\Helper::getLogoDark()) }}" alt="logo">
+                </a></h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('frontend.home') ? 'active' : '' }}" href="{{ route('frontend.home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('frontend.about') ? 'active' : '' }}" href="{{ route('frontend.about') }}">About</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('frontend.inventory') ? 'active' : '' }}" href="{{ route('frontend.inventory') }}">Vehicles</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->routeIs('frontend.contact') ? 'active' : '' }}" href="{{ route('frontend.contact') }}">Contact</a></li>
+                </ul>
+                @if (Auth::check())
+                    <hr>
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link" href="{{ route('frontend.dashboard') }}"><i class="far fa-gauge-high"></i> Dashboard</a></li>
+                        <li><a class="nav-link" href="{{ route('frontend.profile') }}"><i class="far fa-user"></i> Profile</a></li>
+                        <li><a class="nav-link" href="{{ route('frontend.my-listings') }}"><i class="far fa-layer-group"></i> My Listing</a></li>
+                        <li><a class="nav-link" href="{{ route('frontend.my-favourites') }}"><i class="far fa-heart"></i> Favorites</a></li>
+                        <li><a class="nav-link" href="{{ route('frontend.settings') }}"><i class="far fa-cog"></i> Settings</a></li>
+                        <li><a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form-offcanvas').submit();"><i class="far fa-sign-out"></i> Logout</a></li>
+                        <form id="logout-form-offcanvas" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
+                    </ul>
+                @else
+                    <div class="mt-3">
+                        <a href="{{ route('frontend.login') }}" class="btn btn-outline-primary w-100 mb-2">Login</a>
+                        <a href="{{ route('frontend.register') }}" class="btn btn-primary w-100">Register</a>
+                    </div>
+                @endif
+            </div>
+        </div>
     </div>
 </header>
 <!-- header area end -->
+
+
