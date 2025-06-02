@@ -45,7 +45,7 @@
         }
 
         .hero-single{
-            background: rgba(0, 105, 164, 0.15) !important;
+            background: rgba(0, 105, 164, 0.05) !important;
         }
 
         .hero-single .hero-title,
