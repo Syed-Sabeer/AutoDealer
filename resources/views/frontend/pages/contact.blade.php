@@ -33,7 +33,9 @@
                             </div>
                             <div class="contact-info-content">
                                 <h5>Office Address</h5>
-                                <p>25/B Milford, New York, USA</p>
+                                <p>{{ \App\Helpers\Helper::getCompanyAddress() }},
+                            {{ \App\Helpers\Helper::getCompanyCity() }} {{ \App\Helpers\Helper::getCompanyZip() }},
+                            {{ \App\Helpers\Helper::getCompanyCountry() }}</p>
                             </div>
                         </div>
                     </div>
@@ -44,7 +46,7 @@
                             </div>
                             <div class="contact-info-content">
                                 <h5>Call Us</h5>
-                                <p>+2 123 4565 789</p>
+                                <p>{{ \App\Helpers\Helper::getCompanyPhone() }}</p>
                             </div>
                         </div>
                     </div>
@@ -55,7 +57,7 @@
                             </div>
                             <div class="contact-info-content">
                                 <h5>Email Us</h5>
-                                <p><a href="">test@gmail.com</a></p>
+                                <p><a href="mailto:{{ \App\Helpers\Helper::getCompanyEmail() }}">{{ \App\Helpers\Helper::getCompanyEmail() }}</a></p>
                             </div>
                         </div>
                     </div>
